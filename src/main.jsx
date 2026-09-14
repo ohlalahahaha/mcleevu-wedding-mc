@@ -1,57 +1,82 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
-import './contact.css';
 
-const faqs = [
-  ['What does an MC actually do?', 'I help your celebration move naturally—from welcoming guests through the final toast—while keeping everyone informed, comfortable and present.'],
-  ['How do we get started?', 'Send through your date and a few details about your celebration. We’ll arrange a relaxed chat to see if we are a good fit.'],
-  ['Can you help with the run sheet?', 'Yes. We can shape a clear, personal flow for the day together, including key moments and introductions.'],
-  ['Do you travel?', 'Let me know where you are celebrating in your enquiry and I’ll confirm availability.']
-];
+const COPY = {
+  en: {
+    nav: ['About', 'Approach', 'Package', 'Availability'], book: 'Check your date',
+    heroTitle: 'Your wedding, beautifully held from the first welcome to the final farewell.',
+    heroBody: 'MC Lee Vu brings calm, confidence and warmth to the room — helping both families feel included, keeping every important moment moving naturally, and giving you more space to simply enjoy your wedding.',
+    trust: ['Sydney', 'English + Tiếng Việt', 'Wedding MC since 2006', 'One wedding per date'], meet: 'Meet Lee',
+    aboutTitle: 'Calm on the microphone. Present in the room.',
+    aboutBody: 'Lee has hosted weddings and community events across Sydney for many years. His style is polished without feeling formal, warm without becoming loud, and flexible enough to respond naturally when timing changes.',
+    aboutBody2: 'He works comfortably in English and Vietnamese, helping two families, two generations and two languages feel part of the same celebration.',
+    qualities: 'Reliable · Thoughtful · Proactive · Flexible',
+    highlightTitle: 'The room is held. You stay in the moment.',
+    highlightBody: 'A good MC does more than make announcements. Lee prepares carefully, keeps the room connected and steps forward only when the moment needs him.',
+    approachTitle: 'A wedding should feel effortless to the couple living it.',
+    approachIntro: 'Lee’s role is to protect the flow of the evening — so the important moments land naturally and you are never managing your own reception.',
+    approachItems: [['Before','A calm planning conversation, key names and the shape of the evening.'],['During','Warm bilingual hosting, clear transitions and a steady sense of timing.'],['Throughout','Flexible coordination with the room so changes never become your problem.']],
+    videoLabel: 'A real moment', videoTitle: 'See Lee in the room.',
+    videoBody: 'Not a staged promo — a glimpse of the presence, tone and ease Lee brings when people are gathered together.',
+    packageLabel: 'Wedding MC package', packageTitle: 'One evening. One clear fee.', total: 'A$1,000 total',
+    coverage: 'From 6:00 PM until the reception concludes.', deposit: 'A$500 booking deposit', balance: 'A$500 remaining balance',
+    packageNote: 'Simple, clear and confirmed before the day — so there is one less thing to think about.',
+    availabilityLabel: 'Availability', availabilityTitle: 'Is Lee available for your wedding?',
+    availabilityBody: 'Choose your date. The live booking system checks confirmed bookings and temporary holds before a deposit can be accepted.',
+    selectDate: 'Wedding date', checkDate: 'Check this date', checking: 'Checking your date…', available: 'Your date is available.',
+    availableBody: 'Continue with your details and secure it with the A$500 deposit.', held: 'This date is temporarily being held.', unavailable: 'Lee is already booked on this date.',
+    unavailableBody: 'Choose another date or contact Lee directly.', serviceUnavailable: 'Online booking is being activated.',
+    serviceUnavailableBody: 'You can still contact Lee directly while the secure payment connection is completed.',
+    detailsTitle: 'Your wedding details', yourName: 'Your name', partnerName: 'Partner name', email: 'Email', phone: 'Phone', venue: 'Venue name', venueAddress: 'Venue address',
+    language: 'Hosting language', languageOptions: ['English + Vietnamese','English','Vietnamese'], notes: 'Anything Lee should know',
+    summaryTitle: 'Secure your date', dueToday: 'Due today', remaining: 'Remaining', pay: 'Pay A$500 deposit', paying: 'Opening secure checkout…',
+    stripeNote: 'Secure payment powered by Stripe. Your date is confirmed only after the deposit payment succeeds.',
+    directTitle: 'Prefer to speak first?', directBody: 'Call or email Lee directly. No sales pressure — just a clear conversation about your wedding.', faqTitle: 'A few useful answers.',
+    faqs: [['Can Lee host in English and Vietnamese?','Yes. Lee can host in English, Vietnamese, or naturally combine both throughout the reception.'],['What time does Lee start?','Wedding reception hosting begins at 6:00 PM and continues until the reception concludes.'],['What is the total fee?','The wedding MC fee is A$1,000. A$500 secures the date and A$500 remains.'],['How is the date secured?','The date is confirmed after the availability check passes and the A$500 deposit payment succeeds.']],
+    footerLine: 'A calm, trusted presence for one of the most important nights of your life.'
+  },
+  vi: {
+    nav: ['Giới thiệu','Phong cách','Gói MC','Lịch trống'], book: 'Kiểm tra ngày trống',
+    heroTitle: 'Một buổi tiệc cưới được chăm chút trọn vẹn — từ lời chào đầu tiên đến khoảnh khắc cuối cùng.',
+    heroBody: 'MC Lê Vũ dẫn dắt chương trình bằng sự điềm tĩnh, ấm áp và chuyên nghiệp, giúp hai gia đình cùng cảm thấy được kết nối để cô dâu chú rể có thể thật sự tận hưởng ngày vui của mình.',
+    trust: ['Sydney','English + Tiếng Việt','MC tiệc cưới từ năm 2006','Mỗi ngày chỉ nhận một tiệc'], meet: 'Về Lê Vũ',
+    aboutTitle: 'Điềm tĩnh trên sân khấu. Trọn vẹn với từng khoảnh khắc.',
+    aboutBody: 'Lê Vũ đã dẫn dắt nhiều đám cưới và sự kiện cộng đồng tại Sydney trong nhiều năm. Phong cách của anh chỉn chu nhưng không cứng nhắc, gần gũi nhưng không ồn ào, và luôn linh hoạt khi lịch trình thay đổi.',
+    aboutBody2: 'Anh sử dụng tự nhiên cả tiếng Anh và tiếng Việt, giúp hai gia đình, hai thế hệ và hai ngôn ngữ cùng cảm thấy mình thuộc về một buổi tiệc.', qualities: 'Tin cậy · Tinh tế · Chủ động · Linh hoạt',
+    highlightTitle: 'Anh lo nhịp của buổi tiệc. Bạn sống trọn khoảnh khắc.', highlightBody: 'Một MC tốt không chỉ đọc lời dẫn. Lê Vũ chuẩn bị kỹ, giữ kết nối trong phòng và chỉ bước lên khi khoảnh khắc thật sự cần anh.',
+    approachTitle: 'Đám cưới nên thật nhẹ nhàng với chính cô dâu chú rể.', approachIntro: 'Vai trò của Lê Vũ là giữ nhịp cho cả buổi tối — để từng khoảnh khắc diễn ra tự nhiên và bạn không phải tự điều hành tiệc cưới của mình.',
+    approachItems: [['Trước tiệc','Trao đổi nhẹ nhàng, nắm tên quan trọng và hình dung rõ nhịp chương trình.'],['Trong tiệc','Dẫn song ngữ ấm áp, chuyển phần rõ ràng và giữ thời gian vững vàng.'],['Xuyên suốt','Linh hoạt phối hợp để những thay đổi phía sau không trở thành áp lực của bạn.']],
+    videoLabel: 'Khoảnh khắc thật', videoTitle: 'Xem Lê Vũ trong không gian sự kiện.', videoBody: 'Không phải video quảng cáo dàn dựng — chỉ là một khoảnh khắc cho thấy sự hiện diện, giọng điệu và sự tự nhiên của Lê Vũ trước khán giả.',
+    packageLabel: 'Gói MC tiệc cưới', packageTitle: 'Một buổi tối. Một mức phí rõ ràng.', total: 'Tổng phí A$1,000', coverage: 'Từ 6:00 tối đến khi tiệc kết thúc.', deposit: 'Đặt cọc A$500', balance: 'Còn lại A$500', packageNote: 'Rõ ràng trước ngày cưới — để bạn bớt thêm một điều phải lo.',
+    availabilityLabel: 'Lịch trống', availabilityTitle: 'Lê Vũ có trống ngày cưới của bạn không?', availabilityBody: 'Chọn ngày cưới. Hệ thống sẽ kiểm tra lịch đã xác nhận và những ngày đang được giữ trước khi nhận đặt cọc.',
+    selectDate: 'Ngày cưới', checkDate: 'Kiểm tra ngày này', checking: 'Đang kiểm tra…', available: 'Ngày của bạn đang trống.', availableBody: 'Tiếp tục điền thông tin và giữ ngày bằng khoản đặt cọc A$500.', held: 'Ngày này hiện đang được tạm giữ.', unavailable: 'Lê Vũ đã có lịch vào ngày này.', unavailableBody: 'Hãy chọn ngày khác hoặc liên hệ trực tiếp.', serviceUnavailable: 'Hệ thống đặt lịch trực tuyến đang được kích hoạt.', serviceUnavailableBody: 'Bạn vẫn có thể liên hệ trực tiếp với Lê Vũ trong khi kết nối thanh toán bảo mật được hoàn tất.',
+    detailsTitle: 'Thông tin tiệc cưới', yourName: 'Tên của bạn', partnerName: 'Tên người bạn đời', email: 'Email', phone: 'Điện thoại', venue: 'Tên địa điểm', venueAddress: 'Địa chỉ địa điểm', language: 'Ngôn ngữ dẫn chương trình', languageOptions: ['Song ngữ Anh + Việt','Tiếng Anh','Tiếng Việt'], notes: 'Điều gì Lê Vũ nên biết thêm',
+    summaryTitle: 'Giữ ngày cưới của bạn', dueToday: 'Thanh toán hôm nay', remaining: 'Còn lại', pay: 'Đặt cọc A$500', paying: 'Đang mở thanh toán bảo mật…', stripeNote: 'Thanh toán bảo mật qua Stripe. Ngày cưới chỉ được xác nhận sau khi khoản đặt cọc thanh toán thành công.',
+    directTitle: 'Muốn trao đổi trước?', directBody: 'Gọi hoặc email trực tiếp cho Lê Vũ. Không áp lực bán hàng — chỉ là một cuộc trò chuyện rõ ràng về ngày cưới của bạn.', faqTitle: 'Một vài câu hỏi hữu ích.',
+    faqs: [['Lê Vũ có thể dẫn bằng cả tiếng Anh và tiếng Việt không?','Có. Lê Vũ có thể dẫn bằng tiếng Anh, tiếng Việt hoặc kết hợp tự nhiên cả hai trong suốt buổi tiệc.'],['Lê Vũ bắt đầu lúc mấy giờ?','Phần dẫn tiệc cưới bắt đầu từ 6:00 tối và kéo dài đến khi tiệc kết thúc.'],['Tổng chi phí là bao nhiêu?','Phí MC là A$1,000. Đặt cọc A$500 để giữ ngày và A$500 còn lại.'],['Khi nào ngày cưới được xác nhận?','Ngày cưới được xác nhận sau khi hệ thống kiểm tra lịch và khoản đặt cọc A$500 thanh toán thành công.']],
+    footerLine: 'Một sự hiện diện điềm tĩnh, đáng tin cậy cho một trong những đêm quan trọng nhất của bạn.'
+  }
+};
 
-function App() {
-  const [openFaq, setOpenFaq] = useState(null);
-  const goToEnquire = () => document.querySelector('#enquire').scrollIntoView({ behavior: 'smooth' });
-  const sendEnquiry = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(`Wedding MC enquiry from ${data.get('name')}`);
-    const body = encodeURIComponent(`Name: ${data.get('name')}\nEmail: ${data.get('email')}\n\n${data.get('message')}`);
-    window.location.href = `mailto:mcleevu@gmail.com?subject=${subject}&body=${body}`;
-  };
-  return <>
-    <header className="site-header">
-      <a className="brand" href="#top" aria-label="Lee Vu Wedding MC home"><span>Lee Vu</span><small>Wedding MC</small></a>
-      <nav aria-label="Primary navigation"><a href="#approach">Approach</a><a href="#video">Video</a><a href="#enquire">Enquire</a></nav>
-      <button className="button button-small" onClick={goToEnquire}>Check availability</button>
-    </header>
-    <main id="top">
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <h1 id="hero-title">A wedding that<br />feels like you.</h1>
-          <p>Reliable, professional hosting in English<br className="desktop" /> and Vietnamese—since 2006.</p>
-          <div className="hero-actions"><button className="button" onClick={goToEnquire}>Check availability</button><a className="button button-ghost" href="#video"><span aria-hidden="true">▶</span> Watch Lee in action</a></div>
-        </div>
-        <figure className="hero-photo"><img src="/media/lee-vu-portrait-navy.jpg" alt="Lee Vu in a navy suit" /></figure>
-        <p className="hero-note">Good people.<br />Great days.</p>
-      </section>
-      <section className="approach" id="approach" aria-labelledby="approach-title">
-        <div><h2 id="approach-title">A simple<br />way to begin.</h2><p className="bio">Creative, proactive and flexible—so your celebration stays personal and effortless.</p></div>
-        <ol><li><span>01</span><h3>Meet</h3><p>Have a relaxed chat about your day.</p></li><li><span>02</span><h3>Shape</h3><p>We plan the flow together.</p></li><li><span>03</span><h3>Celebrate</h3><p>You enjoy it. I’ll take care of the rest.</p></li></ol>
-      </section>
-      <section className="video-section" id="video" aria-labelledby="video-title">
-        <div><h2 id="video-title">See the feeling<br />for yourself.</h2><p>A glimpse into the energy, style and atmosphere I bring to the day.</p></div>
-        <video controls preload="metadata" poster="/media/lee-vu-stage.jpg" aria-label="Lee Vu wedding MC reel"><source src="/media/lee-vu-reel.mp4" type="video/mp4" />Your browser does not support video playback.</video>
-      </section>
-      <section className="booking"><img src="/media/lee-vu-portrait-blue.jpg" alt="Lee Vu outdoors in a blue suit" /><div><p className="section-label">Booking enquiries</p><h2>From A$500</h2><p className="enquiry-only">Enquiry only</p><hr /><p>Let’s chat about your date and how I can help bring your celebration to life.</p></div><button className="button" onClick={goToEnquire}>Check availability</button></section>
-      <section className="contact" id="enquire" aria-labelledby="contact-title">
-        <div className="faqs"><h2>Frequently asked<br />questions.</h2>{faqs.map(([question, answer], index) => <article key={question}><button aria-expanded={openFaq === index} onClick={() => setOpenFaq(openFaq === index ? null : index)}>{question}<span>{openFaq === index ? '−' : '+'}</span></button>{openFaq === index && <p>{answer}</p>}</article>)}</div>
-        <div className="enquiry"><h2 id="contact-title">Get in touch.</h2><p>Share a few details about your wedding and I’ll be in touch to check availability.</p><div className="direct-contact"><a href="mailto:mcleevu@gmail.com">mcleevu@gmail.com</a><a href="tel:+61401676766">0401 676 766</a></div><form onSubmit={sendEnquiry}><div className="form-row"><input required name="name" aria-label="Your name" placeholder="Your name" /><input required name="email" type="email" aria-label="Email address" placeholder="Email address" /></div><textarea required name="message" aria-label="Your message" placeholder="Tell me about your date, location and celebration" rows="5" /><button className="button" type="submit">Email Lee</button></form></div>
-      </section>
-    </main>
-    <footer><a className="brand" href="#top"><span>Lee Vu</span><small>Wedding MC</small></a><p>A warmer kind of wedding.</p></footer>
-  </>;
+function Botanical({ side='left', compact=false }) {
+  const id = `${side}-${compact}`;
+  return <svg className={`botanical botanical-${side} ${compact?'botanical-compact':''}`} viewBox="0 0 220 720" aria-hidden="true"><defs><linearGradient id={`leaf-${id}`} x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#b9cad6"/><stop offset=".55" stopColor="#7893aa"/><stop offset="1" stopColor="#496985"/></linearGradient><filter id={`soft-${id}`} x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation=".65"/></filter></defs><path d="M111 699C90 603 93 532 109 456C123 391 151 321 146 242C143 184 119 123 77 35" fill="none" stroke="#607f99" strokeWidth="2.1" strokeLinecap="round" opacity=".72"/><g fill={`url(#leaf-${id})`} opacity=".82" filter={`url(#soft-${id})`}><ellipse cx="91" cy="622" rx="19" ry="48" transform="rotate(-39 91 622)"/><ellipse cx="121" cy="565" rx="17" ry="42" transform="rotate(37 121 565)"/><ellipse cx="89" cy="501" rx="19" ry="45" transform="rotate(-43 89 501)"/><ellipse cx="133" cy="435" rx="18" ry="46" transform="rotate(35 133 435)"/><ellipse cx="112" cy="368" rx="21" ry="50" transform="rotate(-35 112 368)"/><ellipse cx="151" cy="298" rx="17" ry="43" transform="rotate(41 151 298)"/><ellipse cx="119" cy="230" rx="18" ry="44" transform="rotate(-43 119 230)"/><ellipse cx="101" cy="162" rx="16" ry="39" transform="rotate(32 101 162)"/><ellipse cx="69" cy="95" rx="19" ry="44" transform="rotate(-34 69 95)"/></g><g fill="#d4e0e7" opacity=".9"><circle cx="136" cy="526" r="8"/><circle cx="145" cy="515" r="6"/><circle cx="126" cy="514" r="5"/><circle cx="91" cy="328" r="7"/><circle cx="82" cy="318" r="5"/><circle cx="100" cy="314" r="6"/><circle cx="137" cy="190" r="7"/><circle cx="145" cy="180" r="5"/><circle cx="127" cy="178" r="5"/></g></svg>;
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+function SectionMark(){return <span className="section-mark" aria-hidden="true"><i></i><b></b><i></i></span>}
+
+function Availability({t}){
+  const [date,setDate]=useState(''); const [status,setStatus]=useState('idle'); const [message,setMessage]=useState(''); const [detailsOpen,setDetailsOpen]=useState(false); const [submitting,setSubmitting]=useState(false);
+  const minDate=useMemo(()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Australia/Sydney',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()),[]);
+  const checkDate=async()=>{if(!date)return;setStatus('checking');setDetailsOpen(false);setMessage('');try{const r=await fetch(`/api/availability?date=${encodeURIComponent(date)}`,{headers:{accept:'application/json'}});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'unavailable');setStatus(d.status||(d.available?'available':'unavailable'));}catch(e){setStatus('service-unavailable');setMessage(e.message||'service unavailable')}};
+  const submitBooking=async(e)=>{e.preventDefault();setSubmitting(true);setMessage('');const form=new FormData(e.currentTarget);const payload=Object.fromEntries(form.entries());payload.eventDate=date;try{const r=await fetch('/api/create-checkout',{method:'POST',headers:{'content-type':'application/json',accept:'application/json'},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));if(!r.ok||!d.url)throw new Error(d.error||'Unable to start secure checkout');window.location.assign(d.url);}catch(err){setMessage(err.message||'Unable to start secure checkout');setStatus('service-unavailable')}finally{setSubmitting(false)}};
+  return <section className="availability-section" id="availability" aria-labelledby="availability-title"><Botanical side="left" compact/><Botanical side="right" compact/><div className="availability-intro"><p className="eyebrow">{t.availabilityLabel}</p><h2 id="availability-title">{t.availabilityTitle}</h2><p>{t.availabilityBody}</p></div><div className="availability-card"><div className="date-checker"><label htmlFor="wedding-date">{t.selectDate}</label><div className="date-row"><input id="wedding-date" type="date" min={minDate} value={date} onChange={e=>{setDate(e.target.value);setStatus('idle');setDetailsOpen(false)}}/><button className="button" type="button" onClick={checkDate} disabled={!date||status==='checking'}>{status==='checking'?t.checking:t.checkDate}</button></div></div>{status==='available'&&<div className="availability-result success" role="status"><strong>{t.available}</strong><span>{t.availableBody}</span><button className="text-button" type="button" onClick={()=>setDetailsOpen(true)}>{t.book}<span aria-hidden="true">→</span></button></div>}{status==='held'&&<div className="availability-result neutral" role="status"><strong>{t.held}</strong><span>{t.unavailableBody}</span></div>}{status==='unavailable'&&<div className="availability-result neutral" role="status"><strong>{t.unavailable}</strong><span>{t.unavailableBody}</span></div>}{status==='service-unavailable'&&<div className="availability-result neutral" role="status"><strong>{t.serviceUnavailable}</strong><span>{t.serviceUnavailableBody}</span><a className="text-button" href="mailto:mcleevu@gmail.com">mcleevu@gmail.com <span aria-hidden="true">→</span></a></div>}{detailsOpen&&status==='available'&&<form className="booking-form" onSubmit={submitBooking}><div className="form-heading"><span>01</span><h3>{t.detailsTitle}</h3></div><div className="form-grid"><label><span>{t.yourName}</span><input name="customerName" autoComplete="name" required maxLength="100"/></label><label><span>{t.partnerName}</span><input name="partnerName" required maxLength="100"/></label><label><span>{t.email}</span><input name="email" type="email" autoComplete="email" required maxLength="160"/></label><label><span>{t.phone}</span><input name="phone" type="tel" autoComplete="tel" required maxLength="40"/></label><label><span>{t.venue}</span><input name="venueName" maxLength="160"/></label><label><span>{t.venueAddress}</span><input name="venueAddress" autoComplete="street-address" maxLength="240"/></label><label className="full"><span>{t.language}</span><select name="languagePreference" defaultValue="bilingual"><option value="bilingual">{t.languageOptions[0]}</option><option value="english">{t.languageOptions[1]}</option><option value="vietnamese">{t.languageOptions[2]}</option></select></label><label className="full"><span>{t.notes}</span><textarea name="notes" rows="4" maxLength="1200"/></label></div><div className="checkout-summary"><div><p className="eyebrow">{t.summaryTitle}</p><strong>{date}</strong><span>{t.coverage}</span></div><dl><div><dt>{t.total}</dt><dd>A$1,000</dd></div><div><dt>{t.dueToday}</dt><dd>A$500</dd></div><div><dt>{t.remaining}</dt><dd>A$500</dd></div></dl><button className="button button-wide" type="submit" disabled={submitting}>{submitting?t.paying:t.pay}</button><p className="stripe-note">{t.stripeNote}</p></div></form>}{message&&status!=='service-unavailable'&&<p className="form-error" role="alert">{message}</p>}</div></section>
+}
+
+function App(){
+  const [lang,setLang]=useState('en'); const [openFaq,setOpenFaq]=useState(null); const t=COPY[lang]; const scrollToAvailability=()=>document.querySelector('#availability')?.scrollIntoView({behavior:'smooth',block:'start'});
+  return <><header className="site-header"><a className="brand" href="#top" aria-label="MC Lee Vu Sydney home"><span>MC Lee Vu</span><small>Sydney · Wedding MC</small></a><nav aria-label="Primary navigation"><a href="#about">{t.nav[0]}</a><a href="#approach">{t.nav[1]}</a><a href="#package">{t.nav[2]}</a><a href="#availability">{t.nav[3]}</a></nav><div className="header-actions"><button className="lang-toggle" type="button" onClick={()=>setLang(lang==='en'?'vi':'en')} aria-label="Switch language">{lang==='en'?'VI':'EN'}</button><button className="button button-small" type="button" onClick={scrollToAvailability}>{t.book}</button></div></header><main id="top"><section className="hero" aria-labelledby="hero-title"><Botanical side="left"/><Botanical side="right"/><div className="hero-copy"><p className="eyebrow">Sydney · English + Tiếng Việt · Since 2006</p><h1 id="hero-title">{t.heroTitle}</h1><p className="hero-lead">{t.heroBody}</p><div className="hero-actions"><button className="button" type="button" onClick={scrollToAvailability}>{t.book}</button><a className="text-link" href="#about">{t.meet}<span aria-hidden="true">↓</span></a></div></div><figure className="hero-photo"><img src="/media/lee-vu-portrait-navy.jpg" alt="Lee Vu in a navy suit"/><figcaption><span>MC Lee Vu</span><small>Wedding MC · Sydney</small></figcaption></figure><div className="trust-strip" aria-label="Wedding MC facts">{t.trust.map(item=><span key={item}>{item}</span>)}</div></section><section className="about section-shell" id="about" aria-labelledby="about-title"><div className="section-copy"><p className="eyebrow">{t.meet}</p><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p><p>{t.aboutBody2}</p><p className="qualities">{t.qualities}</p></div><figure className="portrait-frame"><img src="/media/lee-vu-portrait-blue.jpg" alt="Lee Vu outdoors in a blue suit"/></figure></section><section className="highlight" aria-labelledby="highlight-title"><SectionMark/><p className="eyebrow">The heart of it</p><h2 id="highlight-title">{t.highlightTitle}</h2><p>{t.highlightBody}</p><SectionMark/></section><section className="approach section-shell" id="approach" aria-labelledby="approach-title"><div className="section-copy"><p className="eyebrow">Approach</p><h2 id="approach-title">{t.approachTitle}</h2><p>{t.approachIntro}</p></div><ol>{t.approachItems.map(([title,body],index)=><li key={title}><span className="step-number">0{index+1}</span><h3>{title}</h3><p>{body}</p></li>)}</ol></section><section className="media-section" aria-labelledby="video-title"><div className="media-copy"><p className="eyebrow">{t.videoLabel}</p><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoBody}</p></div><video controls playsInline preload="metadata" poster="/media/lee-vu-stage.jpg" aria-label="Lee Vu MC reel"><source src="/media/lee-vu-reel.mp4" type="video/mp4"/>Your browser does not support video playback.</video></section><section className="package section-shell" id="package" aria-labelledby="package-title"><figure className="package-photo"><img src="/media/lee-vu-stage.jpg" alt="Lee Vu hosting on stage"/></figure><div className="package-copy"><p className="eyebrow">{t.packageLabel}</p><h2 id="package-title">{t.packageTitle}</h2><p className="price">A$1,000</p><p className="coverage">{t.coverage}</p><div className="price-lines"><div><span>{t.deposit}</span><strong>A$500</strong></div><div><span>{t.balance}</span><strong>A$500</strong></div></div><p>{t.packageNote}</p><button className="button" type="button" onClick={scrollToAvailability}>{t.book}</button></div></section><Availability t={t}/><section className="contact-section section-shell" aria-labelledby="contact-title"><div><p className="eyebrow">Contact</p><h2 id="contact-title">{t.directTitle}</h2><p>{t.directBody}</p></div><div className="contact-lines"><a href="tel:+61401676766"><small>Phone</small><strong>0401 676 766</strong></a><a href="mailto:mcleevu@gmail.com"><small>Email</small><strong>mcleevu@gmail.com</strong></a></div></section><section className="faq-section section-shell" aria-labelledby="faq-title"><div><p className="eyebrow">FAQ</p><h2 id="faq-title">{t.faqTitle}</h2></div><div className="faq-list">{t.faqs.map(([q,a],index)=><article key={q}><button type="button" aria-expanded={openFaq===index} onClick={()=>setOpenFaq(openFaq===index?null:index)}><span>{q}</span><b aria-hidden="true">{openFaq===index?'−':'+'}</b></button>{openFaq===index?<p>{a}</p>:null}</article>)}</div></section></main><footer><div className="brand footer-brand"><span>MC Lee Vu</span><small>Sydney · Wedding MC</small></div><p>{t.footerLine}</p><div><a href="tel:+61401676766">0401 676 766</a><a href="mailto:mcleevu@gmail.com">mcleevu@gmail.com</a></div></footer></>
+}
+
+createRoot(document.getElementById('root')).render(<App/>);
