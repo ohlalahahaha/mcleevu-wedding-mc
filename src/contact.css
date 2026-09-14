@@ -1,0 +1,17 @@
+.bio {
+  margin-top: 22px !important;
+  max-width: 310px;
+}
+
+.direct-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 0 0 20px;
+}
+
+.direct-contact a {
+  color: var(--ink);
+  font-size: 15px;
+  text-underline-offset: 4px;
+}
