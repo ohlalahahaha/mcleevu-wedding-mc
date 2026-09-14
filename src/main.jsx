@@ -11,11 +11,11 @@ const faqs = [
 
 function App() {
   const [openFaq, setOpenFaq] = useState(null);
-  const [sent, setSent] = useState(false);
+  const [pendingDelivery, setPendingDelivery] = useState(false);
   const goToEnquire = () => document.querySelector('#enquire').scrollIntoView({ behavior: 'smooth' });
   const sendEnquiry = (event) => {
     event.preventDefault();
-    setSent(true);
+    setPendingDelivery(true);
   };
   return <>
     <header className="site-header">
@@ -44,7 +44,7 @@ function App() {
       <section className="booking"><img src="/media/lee-vu-portrait-blue.jpg" alt="Lee Vu outdoors in a blue suit" /><div><p className="section-label">Booking enquiries</p><h2>From A$500</h2><p className="enquiry-only">Enquiry only</p><hr /><p>Let’s chat about your date and how I can help bring your celebration to life.</p></div><button className="button" onClick={goToEnquire}>Check availability</button></section>
       <section className="contact" id="enquire" aria-labelledby="contact-title">
         <div className="faqs"><h2>Frequently asked<br />questions.</h2>{faqs.map(([question, answer], index) => <article key={question}><button aria-expanded={openFaq === index} onClick={() => setOpenFaq(openFaq === index ? null : index)}>{question}<span>{openFaq === index ? '−' : '+'}</span></button>{openFaq === index && <p>{answer}</p>}</article>)}</div>
-        <div className="enquiry"><h2 id="contact-title">Get in touch.</h2><p>Share a few details about your wedding and I’ll be in touch to check availability.</p>{sent ? <p className="confirmation" role="status">Thank you—your enquiry is ready to send. Please use the email address Lee provides to complete it.</p> : <form onSubmit={sendEnquiry}><div className="form-row"><input required aria-label="Your name" placeholder="Your name" /><input required type="email" aria-label="Email address" placeholder="Email address" /></div><textarea required aria-label="Your message" placeholder="Tell me about your date, location and celebration" rows="5" /><button className="button" type="submit">Send enquiry</button></form>}</div>
+        <div className="enquiry"><h2 id="contact-title">Get in touch.</h2><p>Share a few details about your wedding and I’ll be in touch to check availability.</p>{pendingDelivery ? <p className="confirmation" role="status">Enquiry delivery is not live yet—nothing has been sent. Lee’s email delivery details are required before this form can accept enquiries.</p> : <form onSubmit={sendEnquiry}><div className="form-row"><input required aria-label="Your name" placeholder="Your name" /><input required type="email" aria-label="Email address" placeholder="Email address" /></div><textarea required aria-label="Your message" placeholder="Tell me about your date, location and celebration" rows="5" /><button className="button" type="submit">Send enquiry</button></form>}</div>
       </section>
     </main>
     <footer><a className="brand" href="#top"><span>Lee Vu</span><small>Wedding MC</small></a><p>A warmer kind of wedding.</p></footer>
