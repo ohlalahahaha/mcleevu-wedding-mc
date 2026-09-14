@@ -17,7 +17,7 @@ GST and refund/cancellation wording are intentionally absent until confirmed.
 
 ## Design
 
-The public page is an original dusty-blue / ivory wedding-stationery system inspired by the supplied references. The reference artwork itself is not copied. Real Lee Vu photos/video live in `public/media/`.
+The public page uses a cinematic luxury-editorial system: charcoal black, warm ivory and restrained champagne gold, with real Lee Vu photography and video as the visual focus. The working bilingual booking flow remains conversion-first and accessible across desktop and mobile. Real Lee Vu photos/video live in `public/media/`.
 
 ## Stack
 
