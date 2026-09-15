@@ -11,6 +11,8 @@ const COPY = {
     aboutTitle: 'Lee Vu',
     aboutBody: 'Lee has hosted weddings since 2006 and is based in Sydney. Before the reception, he works through the run sheet, names and family details. On the night, he guides the program, introduces key moments and helps both English- and Vietnamese-speaking family members follow the reception.',
     aboutBody2: 'When timings change, Lee adjusts the order and keeps the evening moving so the couple is not managing the room.',
+    sydneyTitle: 'Sydney weddings, hosted in English and Vietnamese.',
+    sydneyBody: 'Lee switches between English and Vietnamese through the reception so both sides of the family can follow the program and the key moments.',
     approachTitle: 'What Lee handles',
     approachItems: [['Before the reception','Run sheet, names, family details and the moments you want introduced.'],['During the reception','Guide the program, introduce key moments and host in English, Vietnamese or both.'],['When timing changes','Adjust the order and keep both families informed so you can stay with your guests.']],
     videoTitle: 'See Lee on the microphone', videoBody: 'A short reel of Lee speaking as an MC.',
@@ -33,6 +35,8 @@ const COPY = {
     aboutTitle: 'Lê Vũ',
     aboutBody: 'Lê Vũ dẫn tiệc cưới từ năm 2006 và hiện hoạt động tại Sydney. Trước buổi tiệc, anh trao đổi về lịch trình, tên gọi và thông tin gia đình. Trong tiệc, anh dẫn chương trình, giới thiệu các phần quan trọng và giúp cả khách nói tiếng Anh lẫn tiếng Việt theo dõi chương trình.',
     aboutBody2: 'Khi thời gian thay đổi, Lê Vũ điều chỉnh thứ tự chương trình để cô dâu chú rể không phải tự điều hành buổi tiệc.',
+    sydneyTitle: 'Tiệc cưới tại Sydney, dẫn bằng tiếng Anh và tiếng Việt.',
+    sydneyBody: 'Trong buổi tiệc, Lê Vũ chuyển đổi giữa tiếng Anh và tiếng Việt để hai bên gia đình đều theo dõi được chương trình và các phần quan trọng.',
     approachTitle: 'Lê Vũ phụ trách những gì',
     approachItems: [['Trước buổi tiệc','Lịch trình, tên gọi, thông tin gia đình và các phần cần giới thiệu.'],['Trong buổi tiệc','Dẫn chương trình, giới thiệu các phần quan trọng bằng tiếng Anh, tiếng Việt hoặc cả hai.'],['Khi lịch trình thay đổi','Điều chỉnh thứ tự và thông báo rõ ràng để hai gia đình cùng theo dõi.']],
     videoTitle: 'Xem Lê Vũ dẫn chương trình', videoBody: 'Một đoạn video ngắn khi Lê Vũ cầm mic dẫn chương trình.',
@@ -85,6 +89,7 @@ function App(){
       </section>
       <section className="trust-strip" aria-label={lang==='vi'?'Thông tin về Lê Vũ':'Lee Vu facts'}>{t.trust.map(item=><strong key={item}>{item}</strong>)}</section>
       <section className="about section-shell" id="about" aria-labelledby="about-title"><figure className="about-photo"><img src="/media/lee-vu-portrait-blue.jpg" alt={realPhotoAlt} loading="lazy"/></figure><div className="section-copy"><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p><p>{t.aboutBody2}</p></div></section>
+      <section className="sydney-moment" aria-labelledby="sydney-title"><div className="sydney-image" aria-hidden="true"></div><div className="sydney-overlay" aria-hidden="true"></div><div className="sydney-copy"><p className="sydney-label">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p><h2 id="sydney-title">{t.sydneyTitle}</h2><p>{t.sydneyBody}</p></div></section>
       <section className="approach section-shell" aria-labelledby="approach-title"><div className="approach-intro"><h2 id="approach-title">{t.approachTitle}</h2></div><ol>{t.approachItems.map(([title,body],index)=><li key={title}><span className="step-number">{index+1}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol></section>
       <section className="media-section" id="video" aria-labelledby="video-title"><div className="media-inner"><div className="media-copy"><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoBody}</p></div><div className="video-frame"><video controls playsInline preload="metadata" poster="/media/lee-vu-stage.jpg" aria-label={lang==='vi'?'Video MC Lê Vũ':'MC Lee Vu video'}><source src="/media/lee-vu-reel.mp4" type="video/mp4"/></video></div></div></section>
       <Availability t={t}/>
