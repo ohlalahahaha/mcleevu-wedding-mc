@@ -15,7 +15,7 @@ const COPY = {
     healthLink: 'Acoustic Hearing Care',
     sydneyTitle: 'Sydney weddings, hosted in English and Vietnamese.',
     sydneyBody: 'Lee switches between English and Vietnamese through the reception so both sides of the family can follow the program and the key moments.',
-    videoTitle: 'See Lee on the microphone', videoBody: 'A short reel of Lee speaking as an MC.',
+    videoTitle: 'Watch Lee host', videoBody: 'A short reel of Lee speaking as an MC.',
     total: 'A$1,000 total', coverage: 'From 6:00 PM until the reception concludes.', deposit: 'A$500 booking deposit', balance: 'A$500 remaining balance',
     availabilityTitle: 'Check your wedding date', availabilityBody: 'Choose your date. If Lee is available, you can continue with your details.',
     selectDate: 'Wedding date', checkDate: 'Check date', checking: 'Checking…', available: 'Lee is available on this date.', availableBody: 'Continue with your details to secure the date with the A$500 deposit.', held: 'This date is temporarily held.', unavailable: 'Lee is already booked on this date.', unavailableBody: 'Choose another date or contact Lee directly.',
@@ -88,8 +88,8 @@ function App(){
       </section>
       <section className="trust-strip" aria-label={lang==='vi'?'Thông tin về Lê Vũ':'Lee Vu facts'}>{t.trust.map(item=><strong key={item}>{item}</strong>)}</section>
       <section className="story-band" id="about" aria-labelledby="about-title">
-        <div className="about-panel"><div className="section-copy"><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p></div><figure className="about-photo"><img src="/media/lee-vu-portrait-blue.jpg" alt={realPhotoAlt} loading="lazy"/></figure></div>
-        <aside className="identity-note"><span>{lang==='vi'?'Ngoài sân khấu':'Beyond the microphone'}</span><p>{lang==='vi'?'Chuyên viên đo thị lực và thính học. Nhiều năm đồng hành cùng các hoạt động cộng đồng người Việt tại Sydney.':'Optometrist and audiologist, with years of involvement in Sydney’s Vietnamese community.'}</p><a href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noreferrer">{t.healthLink}</a></aside>
+        <div className="about-panel"><div className="section-copy"><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p></div><figure className="about-photo"><img src="/media/lee-vu-portrait-navy.jpg" alt={realPhotoAlt} loading="lazy"/></figure></div>
+        <aside className="identity-note"><span>{lang==='vi'?'Ngoài sân khấu':'Beyond the microphone'}</span><p>{lang==='vi'?'Ngoài sân khấu, Lê Vũ làm việc trong lĩnh vực đo thị lực và thính học, đồng thời nhiều năm đồng hành cùng cộng đồng người Việt tại Sydney.':'Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney’s Vietnamese community.'}</p><a href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noreferrer">{t.healthLink}</a></aside>
         <section className="sydney-moment" aria-labelledby="sydney-title"><div className="sydney-image" aria-hidden="true"></div><div className="sydney-overlay" aria-hidden="true"></div><div className="sydney-copy"><p className="sydney-label">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p><h2 id="sydney-title">{t.sydneyTitle}</h2><p>{t.sydneyBody}</p></div></section>
       </section>
       <section className="media-section" id="video" aria-labelledby="video-title"><div className="media-inner"><div className="video-column"><div className="media-copy"><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoBody}</p></div><div className="video-frame"><video controls playsInline preload="metadata" poster="/media/lee-vu-stage.jpg" aria-label={lang==='vi'?'Video MC Lê Vũ':'MC Lee Vu video'}><source src="/media/lee-vu-reel.mp4" type="video/mp4"/></video></div></div><Availability t={t}/></div></section>
