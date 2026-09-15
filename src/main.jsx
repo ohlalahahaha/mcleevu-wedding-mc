@@ -5,12 +5,13 @@ import './styles.css';
 const COPY = {
   en: {
     nav: ['About','Video','Contact'], book: 'Check date',
-    heroTitle: 'English and Vietnamese wedding MC in Sydney.',
-    heroBody: 'Lee Vu has hosted weddings since 2006. He guides the reception in English, Vietnamese or both, introduces the key moments and adjusts when timings change.',
-    trust: ['Sydney','English + Vietnamese','Since 2006','One wedding per date'],
-    aboutTitle: 'Lee Vu',
-    aboutBody: 'Lee has hosted weddings since 2006 and is based in Sydney. Before the reception, he works through the run sheet, names and family details. On the night, he guides the program, introduces key moments and helps both English- and Vietnamese-speaking family members follow the reception.',
-    aboutBody2: 'When timings change, Lee adjusts the order and keeps the evening moving so the couple is not managing the room.',
+    heroTitle: 'Bilingual wedding MC in Sydney.',
+    heroBody: 'Since 2006, Lee Vu has hosted weddings in English and Vietnamese, guiding the run sheet, the room and the moments that matter.',
+    trust: ['English + Vietnamese','Since 2006','Sydney','One wedding per date'],
+    aboutTitle: 'More than an MC.',
+    aboutBody: 'Before the reception, Lee works through the run sheet, names and family details. On the night, he guides the program in English, Vietnamese or both, and adjusts calmly when timing changes.',
+    aboutBody2: 'Away from weddings, Lee works in healthcare as an optometrist and audiologist and is associated with Acoustic Hearing Care. He has also supported Sydney’s Vietnamese community through arts, charity and community events.',
+    healthLink: 'Acoustic Hearing Care',
     sydneyTitle: 'Sydney weddings, hosted in English and Vietnamese.',
     sydneyBody: 'Lee switches between English and Vietnamese through the reception so both sides of the family can follow the program and the key moments.',
     approachTitle: 'What Lee handles',
@@ -23,18 +24,19 @@ const COPY = {
     detailsTitle: 'Wedding details', yourName: 'Your name', partnerName: 'Partner name', email: 'Email', phone: 'Phone', venue: 'Venue name', venueAddress: 'Venue address', language: 'Hosting language', languageOptions: ['English + Vietnamese','English','Vietnamese'], notes: 'Notes for Lee',
     summaryTitle: 'Booking summary', dueToday: 'Due today', remaining: 'Remaining', pay: 'Pay A$500 deposit', paying: 'Opening checkout…', stripeNote: 'Your date is confirmed after the deposit payment succeeds.', formError: 'Complete the required details and try again.', checkoutError: 'Checkout could not be opened. Try again or contact Lee directly.',
     returnSuccess: 'Your wedding date is confirmed.', returnSuccessBody: 'Your A$500 deposit has been received. Lee will contact you about the next steps.', returnPending: 'Payment is being confirmed.', returnPendingBody: 'Please wait while the booking confirmation completes.', returnCancelled: 'Checkout was cancelled.', returnCancelledBody: 'Your date is not confirmed. Recheck the date before trying again.', resume: 'Recheck date', phoneLabel: 'Phone', emailLabel: 'Email',
-    contactTitle: 'Contact Lee', contactBody: 'Call or email Lee about your wedding.', faqTitle: 'Before you book',
+    contactTitle: 'Speak with Lee', contactBody: 'Tell Lee your date, venue and what matters to both families.', faqTitle: 'Before you book',
     faqs: [['Can Lee host in English and Vietnamese?','Yes. Lee can host in English, Vietnamese or combine both during the reception.'],['What hours are included?','Wedding reception hosting runs from 6:00 PM until the reception concludes.'],['How is the date secured?','After the date is confirmed available, the booking is secured when the A$500 deposit payment succeeds.']],
     pageTitle: 'Vietnamese & English Wedding MC Sydney | MC Lee Vu', pageDescription: 'MC Lee Vu is a Sydney wedding MC hosting in English and Vietnamese since 2006. Check your wedding date online.'
   },
   vi: {
     nav: ['Giới thiệu','Video','Liên hệ'], book: 'Kiểm tra ngày',
-    heroTitle: 'MC đám cưới song ngữ Anh - Việt tại Sydney.',
-    heroBody: 'Lê Vũ dẫn tiệc cưới từ năm 2006. Anh dẫn chương trình bằng tiếng Anh, tiếng Việt hoặc cả hai, giới thiệu các phần quan trọng và điều chỉnh khi lịch trình thay đổi.',
-    trust: ['Sydney','Anh + Việt','Từ năm 2006','Mỗi ngày một tiệc'],
-    aboutTitle: 'Lê Vũ',
-    aboutBody: 'Lê Vũ dẫn tiệc cưới từ năm 2006 và hiện hoạt động tại Sydney. Trước buổi tiệc, anh trao đổi về lịch trình, tên gọi và thông tin gia đình. Trong tiệc, anh dẫn chương trình, giới thiệu các phần quan trọng và giúp cả khách nói tiếng Anh lẫn tiếng Việt theo dõi chương trình.',
-    aboutBody2: 'Khi thời gian thay đổi, Lê Vũ điều chỉnh thứ tự chương trình để cô dâu chú rể không phải tự điều hành buổi tiệc.',
+    heroTitle: 'MC đám cưới song ngữ tại Sydney.',
+    heroBody: 'Từ năm 2006, Lê Vũ dẫn tiệc cưới bằng tiếng Anh và tiếng Việt, giữ nhịp chương trình và những khoảnh khắc quan trọng của hai gia đình.',
+    trust: ['Anh + Việt','Từ năm 2006','Sydney','Mỗi ngày một tiệc'],
+    aboutTitle: 'Hơn cả một MC.',
+    aboutBody: 'Trước buổi tiệc, Lê Vũ chuẩn bị kỹ lịch trình, tên gọi và thông tin gia đình. Trong tiệc, anh dẫn bằng tiếng Anh, tiếng Việt hoặc cả hai, đồng thời điều chỉnh nhẹ nhàng khi thời gian thay đổi.',
+    aboutBody2: 'Ngoài công việc MC, Lê Vũ làm việc trong lĩnh vực y tế với chuyên môn đo thị lực và thính học, gắn bó với Acoustic Hearing Care. Anh cũng nhiều năm tham gia các hoạt động văn nghệ, từ thiện và cộng đồng người Việt tại Sydney.',
+    healthLink: 'Acoustic Hearing Care',
     sydneyTitle: 'Tiệc cưới tại Sydney, dẫn bằng tiếng Anh và tiếng Việt.',
     sydneyBody: 'Trong buổi tiệc, Lê Vũ chuyển đổi giữa tiếng Anh và tiếng Việt để hai bên gia đình đều theo dõi được chương trình và các phần quan trọng.',
     approachTitle: 'Lê Vũ phụ trách những gì',
@@ -47,7 +49,7 @@ const COPY = {
     detailsTitle: 'Thông tin tiệc cưới', yourName: 'Tên của bạn', partnerName: 'Tên người bạn đời', email: 'Email', phone: 'Điện thoại', venue: 'Tên địa điểm', venueAddress: 'Địa chỉ địa điểm', language: 'Ngôn ngữ dẫn', languageOptions: ['Anh + Việt','Tiếng Anh','Tiếng Việt'], notes: 'Ghi chú cho Lê Vũ',
     summaryTitle: 'Thông tin đặt lịch', dueToday: 'Thanh toán hôm nay', remaining: 'Còn lại', pay: 'Đặt cọc A$500', paying: 'Đang mở thanh toán…', stripeNote: 'Ngày cưới được xác nhận sau khi thanh toán đặt cọc thành công.', formError: 'Vui lòng điền các thông tin bắt buộc.', checkoutError: 'Chưa thể mở trang thanh toán. Vui lòng thử lại hoặc liên hệ Lê Vũ.',
     returnSuccess: 'Ngày cưới đã được xác nhận.', returnSuccessBody: 'Khoản đặt cọc A$500 đã được nhận. Lê Vũ sẽ liên hệ về các bước tiếp theo.', returnPending: 'Đang xác nhận thanh toán.', returnPendingBody: 'Vui lòng chờ trong khi hệ thống xác nhận đặt lịch.', returnCancelled: 'Đã huỷ thanh toán.', returnCancelledBody: 'Ngày cưới chưa được xác nhận. Hãy kiểm tra lại ngày trước khi thử lại.', resume: 'Kiểm tra lại ngày', phoneLabel: 'Điện thoại', emailLabel: 'Email',
-    contactTitle: 'Liên hệ Lê Vũ', contactBody: 'Gọi hoặc email cho Lê Vũ về ngày cưới của bạn.', faqTitle: 'Trước khi đặt lịch',
+    contactTitle: 'Trao đổi với Lê Vũ', contactBody: 'Chia sẻ ngày cưới, địa điểm và những điều quan trọng với hai gia đình.', faqTitle: 'Trước khi đặt lịch',
     faqs: [['Lê Vũ có thể dẫn bằng cả tiếng Anh và tiếng Việt không?','Có. Lê Vũ có thể dẫn bằng tiếng Anh, tiếng Việt hoặc kết hợp cả hai trong buổi tiệc.'],['Thời gian dẫn chương trình là bao lâu?','Phần dẫn tiệc cưới bắt đầu từ 6:00 tối và kéo dài đến khi tiệc kết thúc.'],['Khi nào ngày cưới được giữ?','Sau khi ngày được xác nhận còn trống, lịch được giữ khi khoản đặt cọc A$500 thanh toán thành công.']],
     pageTitle: 'MC Đám Cưới Song Ngữ Sydney | MC Lê Vũ', pageDescription: 'MC Lê Vũ dẫn tiệc cưới bằng tiếng Anh và tiếng Việt tại Sydney từ năm 2006. Kiểm tra ngày cưới trực tuyến.'
   }
@@ -88,13 +90,16 @@ function App(){
         </div>
       </section>
       <section className="trust-strip" aria-label={lang==='vi'?'Thông tin về Lê Vũ':'Lee Vu facts'}>{t.trust.map(item=><strong key={item}>{item}</strong>)}</section>
-      <section className="about section-shell" id="about" aria-labelledby="about-title"><figure className="about-photo"><img src="/media/lee-vu-portrait-blue.jpg" alt={realPhotoAlt} loading="lazy"/></figure><div className="section-copy"><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p><p>{t.aboutBody2}</p></div></section>
-      <section className="sydney-moment" aria-labelledby="sydney-title"><div className="sydney-image" aria-hidden="true"></div><div className="sydney-overlay" aria-hidden="true"></div><div className="sydney-copy"><p className="sydney-label">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p><h2 id="sydney-title">{t.sydneyTitle}</h2><p>{t.sydneyBody}</p></div></section>
+      <div className="story-band">
+        <section className="about" id="about" aria-labelledby="about-title"><figure className="about-photo"><img src="/media/lee-vu-portrait-blue.jpg" alt={realPhotoAlt} loading="lazy"/></figure><div className="section-copy"><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p><p className="human-note">{t.aboutBody2} <a className="quiet-link" href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noreferrer">{t.healthLink}</a>.</p></div></section>
+        <section className="sydney-moment" aria-labelledby="sydney-title"><div className="sydney-image" aria-hidden="true"></div><div className="sydney-overlay" aria-hidden="true"></div><div className="sydney-copy"><p className="sydney-label">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p><h2 id="sydney-title">{t.sydneyTitle}</h2><p>{t.sydneyBody}</p></div></section>
+      </div>
       <section className="approach section-shell" aria-labelledby="approach-title"><div className="approach-intro"><h2 id="approach-title">{t.approachTitle}</h2></div><ol>{t.approachItems.map(([title,body],index)=><li key={title}><span className="step-number">{index+1}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol></section>
-      <section className="media-section" id="video" aria-labelledby="video-title"><div className="media-inner"><div className="media-copy"><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoBody}</p></div><div className="video-frame"><video controls playsInline preload="metadata" poster="/media/lee-vu-stage.jpg" aria-label={lang==='vi'?'Video MC Lê Vũ':'MC Lee Vu video'}><source src="/media/lee-vu-reel.mp4" type="video/mp4"/></video></div></div></section>
-      <Availability t={t}/>
-      <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="contact-inner"><div><h2 id="contact-title">{t.contactTitle}</h2><p>{t.contactBody}</p></div><a href="tel:+61401676766"><small>{t.phoneLabel}</small><strong>0401 676 766</strong></a><a href="mailto:mcleevu@gmail.com"><small>{t.emailLabel}</small><strong>mcleevu@gmail.com</strong></a></div></section>
-      <section className="faq-section section-shell" aria-labelledby="faq-title"><h2 id="faq-title">{t.faqTitle}</h2><div className="faq-list">{t.faqs.map(([q,a],index)=><article key={q}><button type="button" aria-expanded={openFaq===index} aria-controls={`faq-answer-${index}`} onClick={()=>setOpenFaq(openFaq===index?null:index)}><span>{q}</span><b aria-hidden="true">{openFaq===index?'−':'+'}</b></button>{openFaq===index?<p id={`faq-answer-${index}`}>{a}</p>:null}</article>)}</div></section>
+      <section className="media-section" id="video" aria-labelledby="video-title"><div className="media-inner"><div className="video-column"><div className="media-copy"><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoBody}</p></div><div className="video-frame"><video controls playsInline preload="metadata" poster="/media/lee-vu-stage.jpg" aria-label={lang==='vi'?'Video MC Lê Vũ':'MC Lee Vu video'}><source src="/media/lee-vu-reel.mp4" type="video/mp4"/></video></div></div><Availability t={t}/></div></section>
+      <div className="closing-band">
+        <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="contact-inner"><div><h2 id="contact-title">{t.contactTitle}</h2><p>{t.contactBody}</p></div><div className="contact-links"><a href="tel:+61401676766"><small>{t.phoneLabel}</small><strong>0401 676 766</strong></a><a href="mailto:mcleevu@gmail.com"><small>{t.emailLabel}</small><strong>mcleevu@gmail.com</strong></a></div></div></section>
+        <section className="faq-section" aria-labelledby="faq-title"><h2 id="faq-title">{t.faqTitle}</h2><div className="faq-list">{t.faqs.map(([q,a],index)=><article key={q}><button type="button" aria-expanded={openFaq===index} aria-controls={`faq-answer-${index}`} onClick={()=>setOpenFaq(openFaq===index?null:index)}><span>{q}</span><b aria-hidden="true">{openFaq===index?'−':'+'}</b></button>{openFaq===index?<p id={`faq-answer-${index}`}>{a}</p>:null}</article>)}</div></section>
+      </div>
     </main>
     <footer><div className="footer-inner"><div className="brand footer-brand"><span>MC Lee Vu</span><small>{lang==='vi'?'Sydney · Anh + Việt · từ 2006':'Sydney · English + Vietnamese · since 2006'}</small></div><button className="button button-gold" type="button" onClick={scrollToAvailability}>{t.book}</button><p>© 2026 MC Lee Vu</p></div></footer>
   </>;
