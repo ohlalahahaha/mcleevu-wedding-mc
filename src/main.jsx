@@ -5,6 +5,7 @@ import './styles.css';
 const COPY = {
   en: {
     nav: ['About','Video','Contact'], book: 'Check date',
+    heroEyebrow: 'YOUR STORY · BEAUTIFULLY SPOKEN.',
     heroTitle: 'Bilingual wedding MC in Sydney.',
     heroBody: 'Since 2006, Lee Vu has hosted weddings in English and Vietnamese, guiding the run sheet, the room and the moments that matter.',
     trust: ['English + Vietnamese','Since 2006','Sydney','One wedding per date'],
@@ -14,8 +15,6 @@ const COPY = {
     healthLink: 'Acoustic Hearing Care',
     sydneyTitle: 'Sydney weddings, hosted in English and Vietnamese.',
     sydneyBody: 'Lee switches between English and Vietnamese through the reception so both sides of the family can follow the program and the key moments.',
-    approachTitle: 'What Lee handles',
-    approachItems: [['Before the reception','Run sheet, names, family details and the moments you want introduced.'],['During the reception','Guide the program, introduce key moments and host in English, Vietnamese or both.'],['When timing changes','Adjust the order and keep both families informed so you can stay with your guests.']],
     videoTitle: 'See Lee on the microphone', videoBody: 'A short reel of Lee speaking as an MC.',
     total: 'A$1,000 total', coverage: 'From 6:00 PM until the reception concludes.', deposit: 'A$500 booking deposit', balance: 'A$500 remaining balance',
     availabilityTitle: 'Check your wedding date', availabilityBody: 'Choose your date. If Lee is available, you can continue with your details.',
@@ -39,8 +38,6 @@ const COPY = {
     healthLink: 'Acoustic Hearing Care',
     sydneyTitle: 'Tiệc cưới tại Sydney, dẫn bằng tiếng Anh và tiếng Việt.',
     sydneyBody: 'Trong buổi tiệc, Lê Vũ chuyển đổi giữa tiếng Anh và tiếng Việt để hai bên gia đình đều theo dõi được chương trình và các phần quan trọng.',
-    approachTitle: 'Lê Vũ phụ trách những gì',
-    approachItems: [['Trước buổi tiệc','Lịch trình, tên gọi, thông tin gia đình và các phần cần giới thiệu.'],['Trong buổi tiệc','Dẫn chương trình, giới thiệu các phần quan trọng bằng tiếng Anh, tiếng Việt hoặc cả hai.'],['Khi lịch trình thay đổi','Điều chỉnh thứ tự và thông báo rõ ràng để hai gia đình cùng theo dõi.']],
     videoTitle: 'Xem Lê Vũ dẫn chương trình', videoBody: 'Một đoạn video ngắn khi Lê Vũ cầm mic dẫn chương trình.',
     total: 'Tổng phí A$1,000', coverage: 'Từ 6:00 tối đến khi tiệc kết thúc.', deposit: 'Đặt cọc A$500', balance: 'Còn lại A$500',
     availabilityTitle: 'Kiểm tra ngày cưới', availabilityBody: 'Chọn ngày cưới. Nếu Lê Vũ còn lịch, bạn có thể tiếp tục điền thông tin.',
@@ -83,25 +80,25 @@ function App(){
     </header>
     <main id="top">
       <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-atmosphere" aria-hidden="true"></div>
+        <div className="hero-atmosphere" aria-hidden="true"><div className="hero-candles hero-candles-left"><i></i><i></i><i></i></div><div className="hero-candles hero-candles-right"><i></i><i></i><i></i></div></div>
         <div className="hero-inner">
           <div className="hero-copy"><h1 id="hero-title">{t.heroTitle}</h1><p className="hero-lead">{t.heroBody}</p><div className="hero-actions"><button className="button button-gold" type="button" onClick={scrollToAvailability}>{t.book}</button><a className="video-link" href="#video"><span className="play-dot" aria-hidden="true">▶</span>{lang==='en'?'Watch Lee':'Xem Lê Vũ'}</a></div></div>
-          <div className="hero-portrait"><div className="hero-light" aria-hidden="true"></div><img src="/media/lee-vu-cutout.webp" alt={realPhotoAlt} fetchPriority="high"/><div className="hero-flower" aria-hidden="true"></div></div>
+          <div className="hero-portrait"><div className="hero-light" aria-hidden="true"></div><img src="/media/lee-vu-stage-hero.png" alt={realPhotoAlt+' holding a microphone'} fetchPriority="high"/></div>
         </div>
       </section>
       <section className="trust-strip" aria-label={lang==='vi'?'Thông tin về Lê Vũ':'Lee Vu facts'}>{t.trust.map(item=><strong key={item}>{item}</strong>)}</section>
-      <div className="story-band">
-        <section className="about" id="about" aria-labelledby="about-title"><figure className="about-photo"><img src="/media/lee-vu-portrait-blue.jpg" alt={realPhotoAlt} loading="lazy"/></figure><div className="section-copy"><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p><p className="human-note">{t.aboutBody2} <a className="quiet-link" href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noreferrer">{t.healthLink}</a>.</p></div></section>
+      <section className="story-band" id="about" aria-labelledby="about-title">
+        <div className="about-panel"><div className="section-copy"><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p></div><figure className="about-photo"><img src="/media/lee-vu-portrait-blue.jpg" alt={realPhotoAlt} loading="lazy"/></figure></div>
+        <aside className="identity-note"><span>{lang==='vi'?'Ngoài sân khấu':'Beyond the microphone'}</span><p>{lang==='vi'?'Chuyên viên đo thị lực và thính học. Nhiều năm đồng hành cùng các hoạt động cộng đồng người Việt tại Sydney.':'Optometrist and audiologist, with years of involvement in Sydney’s Vietnamese community.'}</p><a href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noreferrer">{t.healthLink}</a></aside>
         <section className="sydney-moment" aria-labelledby="sydney-title"><div className="sydney-image" aria-hidden="true"></div><div className="sydney-overlay" aria-hidden="true"></div><div className="sydney-copy"><p className="sydney-label">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p><h2 id="sydney-title">{t.sydneyTitle}</h2><p>{t.sydneyBody}</p></div></section>
-      </div>
-      <section className="approach section-shell" aria-labelledby="approach-title"><div className="approach-intro"><h2 id="approach-title">{t.approachTitle}</h2></div><ol>{t.approachItems.map(([title,body],index)=><li key={title}><span className="step-number">{index+1}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol></section>
+      </section>
       <section className="media-section" id="video" aria-labelledby="video-title"><div className="media-inner"><div className="video-column"><div className="media-copy"><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoBody}</p></div><div className="video-frame"><video controls playsInline preload="metadata" poster="/media/lee-vu-stage.jpg" aria-label={lang==='vi'?'Video MC Lê Vũ':'MC Lee Vu video'}><source src="/media/lee-vu-reel.mp4" type="video/mp4"/></video></div></div><Availability t={t}/></div></section>
       <div className="closing-band">
         <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="contact-inner"><div><h2 id="contact-title">{t.contactTitle}</h2><p>{t.contactBody}</p></div><div className="contact-links"><a href="tel:+61401676766"><small>{t.phoneLabel}</small><strong>0401 676 766</strong></a><a href="mailto:mcleevu@gmail.com"><small>{t.emailLabel}</small><strong>mcleevu@gmail.com</strong></a></div></div></section>
         <section className="faq-section" aria-labelledby="faq-title"><h2 id="faq-title">{t.faqTitle}</h2><div className="faq-list">{t.faqs.map(([q,a],index)=><article key={q}><button type="button" aria-expanded={openFaq===index} aria-controls={`faq-answer-${index}`} onClick={()=>setOpenFaq(openFaq===index?null:index)}><span>{q}</span><b aria-hidden="true">{openFaq===index?'−':'+'}</b></button>{openFaq===index?<p id={`faq-answer-${index}`}>{a}</p>:null}</article>)}</div></section>
       </div>
     </main>
-    <footer><div className="footer-inner"><div className="brand footer-brand"><span>MC Lee Vu</span><small>{lang==='vi'?'Sydney · Anh + Việt · từ 2006':'Sydney · English + Vietnamese · since 2006'}</small></div><button className="button button-gold" type="button" onClick={scrollToAvailability}>{t.book}</button><p>© 2026 MC Lee Vu</p></div></footer>
+    <footer><div className="footer-inner"><div className="brand footer-brand"><span>MC Lee Vu</span><small>{lang==='vi'?'Sydney · Anh + Việt · từ 2006':'Sydney · English + Vietnamese · since 2006'}</small></div><p>© 2026 MC Lee Vu</p></div></footer>
   </>;
 }
 
