@@ -176,3 +176,40 @@ footer{background:#061522;color:#fff;padding:38px 0 30px}
 }
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+/* Wedding editorial art direction: one floral language, one Sydney moment. */
+.about::before,.approach::before,.faq-section::before{content:'';position:absolute;pointer-events:none;background:url('/media/decor/roses-light.jpg') center/cover no-repeat;opacity:.22;filter:saturate(.72);-webkit-mask-image:radial-gradient(ellipse,#000 12%,transparent 70%);mask-image:radial-gradient(ellipse,#000 12%,transparent 70%)}
+.about::before{left:-22%;top:4%;width:42%;height:58%;transform:rotate(-8deg)}
+.approach{position:relative;overflow:hidden}
+.approach::before{left:-18%;bottom:-18%;width:38%;height:55%;transform:rotate(12deg);opacity:.17}
+.faq-section{position:relative;overflow:hidden}
+.faq-section::before{right:-20%;top:-16%;width:38%;height:60%;transform:rotate(184deg);opacity:.16}
+
+.sydney-moment{position:relative;isolation:isolate;min-height:410px;display:grid;place-items:center;overflow:hidden;color:#fff;text-align:center;background:var(--navy)}
+.sydney-image{position:absolute;inset:0;z-index:-3;background:url('/media/decor/sydney-harbour.jpg') center 53%/cover no-repeat;filter:saturate(.78) brightness(.72)}
+.sydney-overlay{position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(5,18,31,.66),rgba(5,18,31,.32) 46%,rgba(5,18,31,.62))}
+.sydney-moment::before,.sydney-moment::after{content:'';position:absolute;z-index:-1;width:33vw;height:45vw;max-height:540px;background:url('/media/decor/flowers-dark.jpg') center/cover no-repeat;opacity:.38;mix-blend-mode:screen;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse,#000 10%,transparent 68%);mask-image:radial-gradient(ellipse,#000 10%,transparent 68%)}
+.sydney-moment::before{left:-12vw;bottom:-24vw;transform:rotate(-10deg)}
+.sydney-moment::after{right:-14vw;top:-24vw;transform:rotate(175deg)}
+.sydney-copy{width:min(820px,calc(100% - 48px));padding:86px 0;position:relative}
+.sydney-copy::before{content:'';display:block;width:54px;height:1px;margin:0 auto 22px;background:var(--gold)}
+.sydney-label{margin:0 0 18px;color:#ead3a6;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.sydney-copy h2{margin:0;font:500 clamp(46px,5vw,74px)/.96 var(--serif);letter-spacing:-.04em}
+.sydney-copy>p:last-child{max-width:680px;margin:24px auto 0;color:#eef2f3;font:500 19px/1.55 var(--serif)}
+
+.hero::after{content:'';position:absolute;z-index:-1;left:-13%;bottom:-22%;width:44%;height:66%;background:url('/media/decor/flowers-dark.jpg') center/cover no-repeat;opacity:.28;mix-blend-mode:screen;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse,#000 10%,transparent 69%);mask-image:radial-gradient(ellipse,#000 10%,transparent 69%)}
+.hero-portrait::before{content:'';position:absolute;inset:15% -5% 0 2%;z-index:0;background:radial-gradient(ellipse at 52% 52%,rgba(236,210,169,.24),rgba(8,26,43,.05) 55%,transparent 73%);filter:blur(22px)}
+.hero-portrait img{filter:brightness(.9) saturate(.84) contrast(.95) drop-shadow(0 26px 34px rgba(0,0,0,.34))}
+.hero-flower{opacity:.92;filter:brightness(.75) saturate(.78)}
+
+.media-section{position:relative;isolation:isolate}
+.media-section::before{content:'';position:absolute;inset:0;z-index:-2;background:url('/media/decor/wedding-roses-candles.jpg') right center/52% auto no-repeat;opacity:.12;-webkit-mask-image:linear-gradient(90deg,transparent 28%,#000);mask-image:linear-gradient(90deg,transparent 28%,#000)}
+.media-section::after{content:'';position:absolute;left:-14%;bottom:-38%;width:40%;height:90%;z-index:-1;background:url('/media/decor/flowers-dark.jpg') center/cover no-repeat;opacity:.22;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(ellipse,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse,#000 10%,transparent 70%)}
+
+.availability-section::before{background-image:linear-gradient(rgba(251,248,241,.92),rgba(251,248,241,.96)),url('/media/decor/roses-light.jpg');background-position:right top;background-size:auto,46% auto;background-repeat:no-repeat;opacity:1;filter:none}
+
+@media(max-width:600px){
+  .sydney-moment{min-height:370px}.sydney-copy{padding:70px 0}.sydney-copy h2{font-size:43px}.sydney-copy>p:last-child{font-size:17px}
+  .sydney-moment::before,.sydney-moment::after{width:68vw;height:82vw;opacity:.28}.sydney-moment::before{left:-34vw;bottom:-38vw}.sydney-moment::after{right:-39vw;top:-42vw}
+  .about::before{left:-45%;top:4%;width:78%;height:42%;opacity:.14}.approach::before{left:-46%;width:78%;height:48%;opacity:.12}.faq-section::before{right:-48%;width:80%;height:50%;opacity:.12}
+}
