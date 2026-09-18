@@ -17,3 +17,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - name: Upload client preview build
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcleevu-client-build-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
