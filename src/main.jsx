@@ -74,7 +74,7 @@ function App(){
         <div className="hero-atmosphere" aria-hidden="true"><div className="hero-candles hero-candles-left"><i></i><i></i><i></i></div><div className="hero-candles hero-candles-right"><i></i><i></i><i></i></div></div>
         <div className="hero-inner">
           <div className="hero-copy"><h1 id="hero-title">{t.heroTitle}</h1><p className="hero-lead">{t.heroBody}</p><div className="hero-actions"><button className="button button-gold" type="button" onClick={scrollToEnquiry}>{t.enquire}</button><a className="video-link" href="#video"><span className="play-dot" aria-hidden="true">▶</span>{lang==='en'?'Watch Lee':'Xem Lê Vũ'}</a></div></div>
-          <div className="hero-portrait"><div className="hero-light" aria-hidden="true"></div><img src="/media/lee-vu-stage-hero.png" alt={realPhotoAlt+' holding a microphone'} fetchPriority="high"/></div>
+          <div className="hero-portrait"><div className="hero-light" aria-hidden="true"></div><img src="/media/lee-vu-stage-cutout.png" alt={realPhotoAlt+' holding a microphone'} fetchPriority="high"/></div>
         </div>
       </section>
       <section className="trust-strip" aria-label={lang==='vi'?'Thông tin về Lê Vũ':'Lee Vu facts'}>{t.trust.map(item=><strong key={item}>{item}</strong>)}</section>
