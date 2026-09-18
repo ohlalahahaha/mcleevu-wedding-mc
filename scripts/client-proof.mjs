@@ -76,7 +76,7 @@ await browser.close();
 
 await fs.writeFile('artifacts/client-proof.json', JSON.stringify({
   ok: true,
-  source: process.env.GITHUB_SHA || 'local-unknown',
+  source: process.env.SOURCE_SHA || process.env.GITHUB_SHA || 'local-unknown',
   desktop: desktop.metrics,
   mobile390: mobile.metrics,
   mobile320: narrow.metrics,
