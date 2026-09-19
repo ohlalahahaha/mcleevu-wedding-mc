@@ -29,8 +29,8 @@ Repair before rewrite. Preserve supplied real photos/video and the approved visu
 - Repo/source/history -> `git` / `gh`.
 - Verification -> existing GitHub Actions + local project commands.
 - Provider truth -> provider-native API/connector/CLI.
-- Substantial coding -> one GLM worker if needed.
-- Do not route ordinary repo/provider checks through Mystic Portal unless the job must run unattended.
+- Substantial coding -> one direct coding CLI in this repo, one writer.
+- Keep delivery direct: source change -> GitHub -> existing CI/provider proof.
 
 ## Verification
 
