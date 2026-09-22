@@ -63,42 +63,153 @@ function Availability({t}){
   return <section className="availability-section" id="availability" aria-labelledby="availability-title"><div className="availability-intro"><h2 id="availability-title">{t.availabilityTitle}</h2><p>{t.availabilityBody}</p></div><div className="availability-card">{returnState}<div className="date-checker"><label htmlFor="wedding-date">{t.selectDate}</label><div className="date-row"><input id="wedding-date" type="date" min={minDate} value={date} onChange={e=>{setDate(e.target.value);setStatus('idle');setDetailsOpen(false)}}/><button className="button" type="button" onClick={checkDate} disabled={!date||status==='checking'}>{status==='checking'?t.checking:t.checkDate}</button></div></div>{status==='available'&&<div className="availability-result success" role="status"><strong>{t.available}</strong><span>{t.availableBody}</span><button className="text-button" type="button" onClick={()=>setDetailsOpen(true)}>{t.book}</button></div>}{['held','unavailable'].includes(status)&&<div className="availability-result neutral" role="status"><strong>{status==='held'?t.held:t.unavailable}</strong><span>{t.unavailableBody}</span></div>}{status==='service-unavailable'&&<div className="availability-result neutral" role="status"><strong>{t.serviceUnavailable}</strong><span>{t.serviceUnavailableBody}</span><a className="text-button" href="mailto:mcleevu@gmail.com">mcleevu@gmail.com</a></div>}{detailsOpen&&status==='available'&&<form className="booking-form" onSubmit={submitBooking} noValidate><div className="form-heading"><h3>{t.detailsTitle}</h3></div><div className="form-grid"><label><span>{t.yourName}</span><input name="customerName" autoComplete="name" required maxLength="100"/></label><label><span>{t.partnerName}</span><input name="partnerName" autoComplete="name" required maxLength="100"/></label><label><span>{t.email}</span><input name="email" type="email" autoComplete="email" required maxLength="160"/></label><label><span>{t.phone}</span><input name="phone" type="tel" autoComplete="tel" required maxLength="40"/></label><label><span>{t.venue}</span><input name="venueName" maxLength="160"/></label><label><span>{t.venueAddress}</span><input name="venueAddress" autoComplete="street-address" maxLength="240"/></label><label className="full"><span>{t.language}</span><select name="languagePreference" defaultValue="bilingual"><option value="bilingual">{t.languageOptions[0]}</option><option value="english">{t.languageOptions[1]}</option><option value="vietnamese">{t.languageOptions[2]}</option></select></label><label className="full"><span>{t.notes}</span><textarea name="notes" rows="4" maxLength="1200"/></label></div><div className="checkout-summary"><div><p className="eyebrow">{t.summaryTitle}</p><strong>{date}</strong><span>{t.coverage}</span></div><dl><div><dt>{t.total}</dt><dd>A$1,000</dd></div><div><dt>{t.dueToday}</dt><dd>A$500</dd></div><div><dt>{t.remaining}</dt><dd>A$500</dd></div></dl><button className="button button-wide" type="submit" disabled={submitting}>{submitting?t.paying:t.pay}</button><p className="stripe-note">{t.stripeNote}</p></div></form>}{message&&<p className="form-error" role="alert" tabIndex="-1" ref={errorRef}>{message}</p>}</div></section>
 }
 
+
 function App(){
   const [lang,setLang]=useState('en');
   const [openFaq,setOpenFaq]=useState(null);
   const t=COPY[lang];
-  const scrollToAvailability=()=>document.querySelector('#availability')?.scrollIntoView({behavior:'smooth',block:'start'});
-  useEffect(()=>{document.documentElement.lang=lang==='vi'?'vi-AU':'en-AU';document.title=t.pageTitle;document.querySelector('meta[name="description"]')?.setAttribute('content',t.pageDescription)},[lang,t]);
+  const scrollToAvailability=()=>{
+    const behavior=window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
+    document.querySelector('#availability')?.scrollIntoView({behavior,block:'start'});
+  };
+  useEffect(()=>{
+    document.documentElement.lang=lang==='vi'?'vi-AU':'en-AU';
+    document.title=t.pageTitle;
+    document.querySelector('meta[name="description"]')?.setAttribute('content',t.pageDescription);
+  },[lang,t]);
   const realPhotoAlt=lang==='vi'?'MC Lê Vũ':'MC Lee Vu';
+  const watchLabel=lang==='vi'?'Xem Lê Vũ':'Watch Lee';
+  const purposeTitle=lang==='vi'?'Một mục đích lớn hơn':'A Greater Purpose';
+  const purposeLabel=lang==='vi'?'Ngoài sân khấu':'Beyond the microphone';
+  const directLabel=lang==='vi'?'Trao đổi trực tiếp':'Direct with Lee';
+  const videoLabel=lang==='vi'?'Khoảnh khắc thật · Kỷ niệm lâu dài':'Real moments · Lasting memories';
   return <>
+    <a className="skip-link" href="#main">{lang==='vi'?'Tới nội dung chính':'Skip to content'}</a>
     <header className="site-header">
-      <a className="brand" href="#top" aria-label="MC Lee Vu Sydney home"><span>MC Lee Vu</span><small>{lang==='vi'?'MC đám cưới song ngữ Sydney':'Bilingual Wedding MC Sydney'}</small></a>
+      <a className="brand" href="#top" aria-label="MC Lee Vu Sydney home">
+        <span>MC Lee Vu</span>
+        <small>{lang==='vi'?'MC đám cưới song ngữ Sydney':'Bilingual Wedding MC Sydney'}</small>
+      </a>
       <nav className="desktop-nav" aria-label={lang==='vi'?'Điều hướng chính':'Primary navigation'}>
-        <a href="#about">{t.nav[0]}</a><a href="#video">{t.nav[1]}</a><a href="#contact">{t.nav[2]}</a>
+        <a href="#about">{t.nav[0]}</a>
+        <a href="#video">{t.nav[1]}</a>
+        <a href="#contact">{t.nav[2]}</a>
       </nav>
-      <div className="header-actions"><button className="lang-toggle" type="button" onClick={()=>setLang(lang==='en'?'vi':'en')} aria-label={lang==='en'?'Chuyển sang tiếng Việt':'Switch to English'}>{lang==='en'?'EN | VI':'VI | EN'}</button><button className="button button-gold button-small" type="button" onClick={scrollToAvailability}>{t.book}</button></div>
+      <div className="header-actions">
+        <button className="lang-toggle" type="button" onClick={()=>setLang(lang==='en'?'vi':'en')} aria-label={lang==='en'?'Chuyển sang tiếng Việt':'Switch to English'}>{lang==='en'?'EN | VI':'VI | EN'}</button>
+        <button className="button button-gold button-small" type="button" onClick={scrollToAvailability}>{t.book}</button>
+      </div>
     </header>
-    <main id="top">
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-atmosphere" aria-hidden="true"><div className="hero-candles hero-candles-left"><i></i><i></i><i></i></div><div className="hero-candles hero-candles-right"><i></i><i></i><i></i></div></div>
-        <div className="hero-inner">
-          <div className="hero-copy"><h1 id="hero-title">{t.heroTitle}</h1><p className="hero-lead">{t.heroBody}</p><div className="hero-actions"><button className="button button-gold" type="button" onClick={scrollToAvailability}>{t.book}</button><a className="video-link" href="#video"><span className="play-dot" aria-hidden="true">▶</span>{lang==='en'?'Watch Lee':'Xem Lê Vũ'}</a></div></div>
-          <div className="hero-portrait"><div className="hero-light" aria-hidden="true"></div><img src="/media/lee-vu-stage-hero.png" alt={realPhotoAlt+' holding a microphone'} fetchPriority="high"/></div>
+
+    <main id="main">
+      <section className="hero" id="top" aria-labelledby="hero-title">
+        <div className="hero-grid shell">
+          <div className="hero-photo">
+            <img src="/media/lee-vu-editorial-hero.jpg" alt={realPhotoAlt+' holding a microphone'} fetchPriority="high"/>
+            <div className="hero-arc" aria-hidden="true"></div>
+          </div>
+          <div className="hero-copy">
+            <p className="eyebrow">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p>
+            <h1 id="hero-title">{t.heroTitle}</h1>
+            <p className="hero-lead">{t.heroBody}</p>
+            <div className="hero-actions">
+              <button className="button button-gold" type="button" onClick={scrollToAvailability}>{t.book}</button>
+              <a className="text-link light" href="#video"><span aria-hidden="true">▶</span>{watchLabel}</a>
+            </div>
+          </div>
+          <aside className="hero-note" aria-hidden="true">
+            <span>2006</span><small>{lang==='vi'?'Dẫn tiệc cưới tại Sydney từ':'Hosting Sydney weddings since'}</small>
+          </aside>
         </div>
       </section>
-      <section className="trust-strip" aria-label={lang==='vi'?'Thông tin về Lê Vũ':'Lee Vu facts'}>{t.trust.map(item=><strong key={item}>{item}</strong>)}</section>
-      <section className="story-band" id="about" aria-labelledby="about-title">
-        <div className="about-panel"><div className="section-copy"><h2 id="about-title">{t.aboutTitle}</h2><p>{t.aboutBody}</p></div><figure className="about-photo"><img src="/media/lee-vu-portrait-navy.jpg" alt={realPhotoAlt} loading="lazy"/></figure></div>
-        <aside className="identity-note"><span>{lang==='vi'?'Ngoài sân khấu':'Beyond the microphone'}</span><p>{lang==='vi'?'Ngoài sân khấu, Lê Vũ làm việc trong lĩnh vực đo thị lực và thính học, đồng thời nhiều năm đồng hành cùng cộng đồng người Việt tại Sydney.':'Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney’s Vietnamese community.'}</p><a href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noreferrer">{t.healthLink}</a></aside>
-        <section className="sydney-moment" aria-labelledby="sydney-title"><div className="sydney-image" aria-hidden="true"></div><div className="sydney-overlay" aria-hidden="true"></div><div className="sydney-copy"><p className="sydney-label">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p><h2 id="sydney-title">{t.sydneyTitle}</h2><p>{t.sydneyBody}</p></div></section>
+
+      <section className="trust-strip" aria-label={lang==='vi'?'Thông tin về Lê Vũ':'Lee Vu facts'}>
+        <div className="shell trust-inner">{t.trust.map(item=><strong key={item}>{item}</strong>)}</div>
       </section>
-      <section className="media-section" id="video" aria-labelledby="video-title"><div className="media-inner"><div className="video-column"><div className="media-copy"><h2 id="video-title">{t.videoTitle}</h2><p>{t.videoBody}</p></div><div className="video-frame"><video controls playsInline preload="metadata" poster="/media/lee-vu-stage.jpg" aria-label={lang==='vi'?'Video MC Lê Vũ':'MC Lee Vu video'}><source src="/media/lee-vu-reel.mp4" type="video/mp4"/></video></div></div><Availability t={t}/></div></section>
-      <div className="closing-band">
-        <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="contact-inner"><div><h2 id="contact-title">{t.contactTitle}</h2><p>{t.contactBody}</p></div><div className="contact-links"><a href="tel:+61401676766"><small>{t.phoneLabel}</small><strong>0401 676 766</strong></a><a href="mailto:mcleevu@gmail.com"><small>{t.emailLabel}</small><strong>mcleevu@gmail.com</strong></a></div></div></section>
-        <section className="faq-section" aria-labelledby="faq-title"><h2 id="faq-title">{t.faqTitle}</h2><div className="faq-list">{t.faqs.map(([q,a],index)=><article key={q}><button type="button" aria-expanded={openFaq===index} aria-controls={`faq-answer-${index}`} onClick={()=>setOpenFaq(openFaq===index?null:index)}><span>{q}</span><b aria-hidden="true">{openFaq===index?'−':'+'}</b></button>{openFaq===index?<p id={`faq-answer-${index}`}>{a}</p>:null}</article>)}</div></section>
+
+      <section className="story-section" id="about" aria-labelledby="about-title">
+        <div className="shell story-grid">
+          <div>
+            <p className="eyebrow">{lang==='vi'?'Chuẩn bị · Hiện diện · Nhịp chương trình':'Preparation · Presence · Flow'}</p>
+            <h2 id="about-title">{t.aboutTitle}</h2>
+          </div>
+          <div className="story-copy"><span className="gold-rule"></span><p>{t.aboutBody}</p></div>
+        </div>
+      </section>
+
+      <section className="purpose-section" aria-labelledby="purpose-title">
+        <div className="shell purpose-grid">
+          <figure className="purpose-photo">
+            <img src="/media/lee-vu-editorial-portrait.jpg" alt={realPhotoAlt} loading="lazy"/>
+            <figcaption>Lee Vu · MC · Sydney</figcaption>
+          </figure>
+          <div className="purpose-copy">
+            <p className="eyebrow">{purposeLabel}</p>
+            <h2 id="purpose-title">{purposeTitle}</h2>
+            <p>{t.aboutBody2}</p>
+            <a className="editorial-link" href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noreferrer">{t.healthLink}<span aria-hidden="true"> ↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section className="sydney-section" aria-labelledby="sydney-title">
+        <div className="sydney-art" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div className="shell sydney-grid">
+          <p className="eyebrow">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p>
+          <h2 id="sydney-title">{t.sydneyTitle}</h2>
+          <p>{t.sydneyBody}</p>
+        </div>
+      </section>
+
+      <div className="booking-wrap">
+        <Availability t={t}/>
       </div>
+
+      <section className="closing-section" id="contact">
+        <div className="shell closing-grid">
+          <div className="contact-block">
+            <p className="eyebrow">{directLabel}</p>
+            <h2>{t.contactTitle}</h2>
+            <p>{t.contactBody}</p>
+            <div className="contact-links">
+              <a href="tel:+61401676766"><small>{t.phoneLabel}</small><strong>0401 676 766</strong></a>
+              <a href="mailto:mcleevu@gmail.com"><small>Email</small><strong>mcleevu@gmail.com</strong></a>
+            </div>
+          </div>
+          <div className="faq-block">
+            <p className="eyebrow">{t.faqTitle}</p>
+            <div className="faq-list">{t.faqs.map(([q,a],index)=><article key={q}>
+              <button type="button" aria-expanded={openFaq===index} aria-controls={'faq-answer-'+index} onClick={()=>setOpenFaq(openFaq===index?null:index)}>
+                <span>{q}</span><b aria-hidden="true">{openFaq===index?'−':'+'}</b>
+              </button>
+              {openFaq===index?<p id={'faq-answer-'+index}>{a}</p>:null}
+            </article>)}</div>
+          </div>
+        </div>
+      </section>
+
+      <section className="video-section" id="video" aria-labelledby="video-title">
+        <div className="shell video-layout">
+          <div className="video-heading">
+            <p className="eyebrow">{videoLabel}</p>
+            <h2 id="video-title">{t.videoTitle}</h2>
+            <p>{t.videoBody}</p>
+          </div>
+          <div className="video-frame">
+            <video controls playsInline preload="metadata" poster="/media/lee-vu-editorial-video-poster.jpg" aria-label={lang==='vi'?'Video MC Lê Vũ':'MC Lee Vu video'}>
+              <source src="/media/lee-vu-reel.mp4" type="video/mp4"/>
+            </video>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer><div className="footer-inner"><div className="brand footer-brand"><span>MC Lee Vu</span><small>{lang==='vi'?'Sydney · Anh + Việt · từ 2006':'Sydney · English + Vietnamese · since 2006'}</small></div><p>© 2026 MC Lee Vu</p></div></footer>
+
+    <footer>
+      <div className="shell footer-inner">
+        <div className="brand footer-brand"><span>MC Lee Vu</span><small>{lang==='vi'?'Sydney · Anh + Việt · từ 2006':'Sydney · English + Vietnamese · since 2006'}</small></div>
+        <p>© 2026 MC Lee Vu</p>
+      </div>
+    </footer>
   </>;
 }
 
