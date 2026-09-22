@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MC Lee Vu is a Sydney wedding MC hosting in English and Vietnamese since 2006. Enquire with Lee about your wedding date." />
+  <meta name="theme-color" content="#07131d" />
+  <meta property="og:title" content="Vietnamese & English Wedding MC Sydney | MC Lee Vu" />
+  <meta property="og:description" content="Calm, bilingual English and Vietnamese wedding MC hosting in Sydney — since 2006." />
+  <meta property="og:type" content="website" />
+  <title>Vietnamese & English Wedding MC Sydney | MC Lee Vu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Lee Vu","jobTitle":"Wedding MC","areaServed":"Sydney, Australia","email":"mailto:mcleevu@gmail.com","telephone":"+61401676766","knowsLanguage":["English","Vietnamese"]}
+  </script>
+  <style>
+    :root{
+      --ink:#07131d;
+      --ink-2:#10283a;
+      --paper:#f4efe6;
+      --paper-2:#fbf8f2;
+      --gold:#d3af6d;
+      --gold-2:#eed8a8;
+      --line:rgba(211,175,109,.34);
+      --muted:#65717a;
+      --white:#fff;
+      --max:1280px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--ink)}
+    body{
+      margin:0;
+      font-family:"DM Sans",Arial,sans-serif;
+      color:var(--ink);
+      background:var(--paper-2);
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed; inset:0; z-index:999; pointer-events:none; opacity:.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+      mix-blend-mode:multiply;
+    }
+    a{color:inherit}
+    button,input{font:inherit}
+    .shell{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+    .eyebrow{
+      text-transform:uppercase; letter-spacing:.17em; font-size:.72rem; font-weight:600;
+      color:var(--gold);
+    }
+    h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0}
+    h2{font-size:clamp(3rem,6vw,6rem);line-height:.93;letter-spacing:-.045em}
+    p{line-height:1.7}
+
+    .site-header{
+      position:fixed; top:0; left:0; right:0; z-index:50;
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+      padding:20px 32px;
+      color:white;
+      background:linear-gradient(to bottom,rgba(7,19,29,.82),rgba(7,19,29,.12));
+      backdrop-filter:blur(10px);
+    }
+    .brand{text-decoration:none;display:inline-flex;flex-direction:column;gap:2px;justify-self:start}
+    .brand strong{font-family:"Cormorant Garamond",serif;font-size:1.42rem;letter-spacing:.04em}
+    .brand small{font-size:.64rem;text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.64)}
+    nav{display:flex;gap:30px}
+    nav a{text-decoration:none;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.74)}
+    nav a:hover{color:white}
+    .header-actions{justify-self:end;display:flex;align-items:center;gap:12px}
+    .lang-toggle,.ghost-btn,.gold-btn{
+      border:0;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center
+    }
+    .lang-toggle{background:transparent;color:white;padding:10px 8px;font-size:.74rem;letter-spacing:.13em}
+    .gold-btn{
+      background:var(--gold);color:var(--ink);padding:14px 22px;text-transform:uppercase;
+      letter-spacing:.11em;font-size:.72rem;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.2);
+    }
+    .gold-btn:hover{background:var(--gold-2);transform:translateY(-1px)}
+    .ghost-btn{
+      border:1px solid rgba(255,255,255,.28);color:white;background:rgba(255,255,255,.03);
+      padding:13px 18px;text-transform:uppercase;letter-spacing:.11em;font-size:.7rem
+    }
+
+    .hero{
+      min-height:100svh; position:relative; background:var(--ink); color:white; overflow:hidden;
+      display:flex; align-items:flex-end;
+    }
+    .hero-media{position:absolute;inset:0}
+    .hero-media img{
+      width:100%;height:100%;object-fit:cover;object-position:65% 32%;
+      filter:saturate(.82) contrast(1.05) brightness(.78);
+      transform:scale(1.015);
+    }
+    .hero-media:after{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(90deg,rgba(7,19,29,.93) 0%,rgba(7,19,29,.62) 38%,rgba(7,19,29,.08) 72%),
+        linear-gradient(0deg,rgba(7,19,29,.95) 0%,rgba(7,19,29,.08) 54%,rgba(7,19,29,.28) 100%);
+    }
+    .hero-orbit{
+      position:absolute;width:760px;height:760px;border:1px solid rgba(211,175,109,.22);border-radius:50%;
+      right:-220px;top:50%;transform:translateY(-48%);animation:orbit 26s linear infinite;
+    }
+    .hero-orbit:before,.hero-orbit:after{
+      content:"";position:absolute;border:1px solid rgba(211,175,109,.11);border-radius:50%
+    }
+    .hero-orbit:before{inset:82px}
+    .hero-orbit:after{inset:180px}
+    .orbit-dot{
+      position:absolute;width:10px;height:10px;background:var(--gold);border-radius:50%;top:50%;left:-5px;
+      box-shadow:0 0 36px rgba(211,175,109,.7)
+    }
+    @keyframes orbit{to{rotate:360deg}}
+    .hero-inner{
+      position:relative;z-index:2;width:min(1400px,calc(100% - 64px));margin:0 auto;
+      padding:160px 0 70px;display:grid;grid-template-columns:minmax(0,760px) 1fr;gap:60px;align-items:end;
+    }
+    .hero-copy{max-width:760px}
+    .hero h1{
+      font-size:clamp(4.2rem,8.6vw,9.4rem);line-height:.82;letter-spacing:-.06em;
+      max-width:820px;text-wrap:balance;
+    }
+    .hero h1 em{color:var(--gold-2);font-weight:500}
+    .hero-lead{max-width:600px;font-size:clamp(1rem,1.3vw,1.25rem);color:rgba(255,255,255,.74);margin:28px 0 32px}
+    .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .hero-side{
+      justify-self:end;align-self:end;display:flex;flex-direction:column;align-items:flex-end;gap:14px;padding-bottom:6px;
+    }
+    .hero-side .number{font-family:"Cormorant Garamond",serif;font-size:4rem;color:var(--gold)}
+    .hero-side small{color:rgba(255,255,255,.64);letter-spacing:.12em;text-transform:uppercase}
+    .scroll-cue{position:absolute;right:34px;bottom:44px;z-index:4;color:white;writing-mode:vertical-rl;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;opacity:.55}
+    .scroll-cue:after{content:"";display:inline-block;height:72px;width:1px;background:linear-gradient(var(--gold),transparent);margin-top:12px}
+
+    .trust-strip{
+      background:var(--paper);display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(7,19,29,.1)
+    }
+    .trust-item{padding:24px 30px;text-align:center;border-right:1px solid rgba(7,19,29,.09)}
+    .trust-item:last-child{border-right:0}
+    .trust-item strong{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:600}
+
+    .about{padding:130px 0 80px;background:var(--paper-2);position:relative}
+    .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(50px,8vw,120px);align-items:start}
+    .about-copy{position:sticky;top:130px}
+    .about-copy p{font-size:1.12rem;color:#4e5a62;max-width:620px}
+    .about-visual{position:relative;padding:44px 0 0 56px}
+    .about-photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:#ddd}
+    .about-photo img{width:100%;height:100%;object-fit:cover}
+    .about-photo:before{
+      content:"";position:absolute;inset:0;z-index:1;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)
+    }
+    .about-note{
+      position:absolute;left:0;bottom:-56px;z-index:2;width:min(380px,80%);padding:28px;background:var(--ink);color:white;
+      box-shadow:0 30px 70px rgba(7,19,29,.18)
+    }
+    .about-note span{color:var(--gold);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+    .about-note p{color:rgba(255,255,255,.72);font-size:.92rem;line-height:1.65;margin:12px 0}
+    .about-note a{color:var(--gold-2);font-size:.85rem}
+
+    .sydney{
+      margin-top:150px;min-height:72vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;background:#132736;color:white;
+    }
+    .sydney:before{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(90deg,rgba(7,19,29,.94),rgba(7,19,29,.58) 45%,rgba(7,19,29,.18)),
+        url("https://images.unsplash.com/photo-1524293581917-878a6d017c71?auto=format&fit=crop&w=2000&q=85") center/cover;
+      transform:scale(1.02);
+    }
+    .sydney-copy{position:relative;z-index:2;padding:110px 0;width:min(700px,100%)}
+    .sydney-copy h2{font-size:clamp(3.5rem,7vw,7.3rem)}
+    .sydney-copy p:last-child{max-width:570px;color:rgba(255,255,255,.72);font-size:1.08rem}
+
+    .media-section{padding:120px 0;background:var(--ink);color:white}
+    .media-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:48px}
+    .media-head p{max-width:440px;color:rgba(255,255,255,.6)}
+    .media-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);gap:26px}
+    .video-shell{position:relative;aspect-ratio:16/10;background:#000;overflow:hidden;border:1px solid rgba(211,175,109,.2)}
+    video{width:100%;height:100%;object-fit:cover;background:#000}
+    .availability-card{
+      border:1px solid rgba(211,175,109,.24);padding:34px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+      display:flex;flex-direction:column;justify-content:space-between;min-height:100%;
+    }
+    .availability-card h3{font-size:2.8rem;line-height:1}
+    .availability-card p{color:rgba(255,255,255,.62);font-size:.93rem}
+    .date-wrap{display:grid;gap:10px;margin:28px 0 18px}
+    .date-wrap label{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold)}
+    .date-wrap input{
+      padding:16px 14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:white;color-scheme:dark
+    }
+    .enquiry-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .enquiry-actions .ghost-btn{border-color:rgba(211,175,109,.4)}
+    .contact-mini{margin-top:26px;border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:grid;gap:10px}
+    .contact-mini a{text-decoration:none;color:white;font-size:.88rem}
+    .note{font-size:.74rem!important;color:rgba(255,255,255,.45)!important}
+
+    .contact{padding:110px 0;background:var(--paper)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:end}
+    .contact-grid p{max-width:520px;color:#56616a}
+    .contact-links{display:grid;border-top:1px solid rgba(7,19,29,.18)}
+    .contact-links a{
+      display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid rgba(7,19,29,.18);
+      text-decoration:none
+    }
+    .contact-links small{color:#6d767d;text-transform:uppercase;letter-spacing:.12em}
+    .contact-links strong{font-family:"Cormorant Garamond",serif;font-size:1.7rem}
+
+    .faq{padding:0 0 120px;background:var(--paper)}
+    .faq-wrap{border-top:1px solid rgba(7,19,29,.17)}
+    .faq h2{font-size:clamp(3rem,5vw,5.7rem);margin-bottom:42px}
+    .faq-item{border-bottom:1px solid rgba(7,19,29,.17)}
+    .faq-btn{
+      width:100%;padding:24px 0;background:none;border:0;text-align:left;display:flex;justify-content:space-between;gap:20px;
+      font-family:"Cormorant Garamond",serif;font-size:clamp(1.35rem,2.2vw,2.1rem);cursor:pointer;color:var(--ink)
+    }
+    .faq-btn b{font-family:"DM Sans",sans-serif;font-weight:400;color:var(--gold);transition:transform .2s}
+    .faq-answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+    .faq-answer>div{overflow:hidden}
+    .faq-answer p{margin:0 0 26px;max-width:760px;color:#59646c}
+    .faq-item.open .faq-answer{grid-template-rows:1fr}
+    .faq-item.open .faq-btn b{transform:rotate(45deg)}
+
+    footer{background:#06111a;color:white;padding:36px 0}
+    .footer-inner{display:flex;justify-content:space-between;gap:30px;align-items:center}
+    .footer-inner p{font-size:.75rem;color:rgba(255,255,255,.5)}
+    .footer-brand small{color:rgba(255,255,255,.52)}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+
+    @media (max-width: 900px){
+      .site-header{grid-template-columns:1fr auto;padding:16px 18px}
+      nav{display:none}
+      .header-actions .gold-btn{display:none}
+      .brand small{display:none}
+      .shell{width:min(var(--max),calc(100% - 32px))}
+      .hero-inner{width:calc(100% - 36px);grid-template-columns:1fr;padding:135px 0 42px}
+      .hero h1{font-size:clamp(4rem,17vw,6.4rem);max-width:11ch}
+      .hero-media img{object-position:63% 30%}
+      .hero-media:after{background:linear-gradient(0deg,rgba(7,19,29,.98) 0%,rgba(7,19,29,.65) 45%,rgba(7,19,29,.15) 100%)}
+      .hero-side{display:none}
+      .hero-orbit{width:520px;height:520px;right:-280px}
+      .scroll-cue{display:none}
+      .trust-strip{grid-template-columns:1fr 1fr}
+      .trust-item{border-bottom:1px solid rgba(7,19,29,.09)}
+      .about{padding-top:90px}
+      .about-grid,.media-grid,.contact-grid{grid-template-columns:1fr}
+      .about-copy{position:static}
+      .about-visual{padding:18px 0 70px 26px}
+      .about-note{bottom:0}
+      .sydney{margin-top:90px;min-height:62vh}
+      .media-head{display:block}
+      .availability-card{min-height:auto}
+      .footer-inner{display:block}
+    }
+    @media (max-width:560px){
+      .hero h1{font-size:4.6rem}
+      .hero-lead{font-size:.98rem;max-width:34ch}
+      .hero-actions{align-items:stretch}
+      .hero-actions a,.hero-actions button{width:100%}
+      .trust-item{padding:18px 10px}
+      .trust-item strong{font-size:1.12rem}
+      .about-visual{padding-left:12px}
+      .about-note{width:88%;padding:22px}
+      .sydney-copy{padding:78px 0}
+      .media-section,.contact{padding:82px 0}
+      .enquiry-actions{grid-template-columns:1fr}
+      .contact-links strong{font-size:1.25rem}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="MC Lee Vu Sydney home">
+      <strong>MC Lee Vu</strong><small data-en="Bilingual Wedding MC Sydney" data-vi="MC đám cưới song ngữ Sydney">Bilingual Wedding MC Sydney</small>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#about" data-en="About" data-vi="Giới thiệu">About</a>
+      <a href="#video" data-en="Video" data-vi="Video">Video</a>
+      <a href="#contact" data-en="Contact" data-vi="Liên hệ">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-toggle" id="langToggle" type="button">EN | VI</button>
+      <button class="gold-btn" type="button" data-scroll="#availability" data-en="Enquire with Lee" data-vi="Liên hệ Lê Vũ">Enquire with Lee</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-media">
+        <img src="https://mcleevu-preview.pages.dev/media/lee-vu-stage.jpg" alt="MC Lee Vu holding a microphone" />
+      </div>
+      <div class="hero-orbit" aria-hidden="true"><span class="orbit-dot"></span></div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow" data-en="Sydney · English + Vietnamese" data-vi="Sydney · Anh + Việt">Sydney · English + Vietnamese</div>
+          <h1 id="heroTitle" data-en="Bilingual wedding MC in <em>Sydney.</em>" data-vi="MC đám cưới song ngữ tại <em>Sydney.</em>">Bilingual wedding MC in <em>Sydney.</em></h1>
+          <p class="hero-lead"
+             data-en="Since 2006, Lee Vu has hosted weddings in English and Vietnamese, guiding the run sheet, the room and the moments that matter."
+             data-vi="Từ năm 2006, Lê Vũ dẫn tiệc cưới bằng tiếng Anh và tiếng Việt, giữ nhịp chương trình và những khoảnh khắc quan trọng của hai gia đình.">
+             Since 2006, Lee Vu has hosted weddings in English and Vietnamese, guiding the run sheet, the room and the moments that matter.
+          </p>
+          <div class="hero-actions">
+            <button class="gold-btn" type="button" data-scroll="#availability" data-en="Enquire with Lee" data-vi="Liên hệ Lê Vũ">Enquire with Lee</button>
+            <a class="ghost-btn" href="#video" data-en="▶ Watch Lee" data-vi="▶ Xem Lê Vũ">▶ Watch Lee</a>
+          </div>
+        </div>
+        <aside class="hero-side">
+          <span class="number">2006</span>
+          <small data-en="Hosting Sydney weddings since" data-vi="Dẫn tiệc cưới tại Sydney từ">Hosting Sydney weddings since</small>
+        </aside>
+      </div>
+      <div class="scroll-cue" data-en="Scroll to discover" data-vi="Kéo xuống để xem">Scroll to discover</div>
+    </section>
+
+    <section class="trust-strip" aria-label="Lee Vu facts">
+      <div class="trust-item"><strong data-en="English + Vietnamese" data-vi="Anh + Việt">English + Vietnamese</strong></div>
+      <div class="trust-item"><strong data-en="Since 2006" data-vi="Từ năm 2006">Since 2006</strong></div>
+      <div class="trust-item"><strong>Sydney</strong></div>
+      <div class="trust-item"><strong data-en="One wedding per date" data-vi="Mỗi ngày một tiệc">One wedding per date</strong></div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="shell about-grid">
+        <div class="about-copy reveal">
+          <div class="eyebrow" data-en="Preparation · Presence · Flow" data-vi="Chuẩn bị · Hiện diện · Nhịp chương trình">Preparation · Presence · Flow</div>
+          <h2 data-en="More than an MC." data-vi="Hơn cả một MC.">More than an MC.</h2>
+          <p data-en="Before the reception, Lee works through the run sheet, names and family details. On the night, he guides the program in English, Vietnamese or both, and adjusts calmly when timing changes."
+             data-vi="Trước buổi tiệc, Lê Vũ chuẩn bị kỹ lịch trình, tên gọi và thông tin gia đình. Trong tiệc, anh dẫn bằng tiếng Anh, tiếng Việt hoặc cả hai, đồng thời điều chỉnh nhẹ nhàng khi thời gian thay đổi.">
+            Before the reception, Lee works through the run sheet, names and family details. On the night, he guides the program in English, Vietnamese or both, and adjusts calmly when timing changes.
+          </p>
+        </div>
+        <div class="about-visual reveal">
+          <figure class="about-photo">
+            <img src="https://mcleevu-preview.pages.dev/media/lee-vu-portrait-navy.jpg" alt="MC Lee Vu" loading="lazy" />
+          </figure>
+          <aside class="about-note">
+            <span data-en="Beyond the microphone" data-vi="Ngoài sân khấu">Beyond the microphone</span>
+            <p data-en="Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney’s Vietnamese community."
+               data-vi="Ngoài sân khấu, Lê Vũ làm việc trong lĩnh vực đo thị lực và thính học, đồng thời nhiều năm đồng hành cùng cộng đồng người Việt tại Sydney.">
+              Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney’s Vietnamese community.
+            </p>
+            <a href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noreferrer">Acoustic Hearing Care ↗</a>
+          </aside>
+        </div>
+      </div>
+
+      <section class="sydney">
+        <div class="shell">
+          <div class="sydney-copy reveal">
+            <p class="eyebrow" data-en="Sydney · English + Vietnamese" data-vi="Sydney · Anh + Việt">Sydney · English + Vietnamese</p>
+            <h2 data-en="Sydney weddings, hosted in English and Vietnamese."
+                data-vi="Tiệc cưới tại Sydney, dẫn bằng tiếng Anh và tiếng Việt.">
+                Sydney weddings, hosted in English and Vietnamese.
+            </h2>
+            <p data-en="Lee switches between English and Vietnamese through the reception so both sides of the family can follow the program and the key moments."
+               data-vi="Trong buổi tiệc, Lê Vũ chuyển đổi giữa tiếng Anh và tiếng Việt để hai bên gia đình đều theo dõi được chương trình và các phần quan trọng.">
+              Lee switches between English and Vietnamese through the reception so both sides of the family can follow the program and the key moments.
+            </p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="media-section" id="video">
+      <div class="shell">
+        <div class="media-head reveal">
+          <div>
+            <div class="eyebrow" data-en="See him in the room" data-vi="Xem Lê Vũ trên sân khấu">See him in the room</div>
+            <h2 data-en="Watch Lee host" data-vi="Xem Lê Vũ dẫn chương trình">Watch Lee host</h2>
+          </div>
+          <p data-en="A short reel of Lee speaking as an MC." data-vi="Một đoạn video ngắn khi Lê Vũ cầm mic dẫn chương trình.">A short reel of Lee speaking as an MC.</p>
+        </div>
+
+        <div class="media-grid">
+          <div class="video-shell reveal">
+            <video controls playsinline preload="metadata" poster="https://mcleevu-preview.pages.dev/media/lee-vu-stage.jpg" aria-label="MC Lee Vu video">
+              <source src="https://mcleevu-preview.pages.dev/media/lee-vu-reel.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <section class="availability-card reveal" id="availability" aria-labelledby="availabilityTitle">
+            <div>
+              <div class="eyebrow" data-en="One wedding per date" data-vi="Mỗi ngày một tiệc">One wedding per date</div>
+              <h3 id="availabilityTitle" data-en="Enquire about your wedding date" data-vi="Hỏi ngày cưới với Lê Vũ">Enquire about your wedding date</h3>
+              <p data-en="Email Lee with your date and plans, or call him directly. Choosing a date is optional — a chosen date is simply added to your email for Lee."
+                 data-vi="Gửi email cho Lê Vũ với ngày cưới và kế hoạch của hai bạn, hoặc gọi điện trực tiếp. Chọn ngày là không bắt buộc — ngày đã chọn chỉ được thêm vào email để Lê Vũ biết.">
+                Email Lee with your date and plans, or call him directly. Choosing a date is optional — a chosen date is simply added to your email for Lee.
+              </p>
+              <div class="date-wrap">
+                <label for="weddingDate" data-en="Wedding date (optional)" data-vi="Ngày cưới (không bắt buộc)">Wedding date (optional)</label>
+                <input id="weddingDate" type="date" />
+              </div>
+              <div class="enquiry-actions">
+                <a id="emailButton" class="gold-btn" href="#" data-en="Email Lee" data-vi="Gửi email cho Lê Vũ">Email Lee</a>
+                <a class="ghost-btn" href="tel:+61401676766" data-en="Call Lee" data-vi="Gọi cho Lê Vũ">Call Lee</a>
+              </div>
+              <div class="contact-mini">
+                <a href="tel:+61401676766"><span data-en="Phone" data-vi="Điện thoại">Phone</span> · 0401 676 766</a>
+                <a href="mailto:mcleevu@gmail.com">Email · mcleevu@gmail.com</a>
+              </div>
+            </div>
+            <p class="note"
+               data-en="Your email app opens with your message prepared — please press send there to reach Lee. An enquiry does not reserve your wedding date; Lee will reply personally to discuss next steps."
+               data-vi="Ứng dụng email của bạn sẽ mở với thư đã soạn sẵn — bạn cần nhấn gửi trong ứng dụng để liên hệ với Lê Vũ. Việc gửi email không giữ ngày cưới; Lê Vũ sẽ trực tiếp trả lời để trao đổi các bước tiếp theo.">
+              Your email app opens with your message prepared — please press send there to reach Lee. An enquiry does not reserve your wedding date; Lee will reply personally to discuss next steps.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell contact-grid reveal">
+        <div>
+          <div class="eyebrow" data-en="Direct with Lee" data-vi="Trao đổi trực tiếp">Direct with Lee</div>
+          <h2 data-en="Speak with Lee" data-vi="Trao đổi với Lê Vũ">Speak with Lee</h2>
+          <p data-en="Tell Lee your date, venue and what matters to both families."
+             data-vi="Chia sẻ ngày cưới, địa điểm và những điều quan trọng với hai gia đình.">
+            Tell Lee your date, venue and what matters to both families.
+          </p>
+        </div>
+        <div class="contact-links">
+          <a href="tel:+61401676766"><small data-en="Phone" data-vi="Điện thoại">Phone</small><strong>0401 676 766</strong></a>
+          <a href="mailto:mcleevu@gmail.com"><small>Email</small><strong>mcleevu@gmail.com</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="shell">
+        <h2 class="reveal" data-en="Before you enquire" data-vi="Trước khi liên hệ">Before you enquire</h2>
+        <div class="faq-wrap reveal">
+          <article class="faq-item">
+            <button class="faq-btn" type="button">
+              <span data-en="Can Lee host in English and Vietnamese?" data-vi="Lê Vũ có thể dẫn bằng cả tiếng Anh và tiếng Việt không?">Can Lee host in English and Vietnamese?</span><b>+</b>
+            </button>
+            <div class="faq-answer"><div><p data-en="Yes. Lee can host in English, Vietnamese or combine both during the reception."
+              data-vi="Có. Lê Vũ có thể dẫn bằng tiếng Anh, tiếng Việt hoặc kết hợp cả hai trong buổi tiệc.">
+              Yes. Lee can host in English, Vietnamese or combine both during the reception.</p></div></div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-btn" type="button">
+              <span data-en="What hours are included?" data-vi="Thời gian dẫn chương trình là bao lâu?">What hours are included?</span><b>+</b>
+            </button>
+            <div class="faq-answer"><div><p data-en="Wedding reception hosting runs from 6:00 PM until the reception concludes."
+              data-vi="Phần dẫn tiệc cưới bắt đầu từ 6:00 tối và kéo dài đến khi tiệc kết thúc.">
+              Wedding reception hosting runs from 6:00 PM until the reception concludes.</p></div></div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-btn" type="button">
+              <span data-en="How do I enquire about my date?" data-vi="Làm sao để hỏi ngày cưới với Lê Vũ?">How do I enquire about my date?</span><b>+</b>
+            </button>
+            <div class="faq-answer"><div><p data-en="Email or call Lee with your wedding date, venue and hosting language. Lee replies personally to discuss your day. An enquiry does not reserve the date — it simply starts the conversation."
+              data-vi="Gửi email hoặc gọi điện cho Lê Vũ với ngày cưới, địa điểm và ngôn ngữ dẫn. Lê Vũ sẽ trực tiếp trả lời để trao đổi. Việc liên hệ không giữ ngày cưới — đó là bước bắt đầu trao đổi.">
+              Email or call Lee with your wedding date, venue and hosting language. Lee replies personally to discuss your day. An enquiry does not reserve the date — it simply starts the conversation.</p></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <a class="brand footer-brand" href="#top">
+        <strong>MC Lee Vu</strong><small data-en="Sydney · English + Vietnamese · since 2006" data-vi="Sydney · Anh + Việt · từ 2006">Sydney · English + Vietnamese · since 2006</small>
+      </a>
+      <p>© 2026 MC Lee Vu</p>
+    </div>
+  </footer>
+
+  <script>
+    let lang = "en";
+    const langToggle = document.getElementById("langToggle");
+    const weddingDate = document.getElementById("weddingDate");
+    const emailButton = document.getElementById("emailButton");
+
+    const today = new Date();
+    const pad = n => String(n).padStart(2,"0");
+    weddingDate.min = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+
+    function updateMailto(){
+      const date = weddingDate.value || (lang === "en" ? "to be advised" : "chưa chọn ngày");
+      if(lang === "en"){
+        const subject = "Wedding MC enquiry";
+        const body = `Hi Lee,\n\nWe are planning our wedding and would like to enquire about you as our wedding MC.\n\nPreferred wedding date: ${date}\n\nCould you please reply to discuss our date and the next steps?\n\nKind regards,`;
+        emailButton.href = `mailto:mcleevu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      } else {
+        const subject = "Hỏi MC cho tiệc cưới";
+        const body = `Chào Lê Vũ,\n\nChúng tôi đang chuẩn bị tiệc cưới và muốn trao đổi về việc mời anh làm MC.\n\nNgày cưới dự kiến: ${date}\n\nAnh vui lòng phản hồi để trao đổi về ngày và các bước tiếp theo.\n\nCảm ơn anh,`;
+        emailButton.href = `mailto:mcleevu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+    }
+
+    function setLanguage(next){
+      lang = next;
+      document.documentElement.lang = lang === "en" ? "en-AU" : "vi";
+      document.querySelectorAll("[data-en][data-vi]").forEach(el => {
+        const val = el.dataset[lang];
+        if(el.tagName === "H1") el.innerHTML = val;
+        else el.textContent = val;
+      });
+      langToggle.textContent = lang === "en" ? "EN | VI" : "VI | EN";
+      langToggle.setAttribute("aria-label", lang === "en" ? "Chuyển sang tiếng Việt" : "Switch to English");
+      updateMailto();
+    }
+
+    langToggle.addEventListener("click",()=>setLanguage(lang === "en" ? "vi" : "en"));
+    weddingDate.addEventListener("change",updateMailto);
+    document.querySelectorAll("[data-scroll]").forEach(btn => btn.addEventListener("click",()=>document.querySelector(btn.dataset.scroll).scrollIntoView({behavior:"smooth"})));
+    document.querySelectorAll(".faq-btn").forEach(btn => btn.addEventListener("click",()=>btn.closest(".faq-item").classList.toggle("open")));
+
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add("in"); observer.unobserve(entry.target);} });
+    },{threshold:.12});
+    document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+    updateMailto();
+  </script>
+</body>
+</html>
