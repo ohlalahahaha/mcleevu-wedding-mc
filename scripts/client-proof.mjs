@@ -24,7 +24,7 @@ async function assertPage(width, height, name) {
   }));
   if (metrics.scrollWidth > metrics.innerWidth) throw new Error(name + ': horizontal overflow ' + JSON.stringify(metrics));
   if (!metrics.title) throw new Error(name + ': missing hero title');
-  if (!metrics.imageSrc?.includes('lee-vu-stage-cutout.png')) throw new Error(name + ': wrong hero identity asset');
+  if (metrics.imageSrc !== '/media/lee-vu-stage.jpg') throw new Error(name + ': wrong hero identity asset');
   for (const key of ['brand','lang','cta']) {
     const r = metrics[key];
     if (!r || r.width < 1 || r.height < 1 || r.left < 0 || r.right > width + 1) throw new Error(name + ': header control clipped: ' + key);
