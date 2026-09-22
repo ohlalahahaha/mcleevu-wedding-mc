@@ -15,6 +15,8 @@ const COPY = {
     healthLink: 'Acoustic Hearing Care',
     sydneyTitle: 'Sydney weddings, hosted in English and Vietnamese.',
     sydneyBody: 'Lee switches between English and Vietnamese through the reception so both sides of the family can follow the program and the key moments.',
+    sydneyContent: 'Two languages, one room — and the quiet contentment of both families at ease.',
+    bandCaption: 'The room settles, glasses lift, and both families breathe.',
     videoTitle: 'Watch Lee host', videoBody: 'A short reel of Lee speaking as an MC.',
     total: 'A$1,000 total', coverage: 'From 6:00 PM until the reception concludes.', deposit: 'A$500 booking deposit', balance: 'A$500 remaining balance',
     availabilityTitle: 'Check your wedding date', availabilityBody: 'Choose your date. If Lee is available, you can continue with your details.',
@@ -38,6 +40,8 @@ const COPY = {
     healthLink: 'Acoustic Hearing Care',
     sydneyTitle: 'Tiệc cưới tại Sydney, dẫn bằng tiếng Anh và tiếng Việt.',
     sydneyBody: 'Trong buổi tiệc, Lê Vũ chuyển đổi giữa tiếng Anh và tiếng Việt để hai bên gia đình đều theo dõi được chương trình và các phần quan trọng.',
+    sydneyContent: 'Hai ngôn ngữ, một sảnh tiệc — và niềm an yên khi hai họ cùng nhẹ lòng.',
+    bandCaption: 'Sảnh tiệc lặng yên, ly nâng lên — hai họ cùng một nhịp thở an yên.',
     videoTitle: 'Xem Lê Vũ dẫn chương trình', videoBody: 'Một đoạn video ngắn khi Lê Vũ cầm mic dẫn chương trình.',
     total: 'Tổng phí A$1,000', coverage: 'Từ 6:00 tối đến khi tiệc kết thúc.', deposit: 'Đặt cọc A$500', balance: 'Còn lại A$500',
     availabilityTitle: 'Kiểm tra ngày cưới', availabilityBody: 'Chọn ngày cưới. Nếu Lê Vũ còn lịch, bạn có thể tiếp tục điền thông tin.',
@@ -60,9 +64,51 @@ function Availability({t}){
   const checkDate=async()=>{if(!date)return;setStatus('checking');setDetailsOpen(false);setMessage('');try{const r=await fetch(`/api/availability?date=${encodeURIComponent(date)}`,{headers:{accept:'application/json'}});const d=await r.json().catch(()=>({}));if(!r.ok||!['available','held','unavailable'].includes(d.status))throw new Error();setStatus(d.status)}catch{setStatus('service-unavailable')}};
   const submitBooking=async(e)=>{e.preventDefault();if(!e.currentTarget.reportValidity()){setMessage(t.formError);return}setSubmitting(true);setMessage('');const payload=Object.fromEntries(new FormData(e.currentTarget).entries());payload.eventDate=date;try{const r=await fetch('/api/create-checkout',{method:'POST',headers:{'content-type':'application/json',accept:'application/json'},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));if(!r.ok||!d.url)throw new Error();window.location.assign(d.url)}catch{setMessage(t.checkoutError)}finally{setSubmitting(false)}};
   const returnState=status.startsWith('return-')&&<div className={`return-state ${status}`} role="status"><strong>{status==='return-confirmed'?t.returnSuccess:status==='return-pending'?t.returnPending:t.returnCancelled}</strong><span>{status==='return-confirmed'?t.returnSuccessBody:status==='return-pending'?t.returnPendingBody:t.returnCancelledBody}</span>{status==='return-cancelled'&&<button className="text-button" type="button" onClick={()=>{setStatus('idle');setDetailsOpen(false);requestAnimationFrame(()=>document.querySelector('#wedding-date')?.focus())}}>{t.resume}</button>}</div>;
-  return <section className="availability-section" id="availability" aria-labelledby="availability-title"><div className="availability-intro"><h2 id="availability-title">{t.availabilityTitle}</h2><p>{t.availabilityBody}</p></div><div className="availability-card">{returnState}<div className="date-checker"><label htmlFor="wedding-date">{t.selectDate}</label><div className="date-row"><input id="wedding-date" type="date" min={minDate} value={date} onChange={e=>{setDate(e.target.value);setStatus('idle');setDetailsOpen(false)}}/><button className="button" type="button" onClick={checkDate} disabled={!date||status==='checking'}>{status==='checking'?t.checking:t.checkDate}</button></div></div>{status==='available'&&<div className="availability-result success" role="status"><strong>{t.available}</strong><span>{t.availableBody}</span><button className="text-button" type="button" onClick={()=>setDetailsOpen(true)}>{t.book}</button></div>}{['held','unavailable'].includes(status)&&<div className="availability-result neutral" role="status"><strong>{status==='held'?t.held:t.unavailable}</strong><span>{t.unavailableBody}</span></div>}{status==='service-unavailable'&&<div className="availability-result neutral" role="status"><strong>{t.serviceUnavailable}</strong><span>{t.serviceUnavailableBody}</span><a className="text-button" href="mailto:mcleevu@gmail.com">mcleevu@gmail.com</a></div>}{detailsOpen&&status==='available'&&<form className="booking-form" onSubmit={submitBooking} noValidate><div className="form-heading"><h3>{t.detailsTitle}</h3></div><div className="form-grid"><label><span>{t.yourName}</span><input name="customerName" autoComplete="name" required maxLength="100"/></label><label><span>{t.partnerName}</span><input name="partnerName" autoComplete="name" required maxLength="100"/></label><label><span>{t.email}</span><input name="email" type="email" autoComplete="email" required maxLength="160"/></label><label><span>{t.phone}</span><input name="phone" type="tel" autoComplete="tel" required maxLength="40"/></label><label><span>{t.venue}</span><input name="venueName" maxLength="160"/></label><label><span>{t.venueAddress}</span><input name="venueAddress" autoComplete="street-address" maxLength="240"/></label><label className="full"><span>{t.language}</span><select name="languagePreference" defaultValue="bilingual"><option value="bilingual">{t.languageOptions[0]}</option><option value="english">{t.languageOptions[1]}</option><option value="vietnamese">{t.languageOptions[2]}</option></select></label><label className="full"><span>{t.notes}</span><textarea name="notes" rows="4" maxLength="1200"/></label></div><div className="checkout-summary"><div><p className="eyebrow">{t.summaryTitle}</p><strong>{date}</strong><span>{t.coverage}</span></div><dl><div><dt>{t.total}</dt><dd>A$1,000</dd></div><div><dt>{t.dueToday}</dt><dd>A$500</dd></div><div><dt>{t.remaining}</dt><dd>A$500</dd></div></dl><button className="button button-wide" type="submit" disabled={submitting}>{submitting?t.paying:t.pay}</button><p className="stripe-note">{t.stripeNote}</p></div></form>}{message&&<p className="form-error" role="alert" tabIndex="-1" ref={errorRef}>{message}</p>}</div></section>
+  return <section className="availability-section" id="availability" aria-labelledby="availability-title"><div className="availability-intro"><h2 id="availability-title">{t.availabilityTitle}</h2><p>{t.availabilityBody}</p><Lotus className="intro-lotus"/></div><div className="availability-card">{returnState}<div className="date-checker"><label htmlFor="wedding-date">{t.selectDate}</label><div className="date-row"><input id="wedding-date" type="date" min={minDate} value={date} onChange={e=>{setDate(e.target.value);setStatus('idle');setDetailsOpen(false)}}/><button className="button" type="button" onClick={checkDate} disabled={!date||status==='checking'}>{status==='checking'?t.checking:t.checkDate}</button></div></div>{status==='available'&&<div className="availability-result success" role="status"><strong>{t.available}</strong><span>{t.availableBody}</span><button className="text-button" type="button" onClick={()=>setDetailsOpen(true)}>{t.book}</button></div>}{['held','unavailable'].includes(status)&&<div className="availability-result neutral" role="status"><strong>{status==='held'?t.held:t.unavailable}</strong><span>{t.unavailableBody}</span></div>}{status==='service-unavailable'&&<div className="availability-result neutral" role="status"><strong>{t.serviceUnavailable}</strong><span>{t.serviceUnavailableBody}</span><a className="text-button" href="mailto:mcleevu@gmail.com">mcleevu@gmail.com</a></div>}{detailsOpen&&status==='available'&&<form className="booking-form" onSubmit={submitBooking} noValidate><div className="form-heading"><h3>{t.detailsTitle}</h3></div><div className="form-grid"><label><span>{t.yourName}</span><input name="customerName" autoComplete="name" required maxLength="100"/></label><label><span>{t.partnerName}</span><input name="partnerName" autoComplete="name" required maxLength="100"/></label><label><span>{t.email}</span><input name="email" type="email" autoComplete="email" required maxLength="160"/></label><label><span>{t.phone}</span><input name="phone" type="tel" autoComplete="tel" required maxLength="40"/></label><label><span>{t.venue}</span><input name="venueName" maxLength="160"/></label><label><span>{t.venueAddress}</span><input name="venueAddress" autoComplete="street-address" maxLength="240"/></label><label className="full"><span>{t.language}</span><select name="languagePreference" defaultValue="bilingual"><option value="bilingual">{t.languageOptions[0]}</option><option value="english">{t.languageOptions[1]}</option><option value="vietnamese">{t.languageOptions[2]}</option></select></label><label className="full"><span>{t.notes}</span><textarea name="notes" rows="4" maxLength="1200"/></label></div><div className="checkout-summary"><div><p className="eyebrow">{t.summaryTitle}</p><strong>{date}</strong><span>{t.coverage}</span></div><dl><div><dt>{t.total}</dt><dd>A$1,000</dd></div><div><dt>{t.dueToday}</dt><dd>A$500</dd></div><div><dt>{t.remaining}</dt><dd>A$500</dd></div></dl><button className="button button-wide" type="submit" disabled={submitting}>{submitting?t.paying:t.pay}</button><p className="stripe-note">{t.stripeNote}</p></div></form>}{message&&<p className="form-error" role="alert" tabIndex="-1" ref={errorRef}>{message}</p>}</div></section>
 }
 
+
+function Lotus({className}){
+  return (
+    <svg className={className} viewBox="0 0 120 64" fill="none" stroke="currentColor" strokeWidth="1" aria-hidden="true">
+      <path d="M60 8 C67 21 67 35 60 48 C53 35 53 21 60 8 Z"/>
+      <path d="M43 16 C54 24 59 37 58.5 48 C48 44 41 31 43 16 Z"/>
+      <path d="M77 16 C66 24 61 37 61.5 48 C72 44 79 31 77 16 Z"/>
+      <path d="M27 27 C39 31 50 41 54 50 C42 50 31 41 27 27 Z"/>
+      <path d="M93 27 C81 31 70 41 66 50 C78 50 89 41 93 27 Z"/>
+      <path d="M13 39 C25 41 40 47 50 52 C38 56 23 51 13 39 Z"/>
+      <path d="M107 39 C95 41 80 47 70 52 C82 56 97 51 107 39 Z"/>
+      <path d="M38 57 C50 61 70 61 82 57" opacity=".55"/>
+    </svg>
+  );
+}
+
+function Candles(){
+  const candle = (x, tipY, wickTop, bodyTop) => (
+    <g>
+      <g className="flame-g" style={{transformOrigin: x + 'px ' + (bodyTop - 4) + 'px'}}>
+        <circle className="flame-glow" cx={x} cy={tipY + 12} r="13" fill="url(#flame-glow)" stroke="none"/>
+        <path d={'M' + x + ' ' + tipY + ' C' + (x + 3.5) + ' ' + (tipY + 6) + ' ' + (x + 4.5) + ' ' + (tipY + 10.5) + ' ' + (x + 2) + ' ' + (tipY + 14.5) + ' C' + (x + 0.8) + ' ' + (tipY + 16.3) + ' ' + (x - 0.8) + ' ' + (tipY + 16.3) + ' ' + (x - 2) + ' ' + (tipY + 14.5) + ' C' + (x - 4.5) + ' ' + (tipY + 10.5) + ' ' + (x - 3.5) + ' ' + (tipY + 6) + ' ' + x + ' ' + tipY + ' Z'}/>
+        <path className="flame-core" d={'M' + x + ' ' + (tipY + 8) + ' C' + (x + 1.5) + ' ' + (tipY + 10.5) + ' ' + (x + 1.5) + ' ' + (tipY + 12.5) + ' ' + x + ' ' + (tipY + 14) + ' C' + (x - 1.5) + ' ' + (tipY + 12.5) + ' ' + (x - 1.5) + ' ' + (tipY + 10.5) + ' ' + x + ' ' + (tipY + 8) + ' Z'} fill="currentColor" stroke="none" opacity=".6"/>
+      </g>
+      <line x1={x} y1={wickTop} x2={x} y2={bodyTop}/>
+      <path d={'M' + (x - 7) + ' ' + bodyTop + ' L' + (x + 7) + ' ' + bodyTop + ' L' + (x + 5.8) + ' 90 C' + (x + 5.8) + ' 91.5 ' + (x - 5.8) + ' 91.5 ' + (x - 5.8) + ' 90 Z'}/>
+    </g>
+  );
+  return (
+    <svg className="footer-candles" viewBox="0 0 150 96" fill="none" stroke="currentColor" strokeWidth="1" aria-hidden="true">
+      <defs>
+        <radialGradient id="flame-glow">
+          <stop offset="0%" stopColor="#e8cf96" stopOpacity=".55"/>
+          <stop offset="100%" stopColor="#e8cf96" stopOpacity="0"/>
+        </radialGradient>
+      </defs>
+      {candle(40, 16, 33.5, 38)}
+      {candle(75, 6, 23.5, 28)}
+      {candle(110, 20, 37.5, 42)}
+    </svg>
+  );
+}
 
 function App(){
   const [lang,setLang]=useState('en');
@@ -153,12 +199,18 @@ function App(){
       </section>
 
       <section className="sydney-section" aria-labelledby="sydney-title">
-        <div className="sydney-art" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div className="sydney-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div className="shell sydney-grid">
           <p className="eyebrow">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p>
           <h2 id="sydney-title">{t.sydneyTitle}</h2>
           <p>{t.sydneyBody}</p>
+          <p className="sydney-content">{t.sydneyContent}</p>
         </div>
+      </section>
+
+      <section className="candle-band">
+        <img src="/media/decor/wedding-roses-candles.jpg" alt="" loading="lazy"/>
+        <p className="band-caption">{t.bandCaption}</p>
       </section>
 
       <div className="booking-wrap">
@@ -189,6 +241,7 @@ function App(){
       </section>
 
       <section className="video-section" id="video" aria-labelledby="video-title">
+        <Lotus className="video-lotus"/>
         <div className="shell video-layout">
           <div className="video-heading">
             <p className="eyebrow">{videoLabel}</p>
@@ -205,6 +258,7 @@ function App(){
     </main>
 
     <footer>
+      <Candles/>
       <div className="shell footer-inner">
         <div className="brand footer-brand"><span>MC Lee Vu</span><small>{lang==='vi'?'Sydney · Anh + Việt · từ 2006':'Sydney · English + Vietnamese · since 2006'}</small></div>
         <p>© 2026 MC Lee Vu</p>
