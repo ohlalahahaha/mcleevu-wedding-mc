@@ -290,7 +290,7 @@ body.menu-open .menu-nav a{opacity:1;transform:none}
 .reel{padding:clamp(4rem,9vh,7rem) var(--pad);background:var(--ink)}
 .reel-card{
   position:relative;border-radius:18px;overflow:hidden;
-  min-height:clamp(380px,58vh,520px);display:flex;
+  min-height:clamp(660px,90vh,880px);display:flex;
   box-shadow:0 40px 90px -40px rgba(0,0,0,.7);
 }
 .reel-card::after{content:'';position:absolute;inset:12px;border:1px solid var(--line-soft);border-radius:11px;pointer-events:none;z-index:3}
@@ -306,7 +306,7 @@ body.menu-open .menu-nav a{opacity:1;transform:none}
 .reel-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(95deg,rgba(9,15,24,.92) 0%,rgba(9,15,24,.6) 36%,rgba(9,15,24,.14) 66%,rgba(9,15,24,.55) 100%)}
 .reel-content{
   position:relative;z-index:2;flex:1;
-  display:grid;grid-template-columns:1fr auto auto;align-items:center;
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto minmax(280px,330px);align-items:center;
   gap:clamp(1.5rem,4vw,4rem);padding:clamp(2rem,5vw,4rem) clamp(1.6rem,4.5vw,4rem);
 }
 .reel-title{
@@ -330,9 +330,16 @@ body.menu-open .menu-nav a{opacity:1;transform:none}
 }
 .reel-tags li:hover{color:var(--gold-2);transform:translateX(-4px)}
 
+.reel-html-panel{
+  grid-column:4;grid-row:1/3;align-self:center;
+  width:min(100%,330px);height:min(800px,80vh);overflow:hidden;
+  background:var(--ink);border:1px solid rgba(201,162,39,.38);border-radius:10px;
+  box-shadow:0 28px 70px -25px rgba(0,0,0,.8);
+}
+.reel-html-frame{display:block;width:100%;height:100%;border:0;background:var(--ink)}
 
 .reel-media .reel-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.reel-strip{grid-row:2;grid-column:1/-1;align-self:end;display:flex;gap:14px;padding-top:1.2rem}
+.reel-strip{grid-row:2;grid-column:1/4;align-self:end;display:flex;gap:14px;padding-top:1.2rem}
 .reel-strip img{height:clamp(60px,9vh,92px);object-fit:cover;border-radius:6px;border:1px solid rgba(231,210,162,.4);box-shadow:0 10px 26px rgba(0,0,0,.45)}
 
 /* — a greater purpose — */
@@ -524,6 +531,8 @@ body.menu-open .menu-nav a{opacity:1;transform:none}
 @media (max-width:900px){
   .reel-content{grid-template-columns:1fr;justify-items:start;gap:1.8rem}
   .reel-tags{flex-direction:row;flex-wrap:wrap;gap:.4rem 1.6rem}
+  .reel-html-panel{grid-column:1;grid-row:auto;width:min(340px,100%);height:min(780px,92vw)}
+  .reel-strip{grid-column:1}
 }
 @media (max-width:640px){
   .head-inner{padding:.9rem var(--pad)}
