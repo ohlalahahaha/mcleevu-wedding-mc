@@ -4,6 +4,7 @@ import './styles.css';
 
 const HEALTH_LINK = 'https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care';
 const REEL_SRC = '/media/lee-vu-reel.mp4';
+const REEL_HTML = '/lee-vu-reel.html';
 const STAGE_IMG = '/media/lee-vu-stage-2x.jpg';
 
 const COPY = {
@@ -427,7 +428,7 @@ function App() {
           <span className="tick tick--br" aria-hidden="true"></span>
           <div className="reel-media" aria-hidden="true">
             {!prefersReduced && <div className={"ph ph--hero" + (platesHidden.candid ? " ph-done" : "")} aria-hidden="true"><span className="ph-mark">LEE&nbsp;VU</span></div>}
-            <video className="reel-video" src={REEL_SRC} poster="/media/lee-vu-editorial-video-poster.jpg" autoPlay={!prefersReduced} muted loop playsInline preload="metadata" onLoadedData={() => hidePlate('candid')}></video>
+            <img className="media-img" src="/media/lee-vu-stage.jpg" alt="" loading="lazy" decoding="async" onLoad={(e) => { e.currentTarget.classList.add('loaded'); hidePlate('candid'); }} />
             <span className="tone" aria-hidden="true"></span>
           </div>
           <div className="reel-veil" aria-hidden="true"></div>
@@ -441,6 +442,9 @@ function App() {
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg>
             </button>
             <ul className="reel-tags">{[t.g1, t.g2, t.g3, t.g4].map(g => <li key={g}>{g}</li>)}</ul>
+            <div className="reel-html-panel">
+              <iframe className="reel-html-frame" src={REEL_HTML} title="MC Lee Vu — The Reel" loading="lazy"></iframe>
+            </div>
             <div className="reel-strip" aria-hidden="true">
               <img src="/media/lee-vu-portrait-navy.jpg" alt="" loading="lazy" decoding="async" />
               <img src="/media/lee-vu-portrait-blue.jpg" alt="" loading="lazy" decoding="async" />
