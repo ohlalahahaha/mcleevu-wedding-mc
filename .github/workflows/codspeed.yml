@@ -18,4 +18,5 @@ jobs:
       - uses: CodSpeedHQ/action@v5.2.1
         with:
           token: ${{ secrets.CODSPEED_TOKEN }}
-          run-codspeed: npm run bench
+          mode: simulation
+          run: npm run bench
