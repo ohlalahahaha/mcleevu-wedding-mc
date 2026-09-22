@@ -7,13 +7,17 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "bench": "node bench/core.bench.js",
     "test": "node --test tests/*.test.js"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
-    "vite": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "vite": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@codspeed/tinybench-plugin": "^5.7.1",
+    "tinybench": "^6.2.0"
+  }
 }
