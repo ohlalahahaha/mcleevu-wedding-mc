@@ -21,10 +21,14 @@ async function assertPage(width, height, name) {
     hero: document.querySelector('.hero')?.getBoundingClientRect().toJSON(),
     portrait: document.querySelector('.hero-portrait img')?.getBoundingClientRect().toJSON(),
     imageSrc: document.querySelector('.hero-portrait img')?.getAttribute('src'),
+    eyebrow: document.querySelector('.hero-eyebrow')?.textContent?.trim() || '',
+    aboutImageSrcs: [...document.querySelectorAll('.about-portrait-composition img')].map(img => img.getAttribute('src')),
   }));
   if (metrics.scrollWidth > metrics.innerWidth) throw new Error(name + ': horizontal overflow ' + JSON.stringify(metrics));
   if (!metrics.title) throw new Error(name + ': missing hero title');
   if (metrics.imageSrc !== '/media/lee-vu-stage.jpg') throw new Error(name + ': wrong hero identity asset');
+  if (!metrics.eyebrow) throw new Error(name + ': missing hero editorial eyebrow');
+  if (!metrics.aboutImageSrcs.includes('/media/lee-vu-portrait-navy.jpg') || !metrics.aboutImageSrcs.includes('/media/lee-vu-portrait-blue.jpg')) throw new Error(name + ': missing real Lee editorial portrait pair');
   for (const key of ['brand','lang','cta']) {
     const r = metrics[key];
     if (!r || r.width < 1 || r.height < 1 || r.left < 0 || r.right > width + 1) throw new Error(name + ': header control clipped: ' + key);
