@@ -266,6 +266,7 @@ function FilmModal({ open, onClose, label, sub, soon }) {
 }
 
 function App() {
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const [lang, setLangState] = useState('en');
   const [menuOpen, setMenuOpen] = useState(false);
   const [filmOpen, setFilmOpen] = useState(false);
@@ -425,8 +426,8 @@ function App() {
           <span className="tick tick--bl" aria-hidden="true"></span>
           <span className="tick tick--br" aria-hidden="true"></span>
           <div className="reel-media" aria-hidden="true">
-            <div className={"ph ph--hero" + (platesHidden.candid ? " ph-done" : "")} aria-hidden="true"><span className="ph-mark">LEE&nbsp;VU</span></div>
-            <img className="media-img" src="/media/lee-vu-editorial-hero.jpg" alt="" loading="lazy" decoding="async" onLoad={(e) => { e.currentTarget.classList.add('loaded'); hidePlate('candid'); }} />
+            {!prefersReduced && <div className={"ph ph--hero" + (platesHidden.candid ? " ph-done" : "")} aria-hidden="true"><span className="ph-mark">LEE&nbsp;VU</span></div>}
+            <video className="reel-video" src={REEL_SRC} poster="/media/lee-vu-editorial-video-poster.jpg" autoPlay={!prefersReduced} muted loop playsInline preload="metadata" onLoadedData={() => hidePlate('candid')}></video>
             <span className="tone" aria-hidden="true"></span>
           </div>
           <div className="reel-veil" aria-hidden="true"></div>
@@ -440,6 +441,11 @@ function App() {
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg>
             </button>
             <ul className="reel-tags">{[t.g1, t.g2, t.g3, t.g4].map(g => <li key={g}>{g}</li>)}</ul>
+            <div className="reel-strip" aria-hidden="true">
+              <img src="/media/lee-vu-portrait-navy.jpg" alt="" loading="lazy" decoding="async" />
+              <img src="/media/lee-vu-portrait-blue.jpg" alt="" loading="lazy" decoding="async" />
+              <img src="/media/lee-vu-stage.jpg" alt="" loading="lazy" decoding="async" />
+            </div>
           </div>
         </div>
       </section>
