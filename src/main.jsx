@@ -64,6 +64,10 @@ function Availability({t}){
 }
 
 
+function PhotoBackground({src, className, position}){
+  return <div className={className} aria-hidden="true"><img src={src} alt="" loading="lazy" style={position?{objectPosition:position}:undefined}/></div>;
+}
+
 function App(){
   const [lang,setLang]=useState('en');
   const [openFaq,setOpenFaq]=useState(null);
@@ -103,11 +107,11 @@ function App(){
 
     <main id="main">
       <section className="hero" id="top" aria-labelledby="hero-title">
+        <div className="hero-bg">
+          <img src="/media/lee-vu-editorial-hero.jpg" alt={realPhotoAlt+' holding a microphone'} fetchPriority="high"/>
+          <div className="hero-scrim" aria-hidden="true"></div>
+        </div>
         <div className="hero-grid shell">
-          <div className="hero-photo">
-            <img src="/media/lee-vu-editorial-hero.jpg" alt={realPhotoAlt+' holding a microphone'} fetchPriority="high"/>
-            <div className="hero-arc" aria-hidden="true"></div>
-          </div>
           <div className="hero-copy">
             <p className="eyebrow">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p>
             <h1 id="hero-title">{t.heroTitle}</h1>
@@ -117,6 +121,7 @@ function App(){
               <a className="text-link light" href="#video"><span aria-hidden="true">▶</span>{watchLabel}</a>
             </div>
           </div>
+          <div className="hero-arc" aria-hidden="true"></div>
           <aside className="hero-note" aria-hidden="true">
             <span>2006</span><small>{lang==='vi'?'Dẫn tiệc cưới tại Sydney từ':'Hosting Sydney weddings since'}</small>
           </aside>
@@ -153,6 +158,7 @@ function App(){
       </section>
 
       <section className="sydney-section" aria-labelledby="sydney-title">
+        <PhotoBackground src="/media/decor/sydney-harbour.jpg" className="sydney-bg" position="center 42%"/>
         <div className="sydney-art" aria-hidden="true"><span></span><span></span><span></span></div>
         <div className="shell sydney-grid">
           <p className="eyebrow">{lang==='vi'?'Sydney · Anh + Việt':'Sydney · English + Vietnamese'}</p>
@@ -189,6 +195,7 @@ function App(){
       </section>
 
       <section className="video-section" id="video" aria-labelledby="video-title">
+        <PhotoBackground src="/media/lee-vu-editorial-video-poster.jpg" className="video-bg" position="center 42%"/>
         <div className="shell video-layout">
           <div className="video-heading">
             <p className="eyebrow">{videoLabel}</p>
