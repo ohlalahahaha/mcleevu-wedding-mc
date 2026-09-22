@@ -6,6 +6,7 @@ const HEALTH_LINK = 'https://business.fairfieldcity.nsw.gov.au/Business-Director
 const REEL_SRC = '/media/lee-vu-reel.mp4';
 const REEL_HTML = '/lee-vu-reel.html';
 const STAGE_IMG = '/media/lee-vu-stage-2x.jpg';
+const HERO_ARTIFACT = '/media/lee-vu-hero-artifact.webp';
 
 const COPY = {
   en: {
@@ -332,6 +333,7 @@ function App() {
     if (!media) return;
     let ticking = false;
     const onScroll = () => {
+      if (window.innerWidth <= 1060) return;
       if (!ticking) {
         requestAnimationFrame(() => {
           const y = Math.min(window.scrollY, window.innerHeight);
@@ -385,7 +387,7 @@ function App() {
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-media" aria-hidden="true">
           <div className={"ph ph--hero" + (platesHidden.hero ? " ph-done" : "")} aria-hidden="true"><span className="ph-mark">LEE&nbsp;VU</span></div>
-          <img className="media-img kb" src={STAGE_IMG} onLoad={(e) => { e.currentTarget.classList.add('loaded'); hidePlate('hero'); }} alt="" fetchPriority="high" decoding="async" />
+          <img className="media-img kb" src={HERO_ARTIFACT} onLoad={(e) => { e.currentTarget.classList.add('loaded'); hidePlate('hero'); }} alt="" fetchPriority="high" decoding="async" />
           <span className="tone" aria-hidden="true"></span>
           <div className="bokeh" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
@@ -418,40 +420,7 @@ function App() {
             <ul className="word-stack">{[t.w1, t.w2, t.w3, t.w4].map(w => <li key={w}>{w}</li>)}</ul>
           </aside>
         </div>
-        <a className="scroll-cue" href="#reel"><span className="cue-label">{t.cue}</span><span className="cue-line" aria-hidden="true"></span></a>
-      </section>
-      <section className="reel" id="reel" aria-labelledby="reel-title">
-        <div className="reel-card reveal">
-          <span className="tick tick--tl" aria-hidden="true"></span>
-          <span className="tick tick--tr" aria-hidden="true"></span>
-          <span className="tick tick--bl" aria-hidden="true"></span>
-          <span className="tick tick--br" aria-hidden="true"></span>
-          <div className="reel-media" aria-hidden="true">
-            {!prefersReduced && <div className={"ph ph--hero" + (platesHidden.candid ? " ph-done" : "")} aria-hidden="true"><span className="ph-mark">LEE&nbsp;VU</span></div>}
-            <img className="media-img" src="/media/lee-vu-stage.jpg" alt="" loading="lazy" decoding="async" onLoad={(e) => { e.currentTarget.classList.add('loaded'); hidePlate('candid'); }} />
-            <span className="tone" aria-hidden="true"></span>
-          </div>
-          <div className="reel-veil" aria-hidden="true"></div>
-          <div className="reel-content">
-            <div className="reel-copy">
-              <p className="eyebrow">{t.reelEyebrow}</p>
-              <h2 className="reel-title" id="reel-title">{t.reelTitle}</h2>
-              <p className="reel-meta">{t.reelMeta}</p>
-            </div>
-            <button className="play" type="button" onClick={openFilm} aria-label={t.modalLabel}>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg>
-            </button>
-            <ul className="reel-tags">{[t.g1, t.g2, t.g3, t.g4].map(g => <li key={g}>{g}</li>)}</ul>
-            <div className="reel-html-panel">
-              <iframe className="reel-html-frame" src={REEL_HTML} title="MC Lee Vu — The Reel" loading="lazy"></iframe>
-            </div>
-            <div className="reel-strip" aria-hidden="true">
-              <img src="/media/lee-vu-portrait-navy.jpg" alt="" loading="lazy" decoding="async" />
-              <img src="/media/lee-vu-portrait-blue.jpg" alt="" loading="lazy" decoding="async" />
-              <img src="/media/lee-vu-stage.jpg" alt="" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        </div>
+        <a className="scroll-cue" href="#purpose"><span className="cue-label">{t.cue}</span><span className="cue-line" aria-hidden="true"></span></a>
       </section>
       <section className="purpose" id="purpose" aria-labelledby="purpose-title">
         <div className="purpose-grid">
@@ -532,6 +501,39 @@ function App() {
             <summary><span>{q}</span><b aria-hidden="true">+</b></summary>
             <p>{a}</p>
           </details>)}
+        </div>
+      </section>
+      <section className="reel" id="reel" aria-labelledby="reel-title">
+        <div className="reel-card reveal">
+          <span className="tick tick--tl" aria-hidden="true"></span>
+          <span className="tick tick--tr" aria-hidden="true"></span>
+          <span className="tick tick--bl" aria-hidden="true"></span>
+          <span className="tick tick--br" aria-hidden="true"></span>
+          <div className="reel-media" aria-hidden="true">
+            {!prefersReduced && <div className={"ph ph--hero" + (platesHidden.candid ? " ph-done" : "")} aria-hidden="true"><span className="ph-mark">LEE&nbsp;VU</span></div>}
+            <img className="media-img" src="/media/lee-vu-stage.jpg" alt="" loading="lazy" decoding="async" onLoad={(e) => { e.currentTarget.classList.add('loaded'); hidePlate('candid'); }} />
+            <span className="tone" aria-hidden="true"></span>
+          </div>
+          <div className="reel-veil" aria-hidden="true"></div>
+          <div className="reel-content">
+            <div className="reel-copy">
+              <p className="eyebrow">{t.reelEyebrow}</p>
+              <h2 className="reel-title" id="reel-title">{t.reelTitle}</h2>
+              <p className="reel-meta">{t.reelMeta}</p>
+            </div>
+            <button className="play" type="button" onClick={openFilm} aria-label={t.modalLabel}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg>
+            </button>
+            <ul className="reel-tags">{[t.g1, t.g2, t.g3, t.g4].map(g => <li key={g}>{g}</li>)}</ul>
+            <div className="reel-html-panel">
+              <iframe className="reel-html-frame" src={REEL_HTML} title="MC Lee Vu — The Reel" loading="lazy"></iframe>
+            </div>
+            <div className="reel-strip" aria-hidden="true">
+              <img src="/media/lee-vu-portrait-navy.jpg" alt="" loading="lazy" decoding="async" />
+              <img src="/media/lee-vu-portrait-blue.jpg" alt="" loading="lazy" decoding="async" />
+              <img src="/media/lee-vu-stage.jpg" alt="" loading="lazy" decoding="async" />
+            </div>
+          </div>
         </div>
       </section>
     </main>
