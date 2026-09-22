@@ -1,0 +1,21 @@
+name: CodSpeed
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  benchmarks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: CodSpeedHQ/action@v5.2.1
+        with:
+          token: ${{ secrets.CODSPEED_TOKEN }}
+          run-codspeed: npm run bench
