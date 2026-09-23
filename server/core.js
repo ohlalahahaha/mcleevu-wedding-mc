@@ -12,7 +12,11 @@ function envValue(env, name, optional = false) {
 }
 
 export function isIsoDate(value) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(String(value || ''));
+  const dateString = String(value || '');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) return false;
+  const [year, month, day] = dateString.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
 }
 
 export function sydneyToday() {
@@ -214,13 +218,14 @@ async function createCheckout(env, bodyText) {
       cancel_url: `${siteUrl}/?booking=cancelled&booking_id=${encodeURIComponent(bookingId)}#availability`,
     });
 
-    await rpc(env, 'attach_checkout_session', { p_booking_id: bookingId, p_session_id: session.id });
+    const attached = await rpc(env, 'attach_checkout_session', { p_booking_id: bookingId, p_session_id: session.id });
+    if (attached !== true) throw new Error('Date hold expired');
     return { status: 200, body: { url: session.url, bookingId } };
   } catch (error) {
     if (holdAcquired) {
       try { await rpc(env, 'release_booking_hold', { p_booking_id: bookingId }); } catch { /* preserve original error */ }
     }
-    const dateConflict = /already|blocked|held/i.test(error.message);
+    const dateConflict = /^Date (?:is in the past|already booked|blocked|temporarily held|hold expired)$/.test(error.message);
     return { status: dateConflict ? 409 : 503, body: { error: dateConflict ? 'That date is no longer available.' : 'Secure checkout is not connected yet.' } };
   }
 }
@@ -231,7 +236,9 @@ async function stripeWebhook(env, headers, bodyText) {
 
   let event;
   try { event = JSON.parse(bodyText); } catch { return { status: 400, body: { error: 'Invalid event' } }; }
+  if (typeof event.id !== 'string' || !event.id) return { status: 400, body: { error: 'Invalid event' } };
 
+  let eventReserved = false;
   try {
     const inserted = await supabase(env, 'stripe_webhook_events?on_conflict=stripe_event_id', {
       method: 'POST',
@@ -239,6 +246,7 @@ async function stripeWebhook(env, headers, bodyText) {
       body: JSON.stringify({ stripe_event_id: event.id, type: event.type }),
     });
     if (Array.isArray(inserted) && inserted.length === 0) return { status: 200, body: { received: true, duplicate: true } };
+    eventReserved = Array.isArray(inserted) && inserted.length > 0;
   } catch { /* booking RPCs remain idempotent */ }
 
   const session = event.data?.object;
@@ -248,7 +256,10 @@ async function stripeWebhook(env, headers, bodyText) {
   try {
     if (event.type === 'checkout.session.completed' && bookingId) {
       if (session.payment_status !== 'paid' || session.amount_total !== DEPOSIT_CENTS || String(session.currency).toLowerCase() !== 'aud') throw new Error('Unexpected Stripe payment state');
+      if (paymentType !== 'deposit' && paymentType !== 'balance') throw new Error('Unexpected Stripe payment type');
       if (paymentType === 'balance') {
+        const booking = await fetchBooking(env, bookingId);
+        if (!booking || booking.status !== 'confirmed' || booking.stripe_balance_checkout_session_id !== session.id) throw new Error('Balance checkout session mismatch');
         await rpc(env, 'confirm_balance_payment', { p_booking_id: bookingId, p_session_id: session.id, p_payment_intent_id: session.payment_intent || '' });
         return { status: 200, body: { received: true } };
       }
@@ -272,6 +283,11 @@ async function stripeWebhook(env, headers, bodyText) {
     if (event.type === 'checkout.session.expired' && bookingId && paymentType !== 'balance') await rpc(env, 'release_booking_hold', { p_booking_id: bookingId });
     return { status: 200, body: { received: true } };
   } catch {
+    if (eventReserved) {
+      try {
+        await supabase(env, `stripe_webhook_events?stripe_event_id=eq.${encodeURIComponent(event.id)}`, { method: 'DELETE' });
+      } catch { /* Stripe retry remains the recovery path if reservation removal also fails */ }
+    }
     return { status: 500, body: { error: 'Webhook processing failed' } };
   }
 }
