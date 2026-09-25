@@ -27,10 +27,11 @@ jobs:
         env:
           SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          node scripts/static-server.mjs deploy-candle > /tmp/lee-artifact-server.log 2>&1 &
+          PORT=4174 node scripts/static-server.mjs deploy-candle > /tmp/lee-artifact-server.log 2>&1 &
           ART_PID=$!
           trap 'kill $ART_PID || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4174/ >/dev/null && break; sleep 1; done
+          curl -fsS http://127.0.0.1:4174/ >/dev/null || { cat /tmp/lee-artifact-server.log; exit 1; }
           ARTIFACT_URL=http://127.0.0.1:4174 node scripts/artifact-proof.mjs
       - name: Upload candlelight artifact proof
         uses: actions/upload-artifact@v4
