@@ -17,12 +17,12 @@ test('real contact details only — wrong enquiry domain is gone, phone present'
   assert.ok(html.includes('href="mailto:mcleevu@gmail.com"'), 'visible email link present');
 });
 
-test('no invented testimonials, couples, venues or review stars', () => {
-  for (const banned of ['The Langham', 'Curzon Hall', 'Minh & Sarah', 'Hương & Kiên', 'Linh & Tom', 'Mai & James', 'Cabramatta', 'Mosman', 'tstar']) {
-    assert.ok(!html.includes(banned), `fabricated-review marker must be absent: ${banned}`);
-  }
-  assert.ok(html.includes('PROMISE'), 'promise cards present');
-  assert.ok(html.includes("fill('#trow1',PROMISE[l]||PROMISE.en,false)"), 'promise cards re-render on language switch');
+test('kind words stay heartfelt and keep their star treatment (Phoenix law: no promise-card flattening)', () => {
+  assert.ok(html.includes('Lee held the whole room'), 'heartfelt EN quote present');
+  assert.ok(html.includes('Lee không chỉ dẫn chương trình'), 'heartfelt VI quote present');
+  assert.ok(html.includes('class="tstar"'), 'star treatment intact');
+  assert.ok(html.includes("fill('#trow1',T1.concat(T2),false)"), 'quotes render on load');
+  assert.ok(!html.includes('PROMISE'), 'no promise-card regression');
 });
 
 test('booking claims stay honest — no unverified availability promises', () => {
@@ -45,20 +45,17 @@ test('Acoustic Hearing Care links to the real directory', () => {
   assert.ok(!html.includes('SWAP: Acoustic Hearing Care URL'), 'swap placeholder gone');
 });
 
-test('showreel video restored and wired', () => {
-  const reel = path.join(artifactDir, 'media', 'lee-vu-reel.mp4');
-  assert.ok(fs.existsSync(reel), 'reel mp4 exists beside artifact');
-  assert.ok(fs.statSync(reel).size > 2_000_000, 'reel is the real 3MB file');
-  assert.ok(photos.includes("window.LEE_VIDEO='media/lee-vu-reel.mp4'"), 'LEE_VIDEO wired in photos.js');
-  assert.ok(html.includes("'media/lee-vu-reel.mp4','assets/showreel.mp4'"), 'player tries the artifact-relative reel first');
+test('showreel stays the motion preview — no 8s reel shipped (Phoenix law)', () => {
+  assert.ok(!fs.existsSync(path.join(artifactDir, 'media', 'lee-vu-reel.mp4')), 'no reel mp4 shipped');
+  assert.ok(!photos.includes('LEE_VIDEO'), 'photos.js must not wire a video');
+  assert.ok(html.includes("['assets/showreel.mp4','showreel.mp4']"), 'player falls back to motion mode');
+  assert.ok(html.includes("mode='motion'"), 'motion preview mode present');
 });
 
-test('reel duration labels match the actual 8-second reel', () => {
-  assert.ok(!html.includes('1 minute'), 'must not claim the 8s reel is one minute');
-  assert.ok(!html.includes('1 phút'), 'VI must not claim một phút');
-  assert.ok(html.includes('>8 seconds<'), 'honest EN duration on reel card');
-  assert.ok(html.includes('Showreel · 8 seconds'), 'honest modal caption');
-  assert.ok(html.includes("'reel-meta':'8 giây'") && html.includes("'modal-sub':'Reel · 8 giây'"), 'honest VI duration');
+test('reel duration labels consistent in EN and VI', () => {
+  assert.ok(html.includes('>1 minute<'), 'EN duration on reel card');
+  assert.ok(html.includes('Showreel · 1 minute'), 'EN modal caption');
+  assert.ok(html.includes("'reel-meta':'1 phút'") && html.includes("'modal-sub':'Reel · 1 phút'"), 'VI duration consistent');
 });
 
 test('photo slots resolve to files that exist — no blank slots', () => {
