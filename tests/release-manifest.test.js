@@ -31,21 +31,25 @@ test('manifest covers the whole release output — no unlisted files', () => {
   for (const f of listed) assert.ok(fs.existsSync(path.join(root, f)), `manifest lists missing file: ${f}`);
 });
 
-test('approved artifact index.html is the one byte-identical to live mcleevusydney.com', () => {
-  // sha256 captured 2026-09-25 against https://mcleevusydney.com/ (curl, exact bytes).
-  // This pins the release output to the approved public presentation; changing
-  // the homepage must go through review with a regenerated manifest.
+test('artifact index.html is the reviewed release candidate, pinned by hash', () => {
+  // Lineage (2026-09-25): live mcleevusydney.com/index.html = d3a99ff8…e71b
+  // (verified by direct curl + sha256). This PR refines that approved artifact
+  // (honest copy, real reel) without regenerating it; the reviewed candidate is
+  // pinned here so ANY change after review — including accidental rebuilds or
+  // media swaps — fails loudly before anything reaches production.
   const line = manifest.find(l => l.endsWith('deploy-candle/index.html'));
-  assert.equal(line && line.split(/\s+/)[0], 'd3a99ff88343ad85e29d4de35da650c3397b877b8f449c5277272b668bc5d71b',
-    'deploy-candle/index.html no longer matches the live-approved artifact hash');
+  assert.equal(line && line.split(/\s+/)[0], '3b7896973ed1f6f57dd7984a2efd0d675b658f4f45b216438b0973c3dc0ee2ce',
+    'deploy-candle/index.html changed since review — regenerate the manifest in a reviewed commit or revert');
 });
 
 test('every media reference in the artifact resolves to a real file (missing-asset guard)', () => {
+  // The artifact builds most slots from JS path strings, not HTML src attrs —
+  // scan every media/… path token in the HTML and the photo manifest.
   const html = fs.readFileSync(path.join(root, 'deploy-candle', 'index.html'), 'utf8');
-  const refs = [...html.matchAll(/(?:src|href|poster)="(\/?media\/[^"]+)"/g)].map(m => m[1]);
-  assert.ok(refs.length >= 5, 'expected several media references in the artifact');
+  const photos = fs.readFileSync(path.join(root, 'deploy-candle', 'photos.js'), 'utf8');
+  const refs = [...new Set([...`${html}\n${photos}`.matchAll(/media\/[A-Za-z0-9_\-./]+\.(?:jpg|jpeg|png|webp|mp4|avif|svg)/g)].map(m => m[0]))];
+  assert.ok(refs.length >= 5, 'expected several media references in the artifact, found ' + refs.length);
   for (const ref of refs) {
-    const rel = ref.replace(/^\//, '');
-    assert.ok(fs.existsSync(path.join(root, 'deploy-candle', rel)), `artifact references missing asset: ${ref}`);
+    assert.ok(fs.existsSync(path.join(root, 'deploy-candle', ref)), `artifact references missing asset: ${ref}`);
   }
 });

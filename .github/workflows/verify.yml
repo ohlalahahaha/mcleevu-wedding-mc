@@ -17,13 +17,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm test
-      - run: npm run build
-      - name: Install browser proof dependency
+      - name: Unit tests (release integrity + app surface)
+        run: npm test
+      - name: Install browser proof dependency (pinned)
         run: |
           npm install --no-save --package-lock=false playwright@1.56.0
           npx playwright install --with-deps chromium
-      - name: Run candlelight artifact proof
+      - name: Release proof — the exact deploy-candle output (desktop + mobile)
         env:
           SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
@@ -33,17 +33,36 @@ jobs:
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4174/ >/dev/null && break; sleep 1; done
           curl -fsS http://127.0.0.1:4174/ >/dev/null || { cat /tmp/lee-artifact-server.log; exit 1; }
           ARTIFACT_URL=http://127.0.0.1:4174 node scripts/artifact-proof.mjs
-      - name: Upload candlelight artifact proof
+      - name: App-surface proof — Vite rebuild compiles and behaves (NOT the release output)
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          npm run build
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/lee-preview.log 2>&1 &
+          PREVIEW_PID=$!
+          trap 'kill $PREVIEW_PID || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
+          curl -fsS http://127.0.0.1:4173/ >/dev/null || { cat /tmp/lee-preview.log; exit 1; }
+          PREVIEW_URL=http://127.0.0.1:4173 node scripts/client-proof.mjs
+      - name: Upload release output (the tested deploy-candle artifact)
         uses: actions/upload-artifact@v4
         with:
-          name: lee-artifact-proof-${{ github.event.pull_request.head.sha || github.sha }}
-          path: artifacts/lee-*
+          name: lee-release-output-${{ github.event.pull_request.head.sha || github.sha }}
+          path: deploy-candle/
           if-no-files-found: error
-          retention-days: 7
-      - name: Upload cloud build
+          retention-days: 30
+      - name: Upload proof screenshots + json
         uses: actions/upload-artifact@v4
         with:
-          name: lee-client-build-${{ github.event.pull_request.head.sha || github.sha }}
-          path: dist/
+          name: lee-proof-${{ github.event.pull_request.head.sha || github.sha }}
+          path: artifacts/
           if-no-files-found: error
           retention-days: 7
+      - name: Release-output parity receipt
+        run: |
+          echo "### Release output parity" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          shasum -a 256 deploy-candle/index.html >> "$GITHUB_STEP_SUMMARY"
+          echo "manifest lines: $(wc -l < tests/deploy-candle.manifest.sha256)" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          echo "dist/ is a dev rebuild only and is NOT uploaded as the release output." >> "$GITHUB_STEP_SUMMARY"
