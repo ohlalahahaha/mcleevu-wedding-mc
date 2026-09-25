@@ -15,12 +15,22 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const manifestPath = path.join(root, 'tests', 'deploy-candle.manifest.sha256');
 const manifest = fs.readFileSync(manifestPath, 'utf8').trim().split('\n');
 
+const toMap = lines => new Map(lines.map(l => {
+  const hash = l.slice(0, 64);
+  const file = l.slice(66).trim();
+  return [file, hash];
+}));
+
 test('release output matches its committed hash manifest exactly', () => {
-  const actual = execFileSync(
-    'sh', ['-c', 'find deploy-candle -type f | sort | xargs shasum -a 256'],
+  // Order-independent (path -> hash) comparison: macOS and GNU sort order files
+  // differently, and order is not part of the guarantee.
+  const actual = toMap(execFileSync(
+    'sh', ['-c', 'find deploy-candle -type f | xargs shasum -a 256'],
     { cwd: root, encoding: 'utf8' }
-  ).trim().split('\n');
-  assert.deepEqual(actual, manifest, 'deploy-candle/ drifted from tests/deploy-candle.manifest.sha256 — if intentional, regenerate the manifest in a reviewed commit');
+  ).trim().split('\n').filter(Boolean));
+  const expected = toMap(manifest);
+  assert.deepEqual(Object.fromEntries([...actual].sort()), Object.fromEntries([...expected].sort()),
+    'deploy-candle/ drifted from tests/deploy-candle.manifest.sha256 — if intentional, regenerate the manifest in a reviewed commit');
 });
 
 test('manifest covers the whole release output — no unlisted files', () => {
