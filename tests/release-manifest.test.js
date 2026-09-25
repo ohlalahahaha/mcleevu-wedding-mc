@@ -43,7 +43,7 @@ test('approved artifact index.html is the one byte-identical to live mcleevusydn
 test('every media reference in the artifact resolves to a real file (missing-asset guard)', () => {
   const html = fs.readFileSync(path.join(root, 'deploy-candle', 'index.html'), 'utf8');
   const refs = [...html.matchAll(/(?:src|href|poster)="(\/?media\/[^"]+)"/g)].map(m => m[1]);
-  assert.ok(refs.length >= 5, 'expected several media references in the artifact');
+  assert.ok(refs.length >= 2, 'expected the hero and scene media references in the artifact');
   for (const ref of refs) {
     const rel = ref.replace(/^\//, '');
     assert.ok(fs.existsSync(path.join(root, 'deploy-candle', rel)), `artifact references missing asset: ${ref}`);

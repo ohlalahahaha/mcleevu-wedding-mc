@@ -159,7 +159,7 @@ body.menu-open .menu-nav a{opacity:1;transform:none}
 @keyframes draw{to{transform:scaleX(1)}}
 .hero-lede{font-size:clamp(1.02rem,1.35vw,1.2rem);line-height:1.85;max-width:46ch}
 .hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.6rem}
-.hero-note{justify-self:end;padding-right:clamp(.25rem,1.5vw,1rem)}
+.hero-note{display:none}
 .script-note{font-size:clamp(2.1rem,3.2vw,3rem);line-height:1.15;max-width:9ch;transform:rotate(-6deg);transform-origin:left;text-shadow:0 1px 26px rgba(8,10,16,.55)}
 .note-rule{display:block;width:1px;height:3rem;margin:1.6rem 0 1.3rem .2rem;background:linear-gradient(180deg,var(--gold),transparent);opacity:.7}
 .word-stack li{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--txt-light-dim);padding:.3rem 0;opacity:0;animation:fadeUp .9s var(--ease) forwards;transition:color .35s,transform .35s var(--ease)}
@@ -453,7 +453,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   .hero--photo .hero-shade{background:linear-gradient(180deg,rgba(8,12,20,.72),rgba(12,18,28,.35) 34%,rgba(12,18,28,.32) 55%,rgba(6,9,15,.88) 86%)}
   .hero-shade{background:linear-gradient(90deg,rgba(12,18,28,.5),rgba(12,18,28,.18) 45%,rgba(12,18,28,.42)),linear-gradient(180deg,rgba(8,12,20,.6),rgba(12,18,28,.2) 40%,rgba(6,9,15,.9) 84%)}
   .hero-inner{grid-template-columns:1fr;padding-bottom:6.5rem;gap:0}
-  .hero-note{justify-self:start;display:flex;align-items:center;gap:1.4rem;margin-top:2.6rem;padding-right:0}
+  .hero-note{display:none}
   .script-note{transform:rotate(-4deg);max-width:none;font-size:2.1rem}
   .note-rule{width:2.5rem;height:1px;margin:0;background:linear-gradient(90deg,var(--gold),transparent)}
   .word-stack{display:flex;gap:1.2rem;flex-wrap:wrap}.scroll-cue{display:none}
@@ -474,6 +474,19 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   .book-row{grid-template-columns:1fr}
   .sum-card{order:1}
   .arrange-form{order:2}
+}
+
+/* phone hero — Lee is the hero; one quiet copy stack at the base, one strong action */
+@media (max-width:640px){
+  .hero--photo .hero-bg{object-position:60% 20%}
+  .hero--photo .hero-shade{background:linear-gradient(180deg,rgba(8,12,20,.52) 0%,rgba(12,18,28,.1) 30%,rgba(10,14,22,.18) 52%,rgba(6,9,15,.8) 74%,rgba(4,7,12,.96) 100%)}
+  .hero-inner{display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--pad) 2.4rem}
+  .hero .eyebrow{display:none}
+  .hero-title{font-size:clamp(2.5rem,12vw,3.3rem);margin-top:0}
+  .hero .rule{margin:1.3rem 0 1rem}
+  .hero-lede{display:none}
+  .hero-cta{flex-direction:column;align-items:stretch;margin-top:1.5rem}
+  .hero-cta .btn{justify-content:center}
 }
 @media (max-width:900px){.reel-content{grid-template-columns:1fr;justify-items:start;gap:1.8rem}.reel-tags{flex-direction:row;flex-wrap:wrap;gap:.4rem 1.6rem}.f-grid{grid-template-columns:1fr}}
 @media (max-width:640px){.finale-media .media-img{object-position:34% 58%}.foot-bottom{flex-direction:column;text-align:center}.cal-card{padding:1.1rem}.setup-bar{gap:.6rem;padding:.55rem .7rem}a,button,[role="button"],input,select,textarea{min-height:44px}.cal-nav button,.modal-close,.vbtn{width:44px;height:44px}.lang-btn{padding:0 .3rem;min-width:44px}.sb-x{min-width:44px}}
