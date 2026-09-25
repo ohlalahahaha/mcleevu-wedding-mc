@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MC Lee Vu — Reel</title>
+<style>
+  :root { --ink:#171310; --gold:#c9a227; --cream:#efe6d8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--ink); color:var(--cream); font-family:Georgia,'Times New Roman',serif; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:26px 16px 34px; }
+  .eyebrow { letter-spacing:.35em; text-transform:uppercase; font-size:11px; color:var(--gold); margin-bottom:14px; }
+  h1 { font-weight:400; font-size:clamp(24px,4.5vw,42px); letter-spacing:.08em; margin-bottom:6px; }
+  .rule { width:64px; height:1px; background:var(--gold); margin:16px auto clamp(22px,3vw,34px); }
+  video { width:min(82%,560px); aspect-ratio:9/16; object-fit:cover; border-radius:6px; box-shadow:0 24px 60px rgba(0,0,0,.55); outline:1px solid rgba(201,162,39,.35); outline-offset:6px; }
+  .filmstrip { display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; justify-content:center; }
+  .filmstrip img { height:clamp(84px,15vw,120px); object-fit:cover; border-radius:4px; box-shadow:0 10px 28px rgba(0,0,0,.5); }
+  footer { margin-top:30px; font-size:12px; letter-spacing:.25em; text-transform:uppercase; color:rgba(239,230,216,.55); }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+  <p class="eyebrow">MC Lee Vu</p>
+  <h1>The Reel</h1>
+  <div class="rule"></div>
+  <video src="/media/lee-vu-reel.mp4" controls autoplay muted loop playsinline></video>
+  <div class="filmstrip">
+    <img src="/media/lee-vu-portrait-navy.jpg" alt="Lee Vu portrait">
+    <img src="/media/lee-vu-portrait-blue.jpg" alt="Lee Vu in a blue blazer">
+    <img src="/media/lee-vu-stage.jpg" alt="Lee Vu performing on stage">
+  </div>
+  <footer>Sydney &middot; Weddings &amp; Events</footer>
+  <script>document.querySelector('video')?.addEventListener('loadedmetadata', function() { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.removeAttribute('autoplay'); });</script>
+</body>
+</html>
