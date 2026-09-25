@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="build" content="10-candlelight-final">
+<title>MC Lee Vu — Bilingual Wedding MC in Sydney</title>
+<meta name="description" content="From 6pm to the last dance — Lee Vu hosts bilingual weddings in English and Vietnamese. $500 deposit secures your date.">
+<meta name="theme-color" content="#0c1420">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c1420'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='15' fill='%23c8a45f'%3ELV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0c1420; --ink-2:#101c2b;
+  --gold:#c8a45f; --gold-2:#e7d2a2; --gold-3:#9a7a3f; --gold-deep:#a5854a;
+  --cream:#f1ebdd; --cream-2:#f8f4ea; --paper:#fcf9f1;
+  --txt-dark:#232c39; --txt-dark-soft:#55606f;
+  --txt-light:rgba(242,236,225,.82); --txt-light-dim:rgba(242,236,225,.55);
+  --line:rgba(200,164,95,.30); --line-soft:rgba(200,164,95,.15);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost','Avenir Next',Verdana,sans-serif;
+  --script:'Pinyon Script',cursive; --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(1.25rem,5vw,5rem);
+}
+html{scroll-behavior:smooth;scroll-padding-top:6.5rem;-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--txt-light);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--ink)}
+:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+ul{list-style:none}button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}figure{margin:0}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold-3),var(--gold));border-radius:5px;border:2px solid var(--ink)}
+
+/* cursor */
+html.has-cur body,html.has-cur a,html.has-cur button,html.has-cur label,html.has-cur select{cursor:none}
+html.has-cur input,html.has-cur textarea{cursor:text}
+.cur-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--gold-2);z-index:6000;pointer-events:none;transform:translate(-50%,-50%);opacity:0}
+.cur-ring{position:fixed;width:34px;height:34px;border-radius:50%;border:1px solid rgba(200,164,95,.6);z-index:6000;pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:width .3s var(--ease),height .3s var(--ease),border-color .3s}
+.cur-ring.hot{width:56px;height:56px;border-color:var(--gold-2)}
+
+/* brief entrance fade (cannot stick: JS removes it) */
+.veil{position:fixed;inset:0;z-index:5000;background:var(--ink);display:grid;place-items:center;pointer-events:none;animation:veilFade .45s ease .2s forwards}
+.veil span{font-family:var(--script);font-size:clamp(2.4rem,6vw,3.8rem);opacity:0;animation:fadeUp .8s var(--ease) .05s forwards}
+@keyframes veilFade{to{opacity:0;visibility:hidden}}
+
+.grain{position:fixed;inset:0;z-index:4000;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;z-index:1300;background:linear-gradient(90deg,var(--gold-3),var(--gold-2))}
+
+.eyebrow{display:flex;align-items:center;gap:1rem;font-size:.6875rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:'';width:2.25rem;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.eyebrow--dark{color:var(--gold-deep)}.eyebrow--dark::before{background:linear-gradient(90deg,var(--gold-3),transparent)}
+.eyebrow--center{justify-content:center}.eyebrow--center::after{content:'';width:2.25rem;height:1px;background:linear-gradient(270deg,var(--gold),transparent)}
+.gold-text{font-family:var(--script);font-weight:400;background:linear-gradient(105deg,var(--gold-2) 8%,var(--gold) 55%,var(--gold-3) 96%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.14em}
+.rule{display:block;width:4.5rem;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease) var(--d,0s),transform 1s var(--ease) var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.reveal-x{transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease) var(--d,0s)}
+.reveal-x.in{transform:scaleX(1)}
+.reveal-clip{clip-path:inset(0 0 100% 0);transition:clip-path 1.25s var(--ease) var(--d,0s)}
+.reveal-clip.in{clip-path:inset(0 0 0% 0)}
+.fade-up{opacity:0;transform:translateY(26px);animation:fadeUp 1s var(--ease) forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.d1{animation-delay:.25s}.d2{animation-delay:.9s}.d3{animation-delay:1.1s}.d4{animation-delay:1.3s}
+
+.media-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.97) contrast(1.05);opacity:0;transition:opacity 1.1s ease}
+.media-img.loaded{opacity:1}
+.tone{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background:linear-gradient(165deg,rgba(14,24,38,.24),rgba(14,24,38,.05) 42%,rgba(10,16,26,.34))}
+.tone--warm{background:linear-gradient(165deg,rgba(58,38,16,.14),rgba(40,28,14,.04) 45%,rgba(34,22,12,.24))}
+
+.ph{position:absolute;inset:0;overflow:hidden;background:linear-gradient(150deg,#1b2a3e,#0d1622 65%,#0a111c)}
+.ph::before{content:'';position:absolute;inset:-15%;filter:blur(18px);opacity:.95}
+@keyframes drift{to{transform:translate(-2.5%,2%) scale(1.05)}}
+.ph::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 10%,transparent 55%,rgba(6,10,17,.5))}
+.ph-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-weight:500;font-size:clamp(1.1rem,2vw,1.7rem);letter-spacing:.5em;text-indent:.5em;color:rgba(231,210,162,.18);white-space:nowrap;z-index:2}
+.ph--ballroom{background-image:linear-gradient(180deg,transparent 55%,rgba(8,13,21,.6)),linear-gradient(160deg,#241f26,#141019 60%,#0c0910)}
+.ph--ballroom::before{background-image:radial-gradient(circle 90px at 24% 30%,rgba(240,196,120,.34) 0 46%,transparent 54%),radial-gradient(circle 60px at 70% 14%,rgba(240,196,120,.3) 0 46%,transparent 54%),radial-gradient(circle 130px at 88% 60%,rgba(220,170,100,.24) 0 46%,transparent 54%)}
+.ph--portrait{background:linear-gradient(165deg,#ece5d4,#d9d0ba 55%,#c9bfa5)}
+.ph--portrait::before{background-image:radial-gradient(circle 150px at 24% 12%,rgba(255,255,255,.6) 0 40%,transparent 58%),radial-gradient(circle 210px at 86% 82%,rgba(150,140,110,.3) 0 42%,transparent 60%)}
+.ph--window{background:linear-gradient(105deg,#f3ecd9,#e6dcc4 46%,#cabf9f)}
+.ph--window::before{background-image:linear-gradient(78deg,transparent 30%,rgba(255,248,224,.55) 34%,transparent 40%,transparent 52%,rgba(255,248,224,.4) 57%,transparent 63%)}
+.ph--night{background:radial-gradient(90% 80% at 70% 0%,rgba(200,164,95,.12),transparent 55%),linear-gradient(180deg,#111d30,#0b1424 62%,#081019)}
+.ph--night::before{background-image:radial-gradient(circle 2px at 12% 18%,rgba(231,210,162,.8) 0 40%,transparent 60%),radial-gradient(circle 2px at 32% 9%,rgba(231,210,162,.6) 0 40%,transparent 60%),radial-gradient(circle 2px at 55% 14%,rgba(231,210,162,.7) 0 40%,transparent 60%),radial-gradient(circle 2px at 74% 8%,rgba(231,210,162,.8) 0 40%,transparent 60%),radial-gradient(circle 2px at 88% 20%,rgba(231,210,162,.55) 0 40%,transparent 60%)}
+
+.slot-add{position:absolute;inset:0;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;border:1px dashed rgba(231,210,162,.55);margin:8px;border-radius:6px;background:rgba(10,15,24,.32);color:var(--gold-2);font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .3s,background .3s}
+.slot-add span{font-size:1.4rem;line-height:1}
+.ph--portrait ~ .slot-add,.ph--window ~ .slot-add{border-color:rgba(154,122,63,.5);color:var(--gold-deep);background:rgba(252,249,241,.4)}
+.media-wrap.is-missing .slot-add{opacity:1;pointer-events:auto}
+.media-wrap.is-missing{cursor:pointer}
+.media-wrap.is-missing:hover .slot-add{background:rgba(200,164,95,.16)}
+.media-wrap:not(.is-missing) .slot-add{inset:auto 8px 8px auto;margin:0;width:34px;height:34px;border-radius:50%;flex-direction:row;justify-content:center;border-style:solid}
+.media-wrap:not(.is-missing):hover .slot-add{opacity:1;pointer-events:auto}
+.media-wrap:not(.is-missing) .slot-add em{display:none}
+
+/* header — large lockup */
+.site-head{position:fixed;top:0;left:0;right:0;z-index:1000;border-bottom:1px solid transparent;transition:background .5s,border-color .5s}
+.site-head.scrolled{background:rgba(12,20,32,.96);border-bottom-color:var(--line-soft)}
+body.menu-open .site-head{background:transparent;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.head-inner{display:flex;align-items:center;justify-content:space-between;padding:.9rem var(--pad)}
+.brand{font-family:var(--serif);font-size:clamp(2.1rem,3.4vw,3rem);font-weight:600;letter-spacing:.025em;line-height:1;color:#f6f1e6;display:flex;flex-direction:column}
+.brand-sub{font-family:var(--sans);font-weight:400;font-size:.6875rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-top:.45rem}
+.brand::after{content:'';width:34%;height:1px;background:var(--gold);margin-top:.55rem;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.brand:hover::after{transform:scaleX(1)}
+.head-right{display:flex;align-items:center;gap:1.75rem}
+.lang{display:flex;align-items:center;gap:.6rem;font-size:.72rem;letter-spacing:.28em}
+.lang-btn{letter-spacing:.28em;color:var(--txt-light-dim);transition:color .3s}.lang-btn:hover{color:var(--gold-2)}
+.lang-btn.is-active{color:var(--gold)}
+.lang-sep{width:1px;height:.9rem;background:var(--line);transform:rotate(18deg)}
+.menu-btn{width:44px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+.menu-btn span{display:block;width:26px;height:1.5px;background:var(--gold-2);transition:transform .45s var(--ease)}
+.menu-btn:hover span{background:var(--gold)}
+body.menu-open .menu-btn span:first-child{transform:translateY(4.25px) rotate(45deg)}
+body.menu-open .menu-btn span:last-child{transform:translateY(-4.25px) rotate(-45deg)}
+
+.menu-overlay{position:fixed;inset:0;z-index:900;display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad);background:radial-gradient(120% 90% at 85% 10%,rgba(200,164,95,.08),transparent 55%),linear-gradient(160deg,var(--ink-2),var(--ink) 70%);opacity:0;visibility:hidden;transition:opacity .6s var(--ease),visibility 0s .6s}
+body.menu-open .menu-overlay{opacity:1;visibility:visible;transition:opacity .6s var(--ease)}
+.menu-nav a{display:block;width:max-content;padding:.3rem 0;font-family:var(--serif);font-size:clamp(1.9rem,5vw,3.4rem);font-weight:500;line-height:1.2;color:#f2ecdf;opacity:0;transform:translateY(34px);transition:opacity .6s var(--ease),transform .6s var(--ease),color .35s,padding-left .45s var(--ease)}
+body.menu-open .menu-nav a{opacity:1;transform:none}
+.menu-nav a:nth-child(1){transition-delay:.1s,.1s,0s,0s}.menu-nav a:nth-child(2){transition-delay:.16s,.16s,0s,0s}
+.menu-nav a:nth-child(3){transition-delay:.22s,.22s,0s,0s}.menu-nav a:nth-child(4){transition-delay:.28s,.28s,0s,0s}
+.menu-nav a:nth-child(5){transition-delay:.34s,.34s,0s,0s}
+.menu-nav a i{font-style:normal;font-family:var(--sans);font-size:.6875rem;letter-spacing:.35em;color:var(--gold);vertical-align:super;margin-right:1.25rem}
+.menu-nav a:hover{color:var(--gold-2);font-style:italic;padding-left:.6rem}
+.menu-foot{position:absolute;bottom:2.4rem;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;border-top:1px solid var(--line-soft);font-size:.6875rem;letter-spacing:.32em;text-transform:uppercase;color:var(--txt-light-dim)}
+
+/* — CANDLE HERO (art ABOVE shade) — */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(120% 90% at 72% 80%,#1c2334 0%,var(--ink) 55%,#080d15 100%)}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--ink) 0%,rgba(12,18,28,.92) 15%,rgba(12,16,26,.4) 44%,rgba(12,14,22,.08) 66%,rgba(10,12,18,.25) 100%),linear-gradient(180deg,rgba(8,12,20,.66),transparent 26%,transparent 58%,rgba(6,9,15,.5))}
+.hero-art{position:absolute;right:0;bottom:0;width:min(60%,900px);height:min(80%,720px);z-index:2;pointer-events:none}
+.hero-glow{position:absolute;right:-4%;bottom:-20%;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(226,168,84,.32),rgba(226,168,84,.1) 44%,transparent 68%);filter:blur(14px)}
+@keyframes gp{from{opacity:.5}to{opacity:.85;transform:scale(1.05)}}
+.hero-art svg.candles{position:absolute;right:2%;bottom:0;width:min(88%,640px);height:auto}
+.hero--photo .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 32%;z-index:0;opacity:0;transition:opacity 1.8s ease .2s;transform:scale(1.32);transform-origin:0% 38%}
+.hero--photo .hero-bg.loaded{opacity:1}
+.hero--photo svg.candles,.hero--photo .hero-glow{display:none}
+.hero--photo .hero-shade{background:linear-gradient(90deg,var(--ink) 0%,rgba(12,18,28,.88) 16%,rgba(12,16,26,.42) 46%,rgba(10,12,18,.12) 68%,rgba(8,10,16,.38) 100%),linear-gradient(180deg,rgba(8,12,20,.62),transparent 28%,transparent 58%,rgba(6,9,15,.55))}
+.glowPulse{}
+@keyframes gp2{from{opacity:.55}to{opacity:.95}}
+.flame{transform-box:fill-box;transform-origin:center bottom;filter:drop-shadow(0 0 16px rgba(244,196,100,.5)) drop-shadow(0 0 34px rgba(226,168,84,.28));animation:flick 4.2s ease-in-out infinite}
+.f2{animation-duration:4.8s;animation-delay:-1.1s}.f3{animation-duration:5.4s;animation-delay:-2.2s}
+.f4{animation-duration:4.5s;animation-delay:-3s}.f5{animation-duration:5s;animation-delay:-.7s}
+@keyframes flick{0%,100%{transform:scale(1)}30%{transform:scaleY(1.05) skewX(1.2deg)}60%{transform:scaleY(.96) skewX(-1deg)}}
+#sparks{position:absolute;inset:0;width:100%;height:100%;z-index:3}
+.hero-inner{position:relative;z-index:4;width:100%;padding:7.5rem var(--pad) 6.5rem;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.5fr);align-items:center;gap:2rem}
+.hero-copy{max-width:680px}
+.hero-title{font-family:var(--serif);font-weight:500;letter-spacing:-.015em;font-size:clamp(3rem,7.4vw,6.4rem);line-height:1.02;color:#f7f2e7;margin-top:1.6rem;text-wrap:balance}
+.hero-title .line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.hero-title .line-inner{display:block;transform:translateY(115%);animation:rise 1.2s var(--ease) forwards}
+.hero-title .line:nth-child(1) .line-inner{animation-delay:.4s}
+.hero-title .line:nth-child(2) .line-inner{animation-delay:.52s}
+.hero-title .line:nth-child(3) .line-inner{animation-delay:.64s}
+@keyframes rise{to{transform:none}}
+.hero-title .gold-text{font-size:1.06em}
+@keyframes shimmer{from{background-position:0% 0}to{background-position:100% 0}}
+.hero .rule{margin:2.2rem 0 1.8rem;transform:scaleX(0);transform-origin:left;animation:draw 1.1s var(--ease) 1.05s forwards}
+@keyframes draw{to{transform:scaleX(1)}}
+.hero-lede{font-size:clamp(1.02rem,1.35vw,1.2rem);line-height:1.85;max-width:46ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.6rem}
+.hero-note{justify-self:end;padding-right:clamp(.25rem,1.5vw,1rem)}
+.script-note{font-size:clamp(2.1rem,3.2vw,3rem);line-height:1.15;max-width:9ch;transform:rotate(-6deg);transform-origin:left;text-shadow:0 1px 26px rgba(8,10,16,.55)}
+.note-rule{display:block;width:1px;height:3rem;margin:1.6rem 0 1.3rem .2rem;background:linear-gradient(180deg,var(--gold),transparent);opacity:.7}
+.word-stack li{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--txt-light-dim);padding:.3rem 0;opacity:0;animation:fadeUp .9s var(--ease) forwards;transition:color .35s,transform .35s var(--ease)}
+.word-stack li:nth-child(1){animation-delay:1.4s}.word-stack li:nth-child(2){animation-delay:1.52s}
+.word-stack li:nth-child(3){animation-delay:1.64s}.word-stack li:nth-child(4){animation-delay:1.76s}
+.word-stack li:hover{color:var(--gold-2);transform:translateX(5px)}
+.scroll-cue{position:absolute;left:var(--pad);bottom:2.2rem;z-index:4;display:flex;flex-direction:column;align-items:center;gap:.9rem;font-size:.6875rem;letter-spacing:.42em;text-transform:uppercase;color:var(--txt-light-dim)}
+.cue-line{width:1px;height:54px;background:rgba(231,210,162,.22);position:relative;overflow:hidden}
+.cue-line::after{content:'';position:absolute;left:0;top:-40%;width:100%;height:40%;background:var(--gold-2);animation:cue 2.4s var(--ease) infinite}
+@keyframes cue{0%{top:-40%}70%,100%{top:110%}}
+@media (max-height:700px){.scroll-cue{display:none}}
+
+.btn{position:relative;display:inline-flex;align-items:center;gap:.9rem;padding:1.05em 1.85em;border-radius:2px;overflow:hidden;font-size:.72rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;transition:transform .45s var(--ease),box-shadow .45s var(--ease),color .35s,border-color .35s,background .35s}
+.btn svg{width:15px;height:15px;flex:none;transition:transform .45s var(--ease)}
+.btn-gold{color:#181206;background:linear-gradient(115deg,var(--gold-2),var(--gold) 55%,#b28c46);box-shadow:0 12px 34px -14px rgba(200,164,95,.55)}
+.btn-gold::after{content:'';position:absolute;top:0;bottom:0;left:0;width:55%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-160%) skewX(-18deg);transition:transform .9s var(--ease)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 44px -14px rgba(200,164,95,.7)}
+.btn-gold:hover::after{transform:translateX(300%) skewX(-18deg)}
+.btn-gold:hover svg{transform:translateX(5px)}
+.btn-ghost{color:#efe9db;border:1px solid rgba(231,210,162,.38);background:rgba(12,20,32,.25)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-2);background:rgba(200,164,95,.08)}
+.btn-ghost:hover svg{transform:scale(1.15)}
+
+/* interlude — white */
+.interlude{background:linear-gradient(180deg,var(--paper),var(--cream-2));color:var(--txt-dark);padding:clamp(3rem,7vh,5rem) var(--pad) clamp(2.6rem,6vh,4.2rem)}
+.in-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(3rem,7vw,7rem);align-items:center}
+.in-title{font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,4.4vw,3.9rem);line-height:1.08;color:var(--ink);margin-top:1.3rem;text-wrap:balance}
+.in-body{margin-top:1.6rem;color:var(--txt-dark-soft);max-width:48ch;font-size:clamp(1rem,1.2vw,1.12rem);line-height:1.95}
+.sun{margin-top:2.6rem;width:min(300px,80%)}
+.sun text{font-family:var(--sans);font-size:11px;letter-spacing:.22em;fill:var(--gold-deep)}
+.sun-orbit{transform-origin:110px 78px;animation:sunset 16s ease-in-out infinite alternate}
+@keyframes sunset{from{transform:rotate(-158deg)}to{transform:rotate(-22deg)}}
+.prints{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(2rem,5vw,4.5rem);margin-top:clamp(2.2rem,5vh,3.6rem)}
+.print{position:relative;background:var(--paper);padding:12px 12px 46px;box-shadow:0 36px 80px -32px rgba(28,36,48,.5);transition:transform .6s var(--ease),box-shadow .6s var(--ease);width:min(400px,72%)}
+.print:hover{transform:translateY(-6px) rotate(0deg) !important;box-shadow:0 46px 90px -30px rgba(28,36,48,.55);z-index:5}
+.print .media-wrap{position:relative;overflow:hidden;display:block;width:100%}
+.print figcaption{position:absolute;left:14px;bottom:10px;font-family:var(--script);font-size:1.35rem;color:var(--gold-deep)}
+.print--b{transform:rotate(-2.5deg)}
+.print--b .media-wrap{aspect-ratio:4/5}
+.print--b::after{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-2deg);width:64px;height:20px;background:rgba(200,164,95,.28);border-left:1px dashed rgba(154,122,63,.35);border-right:1px dashed rgba(154,122,63,.35)}
+.prints-note{flex:1;max-width:30ch;font-family:var(--serif);font-size:clamp(1.25rem,1.9vw,1.7rem);line-height:1.5;color:var(--ink);font-style:italic}
+.prints-note em{font-style:normal;color:var(--gold-deep)}
+
+/* reel */
+.reel{background:linear-gradient(180deg,var(--cream-2),var(--paper));padding:clamp(2rem,5vh,3.4rem) var(--pad) clamp(2.4rem,5vh,3.8rem)}
+.reel-card{position:relative;border-radius:16px;overflow:hidden;min-height:clamp(320px,44vh,430px);display:flex;box-shadow:0 50px 100px -44px rgba(12,18,28,.8);max-width:1280px;margin:0 auto}
+.reel-card::after{content:'';position:absolute;inset:12px;border:1px solid var(--line-soft);border-radius:10px;pointer-events:none;z-index:4}
+.tick{position:absolute;width:16px;height:16px;z-index:4;pointer-events:none;opacity:.75}
+.tick::before,.tick::after{content:'';position:absolute;background:var(--gold-2)}
+.tick::before{width:100%;height:1px}.tick::after{width:1px;height:100%}
+.tick--tl{top:20px;left:20px}.tick--tr{top:20px;right:20px;transform:scaleX(-1)}
+.tick--bl{bottom:20px;left:20px;transform:scaleY(-1)}.tick--br{bottom:20px;right:20px;transform:scale(-1)}
+.reel-media{position:absolute;inset:0;overflow:hidden}
+.reel-media .media-img{object-position:50% 20%}
+.reel-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(95deg,rgba(9,15,24,.92),rgba(9,15,24,.55) 36%,rgba(9,15,24,.12) 66%,rgba(9,15,24,.5) 100%)}
+.reel-content{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:clamp(1.5rem,4vw,4rem);padding:clamp(2rem,5vw,4rem) clamp(1.6rem,4.5vw,4rem)}
+.reel-title{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,3.4vw,3rem);line-height:1.12;color:#f7f2e7;margin:1.1rem 0 1.2rem;text-wrap:balance}
+.reel-meta{font-size:.6875rem;letter-spacing:.34em;text-transform:uppercase;color:var(--txt-light-dim)}
+.play{position:relative;width:clamp(76px,8vw,102px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(231,210,162,.55);display:grid;place-items:center;color:var(--gold-2);transition:background .45s var(--ease),transform .45s var(--ease),color .4s}
+.play svg{width:26%;height:26%;margin-left:6%;fill:currentColor}
+.play::before{content:'';position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(231,210,162,.5);animation:pulse 2.8s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(1.55);opacity:0}}
+.play:hover{background:var(--gold);border-color:var(--gold);color:#181206;transform:scale(1.06)}
+.reel-tags{display:flex;flex-direction:column;gap:.55rem}
+.reel-tags li{font-size:.6875rem;letter-spacing:.32em;text-transform:uppercase;color:var(--txt-light-dim)}
+
+/* words — white */
+.words{background:linear-gradient(180deg,var(--paper),var(--cream-2));padding:clamp(2.6rem,6vh,4.4rem) 0;color:var(--txt-dark)}
+.words-head{padding:0 var(--pad);margin-bottom:1.6rem}
+.words-title{font-family:var(--serif);font-weight:500;font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.1;color:var(--ink);margin-top:1.2rem;text-align:center;text-wrap:balance}
+.trow{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.trow+.trow{margin-top:1.1rem}
+.ttrack{display:flex;gap:1.4rem;width:max-content;padding:.4rem 0;animation:mq 48s linear infinite}
+.trow--r .ttrack{animation-direction:reverse;animation-duration:60s}
+.trow:hover .ttrack{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.tcard{width:min(480px,84vw);flex:none;background:var(--paper);color:var(--txt-dark);padding:1.9rem 2.1rem 1.7rem;border-radius:3px;box-shadow:0 22px 46px -26px rgba(28,36,48,.35);border:1px solid rgba(154,122,63,.14);position:relative;transition:transform .5s var(--ease)}
+.tcard:hover{transform:translateY(-4px)}
+.tcard--alt{background:linear-gradient(150deg,#16233a,#0e1929);color:var(--txt-light);border:1px solid rgba(200,164,95,.2)}
+.tmark{display:block;font-family:var(--serif);font-size:2.4rem;line-height:.6;color:var(--gold-deep);margin-bottom:.9rem}
+.tcard--alt .tmark{color:var(--gold)}
+.tquote{font-family:var(--serif);font-style:italic;font-size:1.38rem;line-height:1.5}
+.twho{display:block;margin-top:1.1rem;font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep)}
+.tcard--alt .twho{color:var(--gold)}
+
+/* purpose — cream */
+.purpose{padding:clamp(3rem,7vh,5rem) var(--pad);color:var(--txt-dark);background:linear-gradient(180deg,var(--cream-2),var(--cream))}
+.purpose-grid{max-width:1280px;margin:0 auto;display:grid;align-items:center;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(3rem,7vw,7rem)}
+.purpose-title{font-family:var(--serif);font-weight:500;font-size:clamp(2.5rem,4.5vw,4.1rem);line-height:1.05;color:var(--ink);margin-top:1.4rem;text-wrap:balance}
+.purpose .rule{width:4rem;margin:1.9rem 0 1.7rem;background:linear-gradient(90deg,var(--gold-3),transparent)}
+.purpose-body{color:var(--txt-dark-soft);max-width:44ch;font-size:clamp(1rem,1.2vw,1.12rem);line-height:1.95}
+.ahc{position:relative;margin-top:2.4rem;display:flex;align-items:center;gap:1.2rem;padding:1.4rem 1.5rem;border:1px solid var(--gold);background:linear-gradient(115deg,rgba(200,164,95,.18),rgba(200,164,95,.06) 55%,rgba(200,164,95,.14));box-shadow:0 24px 50px -30px rgba(154,122,63,.55),inset 0 0 0 1px rgba(255,255,255,.4);overflow:hidden;transition:transform .5s var(--ease);max-width:460px}
+.ahc:hover{transform:translateY(-3px)}
+.ahc::after{content:'';position:absolute;top:0;bottom:0;left:0;width:50%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-170%) skewX(-18deg);transition:transform 1s var(--ease)}
+.ahc:hover::after{transform:translateX(320%) skewX(-18deg)}
+.ahc-ico{flex:none;width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold-deep);background:rgba(255,255,255,.55)}
+.ahc-ico svg{width:24px;height:24px}
+.ahc b{display:block;font-family:var(--serif);font-weight:600;font-size:1.3rem;color:var(--ink)}
+.ahc small{display:block;font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);margin-top:.2rem}
+.ahc svg.arr{margin-left:auto;width:18px;height:18px;color:var(--gold-deep)}
+.collage{position:relative;min-height:620px}
+.collage-main{position:absolute;left:0;top:0;width:58%;aspect-ratio:3/4;z-index:1;box-shadow:0 34px 80px -30px rgba(28,36,48,.45)}
+.collage-main .clip{position:absolute;inset:0;overflow:hidden}
+.collage-main .frame{position:absolute;inset:0;transform:translate(18px,18px);border:1px solid var(--gold);opacity:0;z-index:3;pointer-events:none;transition:opacity 1.2s var(--ease) var(--d,0s)}
+.collage-main .frame.in{opacity:.55}
+.collage-main:hover .media-img{transform:scale(1.05)}
+.quote-card{position:absolute;right:0;top:4%;width:47%;z-index:3;background:var(--paper);border:1px solid rgba(255,255,255,.7);padding:clamp(1.6rem,2.6vw,2.6rem);transform:rotate(2.4deg);box-shadow:0 30px 70px -25px rgba(28,36,48,.35);transition:transform .6s var(--ease)}
+.quote-card:hover{transform:rotate(1.1deg) translateY(-5px)}
+.quote-text{font-family:var(--serif);font-style:italic;font-size:clamp(1.25rem,1.7vw,1.6rem);line-height:1.5;color:var(--txt-dark)}
+.quote-text .q{color:var(--gold-deep);font-size:1.35em}
+.quote-sig{display:block;font-family:var(--script);font-size:2.2rem;color:var(--gold-deep);margin-top:1.2rem}
+.quote-role{display:block;font-size:.6875rem;letter-spacing:.34em;text-transform:uppercase;color:var(--txt-dark-soft);margin-top:.55rem}
+.collage-small{position:absolute;right:3%;bottom:0;width:50%;aspect-ratio:16/10;z-index:2;box-shadow:0 30px 70px -28px rgba(28,36,48,.5)}
+.photo-card{position:absolute;inset:0;overflow:hidden;background:var(--cream-2)}
+.photo-card img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-card::after{content:'';position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(180deg,transparent,rgba(8,10,16,.52))}
+.script-caption{position:absolute;right:1.2rem;bottom:.8rem;z-index:2;text-align:right;line-height:1.05;font-size:clamp(1.4rem,2.2vw,2rem);transform:rotate(-4deg)}
+
+.coin{height:22px;background:radial-gradient(circle at 11px 0,var(--cream) 10px,transparent 11px) repeat-x;background-size:22px 22px;background-color:var(--ink)}
+
+/* — booking: stepped reveal — 01 date → 02 evening → 03 arrangement — */
+.booking{position:relative;padding:clamp(3.2rem,7vh,5.4rem) var(--pad) clamp(3.4rem,8vh,6rem);background:radial-gradient(80% 60% at 0% 0%,rgba(200,164,95,.09),transparent 55%),linear-gradient(180deg,var(--ink),var(--ink-2))}
+.book-grid{max-width:1240px;margin:0 auto;display:flex;gap:clamp(2.4rem,5vw,5rem);align-items:flex-start}
+.book-main{flex:1 1 58%;display:flex;flex-direction:column;gap:1.7rem;min-width:0}
+.book-title{font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,4.2vw,3.7rem);line-height:1.06;color:#f7f2e7;margin-top:1.3rem;text-wrap:balance}
+.book-lede{margin-top:1.2rem;color:var(--txt-light-dim);max-width:52ch}
+.stepbar{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.6rem);margin-top:.4rem}
+.sbar-item{display:flex;align-items:baseline;gap:.55rem;white-space:nowrap;opacity:.38;transition:opacity .5s var(--ease)}
+.sbar-item i{font-style:normal;font-family:var(--serif);font-size:.95rem;color:var(--gold)}
+.sbar-item span{font-size:.6875rem;letter-spacing:.24em;text-transform:uppercase;color:var(--txt-light)}
+.sbar-item.is-on{opacity:1}
+.sbar-line{flex:1;height:1px;background:rgba(200,164,95,.2);position:relative;overflow:hidden}
+.sbar-line i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--gold-3),var(--gold));transition:width .9s var(--ease)}
+.bstep{opacity:0;transition:opacity .8s var(--ease);scroll-margin-top:112px}
+.bstep.b-in{opacity:1;transform:none}
+.cal-card{background:linear-gradient(165deg,rgba(248,244,234,.05),rgba(248,244,234,.02));border:1px solid var(--line-soft);padding:clamp(1.4rem,2.4vw,2rem);border-radius:4px;max-width:680px}
+.cal-sel{font-size:.6875rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-2);margin-bottom:.9rem;min-height:1.2em}
+.cal-sel b{font-weight:400;color:#f2ecdf}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+.cal-month{font-family:var(--serif);font-size:1.35rem;font-weight:500;color:#f7f2e7}
+.cal-nav{display:flex;gap:.5rem}
+.cal-nav button{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;color:var(--gold-2);transition:background .3s,color .3s}
+.cal-nav button:hover:not(:disabled){background:var(--gold);color:#181206}
+.cal-nav button:disabled{opacity:.3;cursor:default}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-light-dim);text-align:center;padding:.35rem 0}
+.cal-d{aspect-ratio:1;display:grid;place-items:center;font-size:.9rem;border-radius:50%;color:var(--txt-light);border:1px solid transparent;transition:background .25s,border-color .25s;position:relative;background:none}
+.cal-d:hover:not(:disabled):not(.sel){border-color:var(--line);background:rgba(200,164,95,.1)}
+.cal-d:disabled{color:rgba(242,236,225,.38)}
+.cal-d.booked{color:rgba(242,236,225,.45);text-decoration:line-through;text-decoration-color:rgba(200,164,95,.6)}
+.cal-d.today::after{content:'';position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.cal-d.sel{background:var(--gold);color:#181206;font-weight:500;box-shadow:0 8px 24px -6px rgba(200,164,95,.5)}
+.cal-note{margin-top:1rem;font-size:.6875rem;letter-spacing:.22em;text-transform:uppercase;color:var(--txt-light-dim)}
+.cal-note em{font-style:normal;color:var(--gold)}
+.evening-card{border:1px solid var(--line-soft);border-radius:4px;background:linear-gradient(170deg,rgba(248,244,234,.05),rgba(248,244,234,.015));padding:clamp(1.8rem,3.4vw,3rem);max-width:860px;position:relative;overflow:hidden}
+.evening-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-3),var(--gold-2),var(--gold-3))}
+.ev-eyebrow{font-size:.6875rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-2)}
+.ev-date{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,3.6vw,3rem);line-height:1.15;color:#f7f2e7;margin:.7rem 0 1rem}
+.ev-free{display:flex;align-items:center;gap:.7rem;color:var(--gold);font-size:1rem;letter-spacing:.04em;margin-bottom:2rem}
+.ev-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none;box-shadow:0 0 0 4px rgba(200,164,95,.18)}
+.ev-flow{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem 3rem;margin-bottom:2.4rem}
+.ev-flow li{display:flex;gap:1.2rem;align-items:baseline}
+.ev-t{font-family:var(--serif);font-size:1.05rem;color:var(--gold);flex:none;min-width:5.4rem}
+.ev-flow b{display:block;font-weight:500;color:#f2ecdf;font-size:1rem;margin-bottom:.35rem}
+.ev-flow p{font-size:.9rem;line-height:1.7;color:var(--txt-light-dim)}
+.book-row{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:1.7rem;align-items:start}
+.arrange-form{display:flex;flex-direction:column}
+.af-title{font-family:var(--serif);font-weight:500;font-size:1.5rem;color:#f7f2e7;margin-bottom:1.3rem}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.f-field{display:flex;flex-direction:column;gap:.45rem}
+.f-field--full{grid-column:1/-1}
+.f-field label{font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--txt-light-dim)}
+.f-field input,.f-field select,.f-field textarea{background:rgba(248,244,234,.04);border:1px solid var(--line-soft);border-radius:2px;padding:.85em 1em;color:#f2ecdf;font:inherit;font-size:.95rem;transition:border-color .3s,background .3s}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{outline:none;border-color:var(--gold);background:rgba(200,164,95,.07)}
+.f-field select option{background:var(--ink)}
+.f-err{border-color:#c96a5a !important}
+.sum-card{position:relative;background:linear-gradient(168deg,#f6ebd2 0%,#eeddb1 34%,#e6cd93 72%,#dcbe7e 100%);color:var(--txt-dark);border:1px solid rgba(154,122,63,.5);border-radius:4px;padding:clamp(1.8rem,3vw,2.4rem);box-shadow:0 50px 100px -40px rgba(0,0,0,.8),0 24px 70px -30px rgba(200,164,95,.4);overflow:hidden}
+.sum-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-3),var(--gold-2),var(--gold-3))}
+.sum-card::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,252,240,.55) 0%,rgba(255,252,240,0) 30%,rgba(154,122,63,0) 68%,rgba(154,122,63,.16) 100%);pointer-events:none}
+.sum-eyebrow{font-size:.6875rem;letter-spacing:.34em;text-transform:uppercase;color:#6f5522}
+.sum-card>*:not(.seal){position:relative;z-index:1}
+.sum-date{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:1.22;color:var(--ink);margin:.7rem 0 1.3rem;min-height:1.2em;padding-right:4.4rem}
+.sum-date.empty{color:var(--txt-dark-soft);font-style:italic;font-weight:400;font-size:1.05rem}
+.sum-rows{border-top:1px solid rgba(154,122,63,.4)}
+.sum-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.95rem 0;border-bottom:1px solid rgba(154,122,63,.3);font-size:1rem}
+.sum-row span{color:var(--txt-dark-soft)}
+.sum-row b{font-weight:600;font-size:1.3rem;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.sum-row--key b{font-size:1.65rem;color:var(--gold-deep)}
+.sum-row--key span{color:var(--txt-dark);font-weight:500}
+.sum-row small{display:block;font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-dark-soft)}
+.sum-pay{margin-top:1.5rem;display:flex;flex-direction:column}
+.sum-pay .btn{width:100%;justify-content:center;padding:1.3em 1.85em;font-size:.8rem}
+.sum-fine{margin-top:1.2rem;font-size:.6875rem;line-height:1.7;color:var(--txt-dark-soft)}
+.held{display:none;margin-top:1.3rem;padding:1.1rem 1.2rem;border:1px solid var(--gold);background:rgba(200,164,95,.14)}
+.held.show{display:block}
+.held b{display:block;font-family:var(--serif);font-weight:600;font-size:1.1rem;color:var(--ink)}
+.held p{font-size:.82rem;color:var(--txt-dark-soft);margin-top:.3rem}
+.seal{position:absolute;top:1.3rem;right:1.3rem;width:96px;height:96px;opacity:.9;pointer-events:none}
+.seal .spin{transform-origin:60px 60px;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.seal text{font-family:var(--sans);font-size:11px;letter-spacing:.24em;fill:var(--gold-deep);text-transform:uppercase}
+.seal .mono{font-family:var(--serif);font-size:20px;letter-spacing:.05em;fill:var(--ink);font-weight:600}
+
+/* — finale: the harbour as footer — */
+.finale{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+.finale-media{position:absolute;inset:0;margin:0}
+.finale-media .media-img{object-position:50% 58%}
+.finale-scrim{position:absolute;inset:0;background:linear-gradient(180deg,var(--ink) 0%,rgba(12,18,28,.5) 26%,rgba(12,18,28,.2) 48%,rgba(10,14,22,.66) 74%,rgba(8,11,18,.95) 100%)}
+.finale-inner{position:relative;z-index:2;width:100%;padding:clamp(4rem,9vh,6.5rem) var(--pad) 2.4rem;text-align:center}
+.finale-inner .btn{margin-top:2.4rem}
+.foot-script{font-size:clamp(3.6rem,7vw,5.6rem);line-height:1.1;margin:1.5rem 0 .9rem}.finale .foot-sub{color:rgba(242,236,225,.88)}.finale .foot-bottom{color:rgba(242,236,225,.62)}.finale .foot-bottom{border-top-color:rgba(200,164,95,.25)}
+.foot-sub{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--txt-light-dim)}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;margin-top:5rem;padding-top:1.6rem;border-top:1px solid rgba(200,164,95,.12);font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,236,225,.4)}
+
+/* player */
+.modal{position:fixed;inset:0;z-index:1500;display:grid;place-items:center;padding:1.5rem;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility 0s .5s}
+.modal.open{opacity:1;visibility:visible;transition:opacity .5s var(--ease)}
+.modal-backdrop{position:absolute;inset:0;background:rgba(6,10,16,.85);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.modal-box{position:relative;width:min(1020px,94vw);transform:translateY(24px) scale(.97);transition:transform .55s var(--ease)}
+.modal.open .modal-box{transform:none}
+.modal-stage{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line-soft);box-shadow:0 60px 120px -40px rgba(0,0,0,.8);background:#05080d}
+.modal-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:4;opacity:0;transition:opacity .7s ease}
+.modal-stage.has-started video{opacity:1}
+.v-poster{position:absolute;inset:0;z-index:5;transition:opacity .8s ease}
+.modal-stage.has-started .v-poster,.modal-stage.motion.is-playing-motion .v-poster{opacity:0;pointer-events:none}
+.stage-label{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;text-align:center;padding:2rem}
+.stage-script{font-size:clamp(2.4rem,5vw,3.4rem);line-height:1}
+.stage-sub{font-size:.6875rem;letter-spacing:.36em;text-transform:uppercase;color:var(--txt-light-dim)}
+.motion-tag{position:absolute;top:16px;left:18px;z-index:6;font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(231,210,162,.75);display:none}
+.modal-stage.motion.is-playing-motion .motion-tag{display:block}
+.mreel{position:absolute;inset:0;z-index:2;display:none}
+.modal-stage.motion .mreel{display:block}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity 1.3s ease}
+.scene.on{opacity:1}
+.m-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;opacity:0;transition:opacity 1.4s ease}
+.m-img.show{opacity:1}
+@keyframes mPush{0%{transform:scale(1.07)}100%{transform:scale(1.18)}}
+.scene.on .m-push{animation:mPush 9s linear forwards;transform-origin:50% 24%}
+.sc-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;text-align:center;padding:2rem}
+.sc-center .script{font-size:clamp(3rem,7vw,4.6rem);line-height:1;opacity:0;animation:fadeUp 1.4s var(--ease) .3s forwards}
+.sc-sub{font-size:.6875rem;letter-spacing:.44em;text-transform:uppercase;color:var(--txt-light-dim);opacity:0;animation:fadeUp 1.4s var(--ease) .8s forwards}
+.sc-cap{position:absolute;bottom:13%;font-size:clamp(1.9rem,4vw,3rem);line-height:1.1;max-width:70%;opacity:0;animation:capIn 1.6s var(--ease) .7s forwards}
+@keyframes capIn{from{opacity:0;transform:translateY(22px)}to{opacity:1}}
+.cap-l{left:6%}.cap-c{left:50%;transform:translateX(-50%);text-align:center}
+.sc-cap small{display:block;font-family:var(--sans);font-size:.6875rem;letter-spacing:.4em;text-transform:uppercase;color:var(--txt-light-dim);margin-top:.9rem}
+.sc-solid{background:radial-gradient(100% 80% at 50% 0%,rgba(200,164,95,.09),transparent 60%),linear-gradient(180deg,#101c2e,#0a111d)}
+.rings-svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-54%);width:clamp(160px,22vw,240px)}
+.scene.on .rings-svg .rg{stroke-dasharray:400;stroke-dashoffset:400;animation:arcDraw 2.6s var(--ease) .4s forwards}
+.scene.on .rings-svg .rg2{animation-delay:.9s}
+@keyframes arcDraw{to{stroke-dashoffset:0}}
+.confetti-c{position:absolute;inset:0;width:100%;height:100%}
+.skyline-end{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);width:min(46%,420px);opacity:.5}
+.v-bigplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:7;width:92px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(231,210,162,.6);color:var(--gold-2);background:rgba(5,8,13,.35);opacity:0;pointer-events:none;transition:opacity .5s var(--ease),background .4s,color .4s,transform .45s var(--ease)}
+.v-bigplay svg{width:28%;height:28%;margin-left:7%;fill:currentColor}
+.modal-stage.can-play .v-bigplay,.modal-stage.motion:not(.is-playing-motion) .v-bigplay{opacity:1;pointer-events:auto}
+.modal-stage.is-playing-video .v-bigplay{opacity:0!important;pointer-events:none!important}
+.v-bigplay::before{content:'';position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(231,210,162,.45);animation:pulse 2.8s ease-out infinite}
+.v-bigplay:hover{background:var(--gold);color:#181206;border-color:var(--gold);transform:translate(-50%,-50%) scale(1.06)}
+.v-controls{position:absolute;left:0;right:0;bottom:0;z-index:8;display:flex;align-items:center;gap:1rem;padding:2.4rem 1.25rem .95rem;background:linear-gradient(180deg,transparent,rgba(5,8,13,.88));opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.modal-stage.has-started .v-controls,.modal-stage.motion.is-playing-motion .v-controls,.modal-stage.motion.ended .v-controls{opacity:1;transform:none;pointer-events:auto}
+.vbtn{width:34px;height:34px;display:grid;place-items:center;color:var(--gold-2);flex:none}
+.vbtn:hover{color:#fff}
+.vbtn svg{width:16px;height:16px;fill:currentColor}
+#vSeek{flex:1;-webkit-appearance:none;appearance:none;height:2px;border-radius:2px;background:rgba(231,210,162,.25);outline:none}
+#vSeek::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold-2);border:2px solid #05080d}
+#vSeek::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--gold-2);border:2px solid #05080d}
+.modal-stage.motion #vSeek{display:none}
+.v-progress{flex:1;height:2px;background:rgba(231,210,162,.25);display:none;overflow:hidden}
+.modal-stage.motion .v-progress{display:block}
+.v-progress i{display:block;height:100%;background:var(--gold);transform:scaleX(0);transform-origin:left}
+#vTime{font-size:.6875rem;letter-spacing:.18em;color:var(--txt-light-dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.modal-close{position:absolute;top:-52px;right:0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold-2);transition:transform .5s var(--ease),background .3s,color .3s;z-index:9}
+.modal-close:hover{transform:rotate(90deg);background:var(--gold);color:var(--ink)}
+
+.setup-bar{position:fixed;left:50%;bottom:1.1rem;transform:translateX(-50%);z-index:3000;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;padding:.65rem 1rem;background:rgba(10,15,24,.94);border:1px solid var(--line);border-radius:4px;max-width:94vw}
+.setup-bar b{font-weight:400;font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-2)}
+.sb-btn{padding:.5em 1.1em;font-size:.6875rem;letter-spacing:.24em;text-transform:uppercase;border:1px solid var(--line);color:var(--gold-2);transition:background .3s,color .3s}
+.sb-btn:hover{background:var(--gold);color:#181206}
+.sb-btn--solid{background:var(--gold);color:#181206;border-color:var(--gold)}
+.sb-x{width:26px;height:26px;display:grid;place-items:center;color:var(--txt-light-dim)}
+body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
+.drop-toast{position:fixed;left:50%;bottom:5.4rem;transform:translate(-50%,12px);z-index:3100;padding:.7rem 1.4rem;background:rgba(16,26,40,.94);border:1px solid var(--line);font-size:.6875rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-2);opacity:0;pointer-events:none;transition:opacity .4s var(--ease),transform .4s var(--ease);max-width:92vw;text-align:center}
+.drop-toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:1060px){
+  .hero{align-items:flex-end}
+  .hero-art{width:100%;height:64%;opacity:.9}
+  .hero-art svg.candles{right:50%;transform:translateX(50%);width:min(74vw,460px);bottom:14%}
+  .hero--photo .hero-bg{object-position:45% 30%;transform:none}
+  .hero--photo .hero-shade{background:linear-gradient(180deg,rgba(8,12,20,.72),rgba(12,18,28,.35) 34%,rgba(12,18,28,.32) 55%,rgba(6,9,15,.88) 86%)}
+  .hero-shade{background:linear-gradient(90deg,rgba(12,18,28,.5),rgba(12,18,28,.18) 45%,rgba(12,18,28,.42)),linear-gradient(180deg,rgba(8,12,20,.6),rgba(12,18,28,.2) 40%,rgba(6,9,15,.9) 84%)}
+  .hero-inner{grid-template-columns:1fr;padding-bottom:6.5rem;gap:0}
+  .hero-note{justify-self:start;display:flex;align-items:center;gap:1.4rem;margin-top:2.6rem;padding-right:0}
+  .script-note{transform:rotate(-4deg);max-width:none;font-size:2.1rem}
+  .note-rule{width:2.5rem;height:1px;margin:0;background:linear-gradient(90deg,var(--gold),transparent)}
+  .word-stack{display:flex;gap:1.2rem;flex-wrap:wrap}.scroll-cue{display:none}
+  .in-grid,.purpose-grid{grid-template-columns:1fr}
+  .prints{display:flex;flex-direction:column;gap:1.6rem;margin-top:2.2rem}
+  .print{width:min(440px,92%)}
+  .prints-note{max-width:none}
+  .print--b .media-wrap{aspect-ratio:16/10}
+  .collage{min-height:0;display:flex;flex-direction:column}
+  .collage-main{position:relative;width:88%}
+  .quote-card{position:relative;width:min(420px,86%);margin:-3.4rem 0 0 auto;top:auto;right:auto}
+  .collage-small{position:relative;width:min(480px,80%);margin:1.6rem auto 0 0;right:auto;bottom:auto}
+  /* stepped booking stacks: date → evening → arrangement */
+  .book-grid{flex-direction:column;gap:1.6rem}
+  .stepbar{flex-wrap:wrap;row-gap:.5rem}
+  .sbar-line{min-width:2.2rem}
+  .ev-flow{grid-template-columns:1fr}
+  .book-row{grid-template-columns:1fr}
+  .sum-card{order:1}
+  .arrange-form{order:2}
+}
+@media (max-width:900px){.reel-content{grid-template-columns:1fr;justify-items:start;gap:1.8rem}.reel-tags{flex-direction:row;flex-wrap:wrap;gap:.4rem 1.6rem}.f-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.finale-media .media-img{object-position:34% 58%}.foot-bottom{flex-direction:column;text-align:center}.cal-card{padding:1.1rem}.setup-bar{gap:.6rem;padding:.55rem .7rem}a,button,[role="button"],input,select,textarea{min-height:44px}.cal-nav button,.modal-close,.vbtn{width:44px;height:44px}.lang-btn{padding:0 .3rem;min-width:44px}.sb-x{min-width:44px}}
+@media (max-width:430px){.brand-sub{display:none}.head-right{gap:1rem}.cal-d{min-height:0}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-delay:0s !important;transition-duration:.001s !important}
+  html{scroll-behavior:auto}
+  .reveal,.reveal-x,.fade-up,.hero-title .line-inner,.sc-center .script,.sc-sub,.sc-cap{opacity:1;transform:none}
+  .cap-c{transform:translateX(-50%)}
+  .hero .rule{transform:none}.reveal-clip{clip-path:none}
+  .flame,.hero-glow,.glowPulse,.sun-orbit,.ttrack,.seal .spin{animation:none}
+  .ttrack{flex-wrap:wrap;width:auto}.trow{overflow:visible;-webkit-mask-image:none;mask-image:none}
+  .veil{display:none}
+  .play::before,.v-bigplay::before{animation:none}
+  #sparks{display:none}
+}
+/* customer view: photo-authoring tools only appear with ?setup */
+html.no-setup .setup-bar,html.no-setup .slot-add{display:none!important}
+.book-contact{margin-top:.95rem;font-size:.8125rem;letter-spacing:.04em;color:var(--txt-light-dim)}
+.book-contact a{color:var(--gold-2);text-decoration:none;border-bottom:1px solid rgba(231,210,162,.35);transition:color .3s,border-color .3s}
+.book-contact a:hover{color:var(--gold);border-color:var(--gold)}
+</style>
+<script>if(!/[?&]setup/.test(location.search+location.hash))document.documentElement.classList.add('no-setup')</script>
+</head>
+<!-- BUILD 10 · CANDLELIGHT FINAL · view-source "BUILD 10" to confirm the deploy updated -->
+<body>
+
+<div class="veil" id="veil" aria-hidden="true"><span class="gold-text">Lee Vu</span></div>
+<div class="cur-dot" aria-hidden="true"></div>
+<div class="cur-ring" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-head">
+  <div class="head-inner">
+    <a class="brand" href="#top"><span>MC&nbsp;Lee&nbsp;Vu</span><span class="brand-sub" data-i18n="brand-sub">Sydney · Bilingual MC</span></a>
+    <div class="head-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+        <span class="lang-sep" aria-hidden="true"></span>
+        <button class="lang-btn" data-lang="vi" aria-pressed="false">VI</button>
+      </div>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <nav class="menu-nav">
+    <a href="#top"><i>01</i><span data-i18n="m1">Home</span></a>
+    <a href="#evening"><i>02</i><span data-i18n="m2">The Evening</span></a>
+    <a href="#words"><i>03</i><span data-i18n="m4">The Promise</span></a>
+    <a href="#enquire"><i>04</i><span data-i18n="m5">Book Lee</span></a>
+    <a href="#reel"><i>05</i><span data-i18n="m3">The Reel</span></a>
+  </nav>
+  <div class="menu-foot"><span data-i18n="menu-tag">Sydney · English + Vietnamese</span><span>Est. 2006</span></div>
+</div>
+
+<main id="top">
+
+  <!-- ═══ CANDLE HERO ═══ -->
+  <section class="hero hero--photo">
+    <img class="hero-bg" src="media/lee-vu-hero-ballroom.jpg" alt="" aria-hidden="true" onload="this.classList.add('loaded')">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <svg class="candles" viewBox="0 0 640 470" role="img" aria-label="Five candles glowing on a table">
+        <defs>
+          <radialGradient id="halo" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#e2a854" stop-opacity=".5"/><stop offset="1" stop-color="#e2a854" stop-opacity="0"/></radialGradient>
+          <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2a854" stop-opacity=".4"/><stop offset="1" stop-color="#e2a854" stop-opacity="0"/></linearGradient>
+          <linearGradient id="waxH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f8f0dd"/><stop offset=".55" stop-color="#e7d7b4"/><stop offset="1" stop-color="#cbb489"/></linearGradient>
+          <radialGradient id="fl" cx=".5" cy=".72" r=".85"><stop offset="0" stop-color="#fff7dc"/><stop offset=".55" stop-color="#f5c062"/><stop offset="1" stop-color="#d98f36"/></radialGradient>
+          <linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2a854" stop-opacity=".55"/><stop offset="1" stop-color="#e2a854" stop-opacity="0"/></linearGradient>
+        </defs>
+        <ellipse class="glowPulse" cx="320" cy="280" rx="310" ry="235" fill="url(#halo)"/>
+        <ellipse cx="320" cy="410" rx="300" ry="26" fill="url(#pool)" opacity=".6"/>
+        <g opacity=".22" fill="url(#refl)"><ellipse cx="78" cy="430" rx="10" ry="22"/><ellipse cx="165" cy="433" rx="9" ry="17"/><ellipse cx="272" cy="431" rx="13" ry="26"/><ellipse cx="376" cy="433" rx="9" ry="17"/><ellipse cx="464" cy="436" rx="8" ry="14"/></g>
+        <line x1="20" y1="402" x2="620" y2="402" stroke="rgba(200,164,95,.4)" stroke-width="1"/>
+        <!-- candle 1 -->
+        <g><rect x="60" y="250" width="36" height="150" rx="6" fill="url(#waxH)"/><ellipse cx="78" cy="252" rx="18" ry="3.4" fill="#fff6e0" opacity=".85"/><line x1="78" y1="234" x2="78" y2="250" stroke="#5b4a2c" stroke-width="2.4"/>
+          <g class="flame"><circle cx="78" cy="216" r="30" fill="url(#halo)" opacity=".6"/><ellipse cx="78" cy="216" rx="13" ry="25" fill="url(#fl)"/><ellipse cx="78" cy="221" rx="5.5" ry="13" fill="#fff9e6"/></g></g>
+        <!-- candle 2 -->
+        <g><rect x="150" y="310" width="30" height="90" rx="6" fill="url(#waxH)"/><ellipse cx="165" cy="312" rx="15" ry="3" fill="#fff6e0" opacity=".85"/><line x1="165" y1="296" x2="165" y2="310" stroke="#5b4a2c" stroke-width="2.2"/>
+          <g class="flame f2"><circle cx="165" cy="278" r="26" fill="url(#halo)" opacity=".55"/><ellipse cx="165" cy="278" rx="11.5" ry="22" fill="url(#fl)"/><ellipse cx="165" cy="282" rx="5" ry="11.5" fill="#fff9e6"/></g></g>
+        <!-- candle 3 — tall centre -->
+        <g><rect x="250" y="180" width="44" height="220" rx="7" fill="url(#waxH)"/><ellipse cx="272" cy="182" rx="22" ry="4" fill="#fff6e0" opacity=".9"/><line x1="272" y1="162" x2="272" y2="180" stroke="#5b4a2c" stroke-width="2.6"/>
+          <g class="flame f3"><circle cx="272" cy="140" r="36" fill="url(#halo)" opacity=".65"/><ellipse cx="272" cy="140" rx="15" ry="29" fill="url(#fl)"/><ellipse cx="272" cy="146" rx="6.5" ry="15" fill="#fff9e6"/></g></g>
+        <!-- candle 4 -->
+        <g><rect x="360" y="300" width="32" height="100" rx="6" fill="url(#waxH)"/><ellipse cx="376" cy="302" rx="16" ry="3.2" fill="#fff6e0" opacity=".85"/><line x1="376" y1="286" x2="376" y2="300" stroke="#5b4a2c" stroke-width="2.2"/>
+          <g class="flame f4"><circle cx="376" cy="266" r="26" fill="url(#halo)" opacity=".55"/><ellipse cx="376" cy="266" rx="12" ry="23" fill="url(#fl)"/><ellipse cx="376" cy="270" rx="5" ry="12" fill="#fff9e6"/></g></g>
+        <!-- candle 5 -->
+        <g><rect x="450" y="335" width="28" height="65" rx="6" fill="url(#waxH)"/><ellipse cx="464" cy="337" rx="14" ry="3" fill="#fff6e0" opacity=".85"/><line x1="464" y1="323" x2="464" y2="335" stroke="#5b4a2c" stroke-width="2"/>
+          <g class="flame f5"><circle cx="464" cy="305" r="23" fill="url(#halo)" opacity=".5"/><ellipse cx="464" cy="305" rx="10.5" ry="20" fill="url(#fl)"/><ellipse cx="464" cy="309" rx="4.5" ry="10.5" fill="#fff9e6"/></g></g>
+      </svg>
+      <canvas id="sparks"></canvas>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow fade-up d1" data-i18n="eyebrow">Sydney · English + Vietnamese</p>
+        <h1 class="hero-title">
+          <span class="line"><span class="line-inner" data-i18n="t1">Bilingual</span></span>
+          <span class="line"><span class="line-inner" data-i18n="t2">wedding MC</span></span>
+          <span class="line"><span class="line-inner" data-i18n="t3">in <em class="gold-text">Sydney.</em></span></span>
+        </h1>
+        <span class="rule"></span>
+        <p class="hero-lede fade-up d2" data-i18n="lede">Since 2006, Lee Vu has hosted hundreds of weddings in English and Vietnamese — creating unforgettable moments.</p>
+        <div class="hero-cta fade-up d3">
+          <a class="btn btn-gold" href="#enquire"><span data-i18n="cta1">Book your date</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h17M15 6l6 6-6 6"/></svg></a>
+          <button class="btn btn-ghost" data-open-film><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M10 8.8v6.4L15.5 12z" fill="currentColor" stroke="none"/></svg><span data-i18n="cta2">Watch Lee in action</span></button>
+        </div>
+      </div>
+      <aside class="hero-note fade-up d4">
+        <p class="script-note gold-text" data-i18n="note">More than just an MC</p>
+        <span class="note-rule"></span>
+        <ul class="word-stack"><li data-i18n="w1">People</li><li data-i18n="w2">Stories</li><li data-i18n="w3">Cultures</li><li data-i18n="w4">Love</li></ul>
+      </aside>
+    </div>
+    <a class="scroll-cue" href="#evening"><span data-i18n="cue">Scroll</span><span class="cue-line"></span></a>
+  </section>
+
+  <!-- ═══ THE EVENING — white ═══ -->
+  <section class="interlude" id="evening">
+    <div class="in-grid">
+      <div class="book-head">
+        <p class="eyebrow eyebrow--dark reveal" data-i18n="in-eyebrow">The evening · one couple at a time</p>
+        <h2 class="in-title reveal" style="--d:.08s" data-i18n="in-title">From six o'clock, Lee belongs entirely to your evening.</h2>
+        <p class="in-body reveal" style="--d:.16s" data-i18n="in-body">He arrives as your guests do — calm, prepared, wholly present — and stays until the final farewell. Earlier in the day you'll find him at his practice, caring for Sydney's community. That is the whole arrangement. No packages, no tiers: one couple, one night, his full attention.</p>
+        <svg class="sun reveal" style="--d:.24s" viewBox="0 0 220 96" fill="none" aria-hidden="true">
+          <line x1="10" y1="78" x2="210" y2="78" stroke="#9a7a3f" stroke-width="1"/>
+          <path d="M20 78 Q110 8 200 78" stroke="#c8a45f" stroke-width="1" stroke-dasharray="3 5" opacity=".55"/>
+          <g class="sun-orbit"><circle cx="205" cy="78" r="7" fill="#e2a854"/><circle cx="205" cy="78" r="12" fill="#e2a854" opacity=".25"/></g>
+          <text x="14" y="92">6:00 PM</text><text x="210" y="92" text-anchor="end" data-i18n="sun-b">LAST DANCE</text>
+        </svg>
+      </div>
+
+      <div class="prints">
+        <figure class="print print--b reveal-clip" style="--d:.15s">
+          <div class="media-wrap" data-wrap="hero">
+            <div class="ph ph--window" style="display:grid;place-items:center">
+              <svg viewBox="0 0 200 240" fill="none" style="width:64%">
+                <g stroke="#a5854a" stroke-width="1.2" stroke-linecap="round">
+                  <rect x="55" y="96" width="90" height="60" rx="3"/><path d="M55 116h90M100 96v60" opacity=".5"/>
+                  <path d="M62 176c10-14 24-14 34 0M108 176c8-11 20-11 28 0" opacity=".8"/>
+                  <circle cx="76" cy="60" r="10"/><path d="M76 74v10M64 84l24-4" opacity=".7"/>
+                </g>
+                <g stroke="#a5854a" opacity=".4"><path d="M30 210h140"/></g>
+              </svg>
+            </div>
+            <img class="media-img" data-slot="hero" alt="Lee Vu on stage in golden light" loading="lazy" decoding="async">
+            <button class="slot-add" data-pick="hero" type="button"><span>＋</span><em>Golden-hour photo</em></button>
+          </div>
+          <figcaption data-i18n="pr-b">the golden hour</figcaption>
+        </figure>
+        <p class="prints-note reveal" style="--d:.3s" data-i18n="pr-note">One couple per evening — <em>the whole night, his full attention.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ KIND WORDS ═══ -->
+  <section class="words" id="words">
+    <div class="words-head">
+      <p class="eyebrow eyebrow--center reveal" data-i18n="w-eyebrow">The promise · est. 2006</p>
+      <h2 class="words-title reveal" style="--d:.1s" data-i18n="w-title">One couple, one evening.<br>Here is what Lee brings to it.</h2>
+    </div>
+    <div class="trow reveal" style="--d:.2s"><div class="ttrack" id="trow1"></div></div>
+  </section>
+
+  <!-- ═══ GREATER PURPOSE ═══ -->
+  <section class="purpose" id="purpose">
+    <div class="purpose-grid">
+      <div>
+        <p class="eyebrow eyebrow--dark reveal" data-i18n="p-eyebrow">Before six o'clock</p>
+        <h2 class="purpose-title reveal" style="--d:.1s" data-i18n="p-title">A Greater Purpose</h2>
+        <span class="rule reveal-x" style="--d:.2s"></span>
+        <p class="purpose-body reveal" style="--d:.28s" data-i18n="p-body">Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney's Vietnamese community.</p>
+        <a class="ahc reveal" style="--d:.38s" href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noopener">
+          <span class="ahc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 12h2l2-5 3 10 2.5-7 1.5 2h5"/></svg></span>
+          <span><b>Acoustic Hearing Care</b><small data-i18n="ahc-sub">Optometry · Audiology · Sydney</small></span>
+          <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M8 6h10v10"/></svg>
+        </a>
+      </div>
+      <div class="collage">
+        <figure class="collage-main">
+          <div class="clip reveal-clip" style="--d:.15s">
+            <div class="media-wrap" data-wrap="portrait" style="position:absolute;inset:0;display:block">
+              <div class="ph ph--portrait" style="display:grid;place-items:center">
+                <svg viewBox="0 0 200 260" fill="none" style="width:52%">
+                  <g stroke="#8f7a4e" stroke-width="1.2" stroke-linecap="round">
+                    <circle cx="100" cy="86" r="30"/><path d="M58 190c8-42 28-62 42-62s34 20 42 62"/>
+                    <path d="M84 74c4-8 12-12 16-12s12 4 16 12" opacity=".7"/>
+                  </g>
+                  <g stroke="#8f7a4e" opacity=".4"><circle cx="42" cy="60" r="16"/><circle cx="162" cy="200" r="22"/></g>
+                </svg>
+              </div>
+              <img class="media-img" data-slot="portrait" alt="MC Lee Vu portrait" loading="lazy" decoding="async">
+              <button class="slot-add" data-pick="portrait" type="button"><span>＋</span><em>Day portrait</em></button>
+            </div>
+          </div>
+          <span class="frame" style="--d:.5s"></span>
+        </figure>
+        <aside class="quote-card reveal" style="--d:.3s">
+          <p class="quote-text"><span class="q">“</span><span data-i18n="quote">Different conversations. A&nbsp;shared purpose.</span><span class="q">”</span></p>
+          <span class="quote-sig">Lee Vu</span><span class="quote-role">MC · Sydney</span>
+        </aside>
+        <figure class="collage-small reveal-clip" style="--d:.42s">
+          <div class="photo-card">
+            <img src="media/lee-vu-garden-ceremony.jpg" alt="Garden ceremony — Lee Vu, Sydney" loading="lazy" decoding="async">
+            <figcaption class="script-caption gold-text" data-i18n="cap">Sydney Always Home</figcaption>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="coin" aria-hidden="true"></div>
+
+  <!-- ═══ BOOKING — stepped reveal ═══ -->
+  <section class="booking" id="enquire">
+    <div class="book-grid">
+      <div class="book-main">
+        <div class="book-head">
+          <p class="eyebrow reveal" data-i18n="b-eyebrow">Book your date</p>
+          <h2 class="book-title reveal" style="--d:.08s" data-i18n="b-title">Reserve Lee for the day it all begins.</h2>
+          <p class="book-lede reveal" style="--d:.12s" data-i18n="b-lede">One engagement only per evening — Lee joins you from 6:00&nbsp;pm until the final farewell.</p>
+          <p class="book-contact reveal" style="--d:.16s"><span data-i18n="b-contact">Prefer to talk it through?</span> <a href="tel:+61401676766">0401 676 766</a> <span aria-hidden="true">·</span> <a href="mailto:mcleevu@gmail.com">mcleevu@gmail.com</a></p>
+        </div>
+
+        <div class="stepbar reveal" style="--d:.16s">
+          <div class="sbar-item is-on" data-sb="1"><i>01</i><span data-i18n="sb1">Choose a date</span></div>
+          <span class="sbar-line"><i id="sbarFill"></i></span>
+          <div class="sbar-item" data-sb="2"><i>02</i><span data-i18n="sb2">Your evening</span></div>
+          <div class="sbar-item" data-sb="3"><i>03</i><span data-i18n="sb3">The arrangement</span></div>
+        </div>
+
+        <!-- STEP 1 · the date -->
+        <div class="bstep b-in" id="bstep1">
+          <div class="cal-card">
+          <p class="cal-sel" id="calSel" aria-live="polite"><span data-i18n="cal-sel">Your date:</span> <b data-i18n="cal-none">not chosen yet</b></p>
+          <div class="cal-head">
+            <span class="cal-month" id="calMonth">—</span>
+            <span class="cal-nav"><button id="calPrev" aria-label="Previous month">‹</button><button id="calNext" aria-label="Next month">›</button></span>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <p class="cal-note"><span data-i18n="cal-note">Pick your date —</span> <em data-i18n="cal-note2">a $500 deposit holds yours for 48 hours.</em></p>
+          </div>
+        </div>
+
+        <!-- STEP 2 · your evening revealed -->
+        <div class="bstep" id="bstep2" hidden>
+          <div class="evening-card">
+            <p class="ev-eyebrow" data-i18n="ev-eyebrow">Good news —</p>
+            <h3 class="ev-date" id="evDate">—</h3>
+            <p class="ev-free"><span class="ev-dot" aria-hidden="true"></span><span data-i18n="ev-free">Date noted. Lee confirms every date personally — your enquiry goes straight to him.</span></p>
+            <ol class="ev-flow">
+              <li><span class="ev-t">6:00 pm</span><div><b data-i18n="ev1t">The arrival</b><p data-i18n="ev1">Lee arrives as your guests do — soundcheck, a quiet word with the venue, fully prepared.</p></div></li>
+              <li><span class="ev-t" data-i18n="ev2s">Ceremony</span><div><b data-i18n="ev2t">Two languages, one room</b><p data-i18n="ev2">Every vow and announcement lands — once in English, once in Vietnamese, never twice as long.</p></div></li>
+              <li><span class="ev-t" data-i18n="ev3s">Reception</span><div><b data-i18n="ev3t">The warm part of the night</b><p data-i18n="ev3">Toasts, translations and the moments that make both sides of the family one room.</p></div></li>
+              <li><span class="ev-t" data-i18n="ev4s">Last dance</span><div><b data-i18n="ev4t">The farewell</b><p data-i18n="ev4">He closes the evening gently — and your date is complete, start to finish.</p></div></li>
+            </ol>
+            <button class="btn btn-gold" id="toStep3" type="button"><span data-i18n="ev-cta">Continue — see the arrangement</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h17M15 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+
+        <!-- STEP 3 · the arrangement -->
+        <div class="bstep" id="bstep3" hidden>
+          <div class="book-row">
+            <aside class="sum-card">
+              <svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+                <defs><path id="sealPath" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+                <g class="spin"><text><textPath href="#sealPath">Est. 2006 · Sydney · Bilingual Wedding MC ·&#160;</textPath></text></g>
+                <circle cx="60" cy="60" r="31" fill="none" stroke="#c8a45f" stroke-width="1"/>
+                <text class="mono" x="60" y="67" text-anchor="middle">LV</text>
+              </svg>
+              <p class="sum-eyebrow" data-i18n="sum-eyebrow">Your date</p>
+              <p class="sum-date empty" id="sumDate" aria-live="polite" data-i18n="sum-empty">Pick your date on the calendar…</p>
+              <div class="sum-rows">
+                <div class="sum-row"><span data-i18n="sum-fee">Engagement fee — from 6pm to the final farewell</span><b>$1,000</b></div>
+                <div class="sum-row sum-row--key"><span data-i18n="sum-dep">Deposit — today, online<small data-i18n="sum-dep2">Secures your date</small></span><b>$500</b></div>
+                <div class="sum-row"><span data-i18n="sum-bal">Balance — in person<small data-i18n="sum-bal2">Paid to Lee on the day</small></span><b>$500</b></div>
+              </div>
+              <p class="sum-fine" data-i18n="fine">Deposit is fully transferable to another available date with 30 days' notice. Balance of $500 is paid in person — cash or transfer — on the wedding day.</p>
+            </aside>
+
+            <div class="arrange-form">
+              <p class="af-title" data-i18n="af-title">Tell Lee about your day</p>
+              <div class="f-grid">
+                <div class="f-field"><label for="fName" data-i18n="f-name">Your names *</label><input id="fName" type="text" autocomplete="name"></div>
+                <div class="f-field"><label for="fEmail" data-i18n="f-email">Email *</label><input id="fEmail" type="email" autocomplete="email"></div>
+                <div class="f-field"><label for="fPhone" data-i18n="f-phone">Phone</label><input id="fPhone" type="tel" autocomplete="tel"></div>
+                <div class="f-field"><label for="fVenue" data-i18n="f-venue">Venue / suburb</label><input id="fVenue" type="text"></div>
+                <div class="f-field"><label for="fLang" data-i18n="f-lang">Ceremony languages</label><select id="fLang"><option>English + Vietnamese</option><option>English</option><option>Tiếng Việt</option></select></div>
+                <div class="f-field"><label for="fGuests" data-i18n="f-guests">Approx. guests</label><input id="fGuests" type="number" min="10" placeholder="120"></div>
+                <div class="f-field f-field--full"><label for="fMsg" data-i18n="f-msg">Anything Lee should know</label><textarea id="fMsg" rows="3"></textarea></div>
+              </div>
+              <div class="sum-pay">
+                <button class="btn btn-gold js-pay" type="button"><span data-i18n="pay">Confirm — pay the $500 deposit</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h17M15 6l6 6-6 6"/></svg></button>
+              </div>
+              <div class="held" id="heldPanel">
+                <b data-i18n="held-b">Your enquiry is ready to send.</b>
+                <p id="heldText"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REEL — the short film ═══ -->
+  <section class="reel" id="reel">
+    <div class="reel-card reveal">
+      <span class="tick tick--tl"></span><span class="tick tick--tr"></span><span class="tick tick--bl"></span><span class="tick tick--br"></span>
+      <div class="reel-media media-wrap" data-wrap="ballroom" aria-hidden="true">
+        <div class="ph ph--ballroom"><span class="ph-mark">LEE&nbsp;VU</span></div>
+        <img class="media-img" data-slot="ballroom" alt="Lee Vu hosting a wedding reception" loading="lazy" decoding="async">
+        <span class="tone"></span>
+        <button class="slot-add" data-pick="ballroom" type="button"><span>＋</span><em>Ballroom photo</em></button>
+      </div>
+      <div class="reel-veil"></div>
+      <div class="reel-content">
+        <div class="reel-copy">
+          <p class="eyebrow" data-i18n="reel-eyebrow">A short reel</p>
+          <h2 class="reel-title" data-i18n="reel-title">Real moments.<br>Lasting memories.</h2>
+          <p class="reel-meta" data-i18n="reel-meta">8 seconds</p>
+        </div>
+        <button class="play" data-open-film aria-label="Play showreel"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6L19 12z"/></svg></button>
+        <ul class="reel-tags"><li data-i18n="g1">Weddings</li><li data-i18n="g2">People</li><li data-i18n="g3">Connection</li><li data-i18n="g4">Sydney</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINALE — the harbour, his home ═══ -->
+  <section class="finale">
+    <figure class="finale-media media-wrap" data-wrap="signature">
+      <div class="ph ph--night"></div>
+      <img class="media-img" data-slot="signature" alt="Sydney Harbour at sunset — the Opera House, Lee's home city" loading="lazy" decoding="async">
+      <span class="finale-scrim" aria-hidden="true"></span>
+    </figure>
+    <div class="finale-inner">
+      <p class="eyebrow eyebrow--center reveal" data-i18n="foot-eyebrow">Est. 2006 · Sydney</p>
+      <p class="foot-script gold-text reveal" style="--d:.1s">Lee Vu</p>
+      <p class="foot-sub reveal" style="--d:.18s" data-i18n="foot-sub">Bilingual wedding MC — Sydney</p>
+      <a class="btn btn-gold reveal" style="--d:.26s" href="#enquire"><span data-i18n="foot-cta">Check your date</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h17M15 6l6 6-6 6"/></svg></a>
+      <div class="foot-bottom">
+        <span data-i18n="foot-rights">© 2026 Lee Vu · MC · Sydney, Australia</span>
+        <span data-i18n="foot-words">People · Stories · Cultures · Love</span>
+        <a class="to-top" href="#top"><span data-i18n="foot-top">Back to top</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- player -->
+<div class="modal" id="film" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <figure class="modal-box" role="dialog" aria-modal="true" aria-label="Showreel">
+    <button class="modal-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    <div class="modal-stage" id="stage">
+      <video id="reelVideo" playsinline preload="metadata"></video>
+      <div class="mreel" id="mReel" aria-hidden="true">
+        <section class="scene" data-dur="6"><div class="sc-center"><span class="script gold-text">Lee Vu</span><span class="sc-sub" data-i18n="r-words">People · Stories · Cultures · Love</span></div></section>
+        <section class="scene" data-dur="7"><div class="ph ph--ballroom"><span class="ph-mark">LEE&nbsp;VU</span></div><img class="m-img m-push" data-m="ballroom" alt=""><span class="tone"></span><p class="sc-cap cap-l gold-text" data-i18n="r-more">More than just an MC</p></section>
+        <section class="scene sc-solid" data-dur="5"><svg class="rings-svg" viewBox="0 0 200 110" fill="none"><circle class="rg" cx="72" cy="62" r="40" stroke="#e7d2a2" stroke-width="1.4"/><circle class="rg rg2" cx="122" cy="62" r="40" stroke="#c8a45f" stroke-width="1.4"/><path class="rg rg2" d="M122 12l5.5 11L122 34l-5.5-11z" stroke="#e7d2a2" stroke-width="1.2"/></svg><p class="sc-cap cap-c gold-text" style="bottom:10%"><span data-i18n="r-since">Since 2006</span><small data-i18n="r-since2">Hundreds of weddings</small></p></section>
+        <section class="scene" data-dur="7"><div class="ph ph--night"></div><img class="m-img m-push" data-m="signature" alt=""><span class="tone tone--warm"></span><p class="sc-cap cap-l gold-text" data-i18n="sig-script">Where vows meet the water.</p></section>
+        <section class="scene" data-dur="6"><div class="ph ph--portrait"></div><img class="m-img m-push" data-m="portrait" alt=""><p class="sc-cap cap-l gold-text" data-i18n="r-words2">People. Stories. Cultures. Love.</p></section>
+        <section class="scene sc-solid" data-dur="5"><canvas class="confetti-c" id="confettiC"></canvas><p class="sc-cap cap-c gold-text" style="font-size:clamp(2.6rem,5.5vw,4rem)">Trăm năm hạnh phúc<small data-i18n="r-cheers2">A hundred years of happiness</small></p></section>
+        <section class="scene" data-dur="7"><div class="sc-center"><span class="script gold-text">Lee Vu</span><span class="sc-sub" data-i18n="r-mc">Bilingual Wedding MC · Sydney</span></div><svg class="skyline-end" viewBox="0 0 420 90" fill="none"><g stroke="#c8a45f" stroke-width="1.2" stroke-linecap="round"><path d="M20 74 C26 46 44 30 74 22 C52 40 40 60 36 74"/><path d="M52 74 C60 40 82 24 116 16 C90 38 76 60 72 74"/><path d="M205 74 Q300 4 395 74"/><path d="M198 56 H412"/><path d="M205 74 V46 M395 74 V46"/></g></svg></section>
+      </div>
+      <div class="v-poster" id="vPoster">
+        <div class="ph ph--ballroom" id="vPosterPh"><span class="ph-mark">LEE&nbsp;VU</span></div>
+        <div class="stage-label"><span class="stage-script gold-text">Lee Vu</span><span class="stage-sub" data-i18n="modal-sub">Showreel · 8 seconds</span></div>
+      </div>
+      <span class="motion-tag" data-i18n="r-tag">Motion preview · final film coming soon</span>
+      <button class="v-bigplay" id="vBigPlay" aria-label="Play showreel"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6L19 12z"/></svg></button>
+      <div class="v-controls">
+        <button class="vbtn" id="vToggle" aria-label="Pause"><svg id="icPause" viewBox="0 0 24 24"><path d="M7 5h3.4v14H7zM13.6 5H17v14h-3.4z"/></svg><svg id="icPlay" viewBox="0 0 24 24" hidden><path d="M8 5.2v13.6L19 12z"/></svg></button>
+        <input type="range" id="vSeek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+        <div class="v-progress" aria-hidden="true"><i id="vBar"></i></div>
+        <span id="vTime">0:00</span>
+        <button class="vbtn" id="vMute" aria-label="Mute"><svg id="icSnd" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a3.5 3.5 0 0 0-2-3.15v6.3a3.5 3.5 0 0 0 2-3.15zm-2-7v2.1a5 5 0 0 1 0 9.8V19a7 7 0 0 0 0-14z"/></svg><svg id="icMut" viewBox="0 0 24 24" hidden><path d="M4 9v6h4l5 4V5L8 9H4zm12 .8 1.4-1.4 1.6 1.6 1.6-1.6L22 9.8 20.4 11.4 22 13l-1.4 1.4-1.6-1.6-1.6 1.6L16 13l1.6-1.6z"/></svg></button>
+        <button class="vbtn" id="vFull" aria-label="Fullscreen"><svg viewBox="0 0 24 24"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg></button>
+      </div>
+    </div>
+  </figure>
+</div>
+
+<div class="setup-bar" id="setupBar" role="region" aria-label="Photo setup">
+  <b id="sbCount">Photos: 0 / 4</b>
+  <button class="sb-btn sb-btn--solid" id="sbChoose" type="button">Choose photos</button>
+  <button class="sb-btn" id="sbExport" type="button">Export photos.js</button>
+  <button class="sb-x" id="sbClose" type="button" aria-label="Dismiss">✕</button>
+</div>
+<div class="drop-toast" id="toast" role="status"></div>
+<input type="file" id="filePick" accept="image/*" hidden>
+
+<script src="photos.js"></script>
+<script>
+(function(){
+  'use strict';
+  var $=function(s,c){return (c||document).querySelector(s)}, $$=function(s,c){return [].slice.call((c||document).querySelectorAll(s))};
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ═══ SWAP ZONE — the only edits needed ═══
+     STRIPE_LINK : Stripe/PayPal $500 link. Empty = elegant email fallback.
+     CAL_ICS     : Google Calendar secret iCal address → live availability.
+     BOOKED      : manually blocked dates (merged with ICS).
+     EMAIL       : enquiries address. */
+  var STRIPE_LINK='';
+  var CAL_ICS='';
+  var BOOKED=['2025-12-06','2025-12-13','2026-02-14'];
+  var EMAIL='mcleevu@gmail.com';
+
+  /* the promise — Lee's own commitments, from his biography. No invented reviews. */
+  var PROMISE={
+    en:[
+      {q:'Reliable, professional, creative — the promise I make to every couple, in both languages.',w:'Lee Vu — your MC for the evening'},
+      {q:'One wedding per date. From six o’clock, the whole evening is yours.',w:'Lee Vu'},
+      {q:'Two languages, one room — every vow lands for both sides of the family.',w:'Lee Vu'},
+      {q:'Proactive and flexible — I plan with you, then read the room on the night.',w:'Lee Vu'},
+      {q:'Hosting for Sydney’s Vietnamese community since 2006 — weddings are where it feels most at home.',w:'Lee Vu'},
+      {q:'People. Stories. Cultures. Love.',w:'Lee Vu — MC · Sydney'}
+    ],
+    vi:[
+      {q:'Đáng tin, chuyên nghiệp, sáng tạo — lời hứa tôi dành cho mỗi cặp đôi, bằng cả hai ngôn ngữ.',w:'Lee Vu — MC của buổi tối của bạn'},
+      {q:'Mỗi tối chỉ một đám cưới. Từ sáu giờ tối, cả buổi tiệc thuộc về bạn.',w:'Lee Vu'},
+      {q:'Hai ngôn ngữ, một căn phòng — mọi lời tuyên thệ đều trọn vẹn cho hai họ.',w:'Lee Vu'},
+      {q:'Chủ động, linh hoạt — tôi cùng bạn chuẩn bị, rồi đọc vị buổi tiệc trong đêm.',w:'Lee Vu'},
+      {q:'Đồng hành cùng cộng đồng người Việt tại Sydney từ 2006 — đám cưới là nơi tất cả gần gũi nhất.',w:'Lee Vu'},
+      {q:'Con người. Câu chuyện. Văn hoá. Tình yêu.',w:'Lee Vu — MC · Sydney'}
+    ]
+  };
+  function card(t,alt){return '<article class="tcard'+(alt?' tcard--alt':'')+'"><span class="tmark">“</span><p class="tquote">'+t.q+'</p><span class="twho">'+t.w+'</span></article>'}
+  function fill(id,arr,alt){var t=$(id);t.innerHTML=arr.map(function(x){return card(x,alt)}).join('')+arr.map(function(x){return card(x,alt)}).join('')}
+  fill('#trow1',PROMISE.en,false);
+
+  /* — veil safety: it can never stick — */
+  var veil=$('#veil');if(veil)setTimeout(function(){if(veil)veil.style.display='none'},1000);
+
+  /* ═══ photo slots ═══ */
+  var SLOTS=['hero','ballroom','signature','portrait'];
+  var LABEL={hero:'Golden-hour print',ballroom:'Ballroom / reel',signature:'Harbour finale',portrait:'Day portrait'};
+  var els={},wrapEls={},have={},mEls={};
+  var KEY='leePhotos_v1',store={},injected=window.LEE_PHOTOS||{};
+  try{store=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  SLOTS.forEach(function(s){
+    els[s]=$('img[data-slot="'+s+'"]');
+    mEls[s]=$('img[data-m="'+s+'"]');
+    wrapEls[s]=els[s]?els[s].closest('.media-wrap'):null;
+    if(els[s])els[s].addEventListener('load',function(){markHave(s)});
+    if(mEls[s])mEls[s].addEventListener('load',function(){mEls[s].classList.add('show')});
+  });
+  function markHave(s){have[s]=true;if(els[s])els[s].classList.add('loaded');if(wrapEls[s])wrapEls[s].classList.remove('is-missing');
+    if(s==='ballroom')posterFrom(els[s].currentSrc||els[s].src);refreshBar()}
+  function apply(s,url,remember){if(!url||(!els[s]&&!mEls[s]))return;if(els[s]){els[s].loading='eager';els[s].src=url;if(els[s].complete&&els[s].naturalWidth)markHave(s)}
+    if(mEls[s]){mEls[s].loading='eager';mEls[s].src=url}
+    if(remember){store[s]=url;try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}}}
+  function shrink(file,cb){var fr=new FileReader();fr.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,1920/Math.max(im.naturalWidth,im.naturalHeight));var cv=document.createElement('canvas');cv.width=Math.round(im.naturalWidth*k);cv.height=Math.round(im.naturalHeight*k);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);cb(cv.toDataURL('image/jpeg',.82))};im.src=fr.result};fr.readAsDataURL(file)}
+  var picker=$('#filePick'),picking=null;
+  function pick(slot){picking=slot;picker.value='';picker.click()}
+  picker.addEventListener('change',function(){var f=picker.files&&picker.files[0];if(!f||!picking)return;var slot=picking;shrink(f,function(url){apply(slot,url,true);toast('Added — '+LABEL[slot]);var next=SLOTS.filter(function(s){return !have[s]})[0];if(next)pick(next)})});
+  var SETUP=!document.documentElement.classList.contains('no-setup');
+  if(SETUP)$$('[data-pick]').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();pick(b.dataset.pick)})});
+  var sbar=$('#setupBar');
+  function refreshBar(){var n=SLOTS.filter(function(s){return !have[s]}).length;$('#sbCount').textContent='Photos: '+(4-n)+' / 4';document.body.classList.toggle('setup-done',n===0);sbar.style.display=document.body.classList.contains('setup-dismissed')?'none':''}
+  if(SETUP){
+  $('#sbChoose').addEventListener('click',function(){var n=SLOTS.filter(function(s){return !have[s]})[0];n?pick(n):toast('All photos added')});
+  $('#sbExport').addEventListener('click',function(){var keys=SLOTS.filter(function(s){return store[s]||injected[s]});if(!keys.length){toast('Choose photos first');return}var out={};keys.forEach(function(s){out[s]=store[s]||injected[s]});var src='/* photos.js '+new Date().toISOString()+' */\nwindow.LEE_PHOTOS='+JSON.stringify(out)+';';var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([src],{type:'text/javascript'}));a.download='photos.js';a.click();toast('photos.js downloaded — place beside index.html, redeploy')});
+  $('#sbClose').addEventListener('click',function(){document.body.classList.add('setup-dismissed');sbar.style.display='none'});
+  }
+  SLOTS.forEach(function(s){if(injected[s])apply(s,injected[s],false);else if(store[s])apply(s,store[s],false)});
+  refreshBar();
+  function posterFrom(url){var ph=$('#vPosterPh');if(ph&&url){ph.style.backgroundImage='linear-gradient(180deg,rgba(8,13,21,.4),rgba(8,13,21,.6)),url("'+url+'")';ph.style.backgroundSize='cover';ph.style.backgroundPosition='50% 26%'}}
+  var toastT,tEl=$('#toast');
+  function toast(m){tEl.textContent=m;tEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){tEl.classList.remove('show')},3200)}
+  if(SETUP){
+  document.addEventListener('dragover',function(e){e.preventDefault()});
+  document.addEventListener('drop',function(e){e.preventDefault();var f=e.dataTransfer&&e.dataTransfer.files[0];if(!f)return;
+    if(/^video\//.test(f.type)){enableVideo(URL.createObjectURL(f));video.src=videoSrc;toast('Showreel updated');return}
+    if(!/^image\//.test(f.type))return;var slot=SLOTS.filter(function(s){return !have[s]})[0]||'ballroom';
+    shrink(f,function(url){apply(slot,url,true);toast('Added — '+LABEL[slot])})});
+  }
+
+  /* ═══ sparks — barely there ═══ */
+  (function(){
+    if(reduced)return;return;/* sparks off — perf */
+    var cv=$('#sparks'),hero=$('.hero');if(!cv)return;
+    var ctx=cv.getContext('2d'),W=0,H=0,dpr=Math.min(2,devicePixelRatio||1),ps=[],stars=[],run=false,raf=null,last=0,spawnT=0;
+    function size(){var r=hero.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+    function mk(){return{x:W*(.38+Math.random()*.58),y:H*(.4+Math.random()*.55),vy:-(.1+Math.random()*.24),ph:Math.random()*6.28,r:.5+Math.random()*1.2,tw:Math.random()*6.28,a:.14+Math.random()*.2}}
+    function frame(ts){
+      if(!run)return;var dt=Math.min(50,ts-last);last=ts;
+      ctx.clearRect(0,0,W,H);
+      if(ps.length<16&&Math.random()<.22)ps.push(mk());
+      ps=ps.filter(function(p){return p.y>-10});
+      ps.forEach(function(p){p.y+=p.vy*dt*.06;p.ph+=dt*.0007;p.tw+=dt*.0035;
+        ctx.globalAlpha=p.a*(.5+.5*Math.sin(p.tw));ctx.fillStyle='#f0d9a8';
+        ctx.beginPath();ctx.arc(p.x+Math.sin(p.ph)*7,p.y,p.r,0,6.283);ctx.fill()});
+      spawnT+=dt;
+      if(spawnT>3600&&stars.length<2){spawnT=0;stars.push({x:W*(.42+Math.random()*.5),y:H*(.12+Math.random()*.45),t:0,life:1.4,r:5+Math.random()*8})}
+      stars=stars.filter(function(s){s.t+=dt/1000;return s.t<s.life});
+      stars.forEach(function(s){var k=Math.sin(Math.PI*s.t/s.life),r=s.r*k;
+        ctx.globalAlpha=.7*k;ctx.strokeStyle='#f7e7c3';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(s.x-r,s.y);ctx.lineTo(s.x+r,s.y);ctx.moveTo(s.x,s.y-r);ctx.lineTo(s.x,s.y+r);ctx.stroke()});
+      ctx.globalAlpha=1;raf=requestAnimationFrame(frame);
+    }
+    function setRun(v){if(v===run)return;run=v;if(v){last=performance.now();raf=requestAnimationFrame(frame)}else if(raf)cancelAnimationFrame(raf)}
+    size();addEventListener('resize',size);
+    new IntersectionObserver(function(es){setRun(es[0].isIntersecting)},{threshold:.05}).observe(hero);
+  })();
+
+  /* ═══ calendar ═══ */
+  var grid=$('#calGrid'),mLabel=$('#calMonth'),selDate=null,view=new Date();view.setDate(1);
+  var today=new Date();today.setHours(0,0,0,0);
+  var MAX=new Date(today);MAX.setFullYear(MAX.getFullYear()+1);
+  ['Mo','Tu','We','Th','Fr','Sa','Su'].forEach(function(d){var e=document.createElement('span');e.className='cal-dow';e.textContent=d;grid.appendChild(e)});
+  function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  function renderCal(){
+    mLabel.textContent=view.toLocaleDateString('en-AU',{month:'long',year:'numeric'});
+    $$('.cal-d',grid).forEach(function(n){n.remove()});
+    var y=view.getFullYear(),m=view.getMonth();
+    var lead=(new Date(y,m,1).getDay()+6)%7,dim=new Date(y,m+1,0).getDate();
+    for(var i=0;i<lead;i++){var pad=document.createElement('span');pad.className='cal-d';pad.style.visibility='hidden';grid.appendChild(pad)}
+    for(var d=1;d<=dim;d++){
+      (function(d){
+        var dt=new Date(y,m,d),b=document.createElement('button');
+        b.type='button';b.className='cal-d';b.textContent=d;
+        b.setAttribute('aria-label',dt.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));
+        var key=iso(dt);
+        if(dt.getTime()===today.getTime())b.classList.add('today');
+        if(dt<today||dt>MAX){b.disabled=true}
+        else if(BOOKED.indexOf(key)>-1){b.disabled=true;b.classList.add('booked');b.title='Already booked'}
+        else{if(selDate&&selDate.getTime()===dt.getTime())b.classList.add('sel');
+          b.addEventListener('click',function(){selDate=dt;renderCal();updateSum();var ev=$('#evDate');if(ev)ev.textContent=pretty(selDate);if(curStep<2)goStep(2)})}
+        grid.appendChild(b);
+      })(d);
+    }
+    $('#calPrev').disabled=(new Date(view.getFullYear(),view.getMonth(),1)<=new Date(today.getFullYear(),today.getMonth(),1));
+    $('#calNext').disabled=(new Date(view.getFullYear(),view.getMonth(),1)>=new Date(MAX.getFullYear(),MAX.getMonth(),1));
+  }
+  $('#calPrev').addEventListener('click',function(){view.setMonth(view.getMonth()-1);renderCal()});
+  $('#calNext').addEventListener('click',function(){view.setMonth(view.getMonth()+1);renderCal()});
+  renderCal();
+  if(CAL_ICS){
+    fetch(CAL_ICS).then(function(r){return r.text()}).then(function(t){
+      var re=/DTSTART[^:]*:(\d{8})/g,m;while((m=re.exec(t))){var s=m[1];var k=s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8);if(BOOKED.indexOf(k)<0)BOOKED.push(k)}
+      renderCal();
+    }).catch(function(){});
+  }
+  function pretty(d){return d?d.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'}):''}
+  var lang='en';
+  function updateSum(){
+    var s=$('#sumDate'),c=$('#calSel');
+    if(selDate){
+      s.textContent=pretty(selDate);s.classList.remove('empty');
+      c.innerHTML=(lang==='vi'?'Ngày của bạn: ':'Your date: ')+'<b>'+pretty(selDate)+'</b>';
+    }else{
+      s.textContent=lang==='vi'?'Chọn ngày bên dưới…':'Select a date below…';s.classList.add('empty');
+      c.innerHTML=(lang==='vi'?'Ngày của bạn: ':'Your date: ')+'<b>'+(lang==='vi'?'chưa chọn':'not chosen yet')+'</b>';
+    }
+  }
+
+  /* ═══ stepped reveal — 01 date → 02 evening → 03 arrangement ═══ */
+  var bsteps=[$('#bstep1'),$('#bstep2'),$('#bstep3')],maxStep=1,curStep=1;
+  function showStep(n){
+    curStep=Math.max(curStep,n);maxStep=Math.max(maxStep,n);
+    bsteps.forEach(function(el,i){if(!el)return;if((i+1)===n){el.hidden=false;void el.offsetWidth;el.classList.add('b-in')}});
+    $$('.sbar-item').forEach(function(s){s.classList.toggle('is-on',+s.dataset.sb<=maxStep)});
+    var f=$('#sbarFill');if(f)f.style.width=(Math.min(maxStep,3)-1)/2*100+'%';
+  }
+  function goStep(n){showStep(n);var el=bsteps[n-1];if(el){var y=el.getBoundingClientRect().top+window.scrollY-112;window.scrollTo({top:Math.max(0,y),behavior:reduced?'auto':'smooth'})}}
+  $$('.sbar-item').forEach(function(s){s.addEventListener('click',function(){var k=+s.dataset.sb;if(k<=maxStep&&k!==curStep)goStep(k)})});
+  var to3=$('#toStep3');if(to3)to3.addEventListener('click',function(){goStep(3)});
+
+  /* ═══ deposit flow — end to end ═══ */
+  function bad(id){var el=$(id);el.classList.add('f-err');el.focus&&el.focus({preventScroll:true});setTimeout(function(){el.classList.remove('f-err')},2400)}
+  function payFlow(fromBottom){
+    if(!selDate){toast(lang==='vi'?'Hãy chọn ngày trước':'Pick a date first');$('#calMonth').scrollIntoView({behavior:'smooth',block:'center'});return}
+    var name=$('#fName').value.trim(),email=$('#fEmail').value.trim();
+    if(!name){bad('#fName');toast(lang==='vi'?'Cho biết tên của hai bạn':'Your names, please');$('#fName').scrollIntoView({behavior:'smooth',block:'center'});return}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){bad('#fEmail');toast(lang==='vi'?'Email chưa đúng':'A valid email, please');$('#fEmail').scrollIntoView({behavior:'smooth',block:'center'});return}
+    var body='Booking enquiry — '+pretty(selDate)+'%0D%0A%0D%0ANames: '+encodeURIComponent(name)+'%0D%0AEmail: '+encodeURIComponent(email)+'%0D%0APhone: '+encodeURIComponent($('#fPhone').value)+'%0D%0AVenue: '+encodeURIComponent($('#fVenue').value)+'%0D%0ALanguages: '+encodeURIComponent($('#fLang').value)+'%0D%0AGuests: '+encodeURIComponent($('#fGuests').value)+'%0D%0A%0D%0A'+encodeURIComponent($('#fMsg').value)+'%0D%0A%0D%0A—I’d like to pay the $500 deposit to secure this date.';
+    if(STRIPE_LINK){
+      window.open(STRIPE_LINK,'_blank','noopener');
+      $('#heldText').textContent=lang==='vi'?'Cổng thanh toán $500 đã mở trong tab mới. Sau khi thanh toán, lịch của Lee được xác nhận và email xác nhận sẽ được gửi.':'Secure checkout for your $500 deposit has opened in a new tab. Once paid, Lee’s calendar is confirmed and a confirmation email is on its way.';
+    }else{
+      location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Booking — '+pretty(selDate))+'&body='+body;
+      $('#heldText').textContent=lang==='vi'?'Ứng dụng email của bạn đã mở với mọi thông tin — gửi đi, và Lee sẽ trả lời trực tiếp về lịch trống cùng hướng dẫn đặt cọc $500.':'Your email app has opened with everything pre-filled — send it, and Lee will reply personally with availability and payment details for the $500 deposit.';
+    }
+    $('#heldPanel').classList.add('show');
+    if(fromBottom)$('#sumDate').scrollIntoView({behavior:'smooth',block:'center'});
+    toast((lang==='vi'?'Đã soạn thư — ':'Enquiry drafted — ')+pretty(selDate));
+  }
+  $$('.js-pay').forEach(function(b){b.addEventListener('click',function(){payFlow(false)})});
+
+  /* ═══ player ═══ */
+  var stage=$('#stage'),video=$('#reelVideo'),bigPlay=$('#vBigPlay'),vToggle=$('#vToggle'),vSeek=$('#vSeek'),vBar=$('#vBar'),vTime=$('#vTime'),vMute=$('#vMute'),vFull=$('#vFull'),icPlay=$('#icPlay'),icPause=$('#icPause'),icSnd=$('#icSnd'),icMut=$('#icMut'),modal=$('#film');
+  var videoSrc=null,firstPlay=false,mode='none',muted=false;
+  function fmt(t){t=isFinite(t)?t:0;var m=Math.floor(t/60),s=Math.floor(t%60);return m+':'+(s<10?'0':'')+s}
+  function icons(){var p=(mode==='video')?!video.paused:(mode==='motion'&&mPlaying);icPause.hidden=!p;icPlay.hidden=p}
+  function vUI(){var d=video.duration||0,c=video.currentTime||0,pct=d?c/d*100:0;vSeek.value=d?Math.round(c/d*1000):0;vSeek.style.background='linear-gradient(90deg,var(--gold) '+pct+'%,rgba(231,210,162,.25) '+pct+'%)';vTime.textContent=fmt(c)+' / '+fmt(d);icons()}
+  video.addEventListener('loadedmetadata',vUI);video.addEventListener('timeupdate',vUI);
+  video.addEventListener('play',function(){stage.classList.add('is-playing-video');if(!firstPlay){firstPlay=true;stage.classList.add('has-started')}vUI()});video.addEventListener('pause',function(){stage.classList.remove('is-playing-video');vUI()});video.addEventListener('ended',function(){stage.classList.remove('is-playing-video');video.currentTime=0;vUI()});
+  var scenes=$$('.scene',$('#mReel')),starts=[],TOTAL=0;
+  scenes.forEach(function(s){starts.push(TOTAL);TOTAL+=(+s.dataset.dur||5)*1000});
+  var mPlaying=false,mT=0,mIdx=-1,mRAF=null,mLast=0,confRAF=null,confOn=false;
+  var AC=null,master,arpTimer=null,arpN=0,ci=0;
+  /* gentle piano lullaby — C(add9) · Am7 · Fmaj7 · G, slow 6/8 arpeggio */
+  var PROG=[[130.81,196,246.94,329.63],[110,164.81,220,261.63],[87.31,174.61,220,261.63],[98,146.83,196,293.66]];
+  var ARP=[0,1,2,3,2,1];
+  function aInit(){if(AC)return AC.resume();AC=new (window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=muted?0:0.13;master.connect(AC.destination)}
+  function piano(f,t,vel){var o=AC.createOscillator(),o2=AC.createOscillator(),g=AC.createGain(),g2=AC.createGain();o.type='sine';o.frequency.value=f;o2.type='triangle';o2.frequency.value=f*2;o2.detune.value=4;g2.gain.value=.16;o2.connect(g2);g2.connect(g);o.connect(g);g.connect(master);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(vel,t+.04);g.gain.exponentialRampToValueAtTime(0.0001,t+3.6);o.start(t);o2.start(t);o.stop(t+3.8);o2.stop(t+3.8)}
+  function aStart(){aInit();ci=0;arpN=0;arpTimer=setInterval(function(){var t=AC.currentTime+.05,ch=PROG[ci];if(arpN%6===0)piano(ch[0]/2,t,.17);piano(ch[ARP[arpN%6]],t,.085);if(arpN%6===2)piano(ch[3]*2,t,.045);arpN++;if(arpN%6===0)ci=(ci+1)%PROG.length},500)}
+  function aStop(){if(arpTimer){clearInterval(arpTimer);arpTimer=null}if(AC){setTimeout(function(){if(!mPlaying&&AC)AC.suspend()},700)}}
+  function confetti(){var cv=$('#confettiC'),ctx=cv.getContext('2d');cv.width=stage.clientWidth;cv.height=stage.clientHeight;var ps=[];for(var i=0;i<90;i++)ps.push({x:Math.random()*cv.width,y:Math.random()*-cv.height,v:.35+Math.random()*.75,s:2+Math.random()*3.4,p:Math.random()*6.28,c:['#e7d2a2','#c8a45f','#f6f1e6'][i%3],r:Math.random()*6.28});confOn=true;(function loop(){if(!confOn)return;ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(function(p){p.y+=p.v;p.p+=.012;p.x+=Math.sin(p.p)*.5;p.r+=.01;if(p.y>cv.height+10){p.y=-10;p.x=Math.random()*cv.width}ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.globalAlpha=.85;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*1.5);ctx.restore()});confRAF=requestAnimationFrame(loop)})()}
+  function activate(i){scenes.forEach(function(s,j){var on=j===i;s.classList.remove('on');if(on){void s.offsetWidth;s.classList.add('on')}var im=$('img',s);if(im&&on){var src=els[im.dataset.m];if(src&&(src.currentSrc||src.src)){im.src=src.currentSrc||src.src;im.classList.add('show')}}if(on&&$('canvas',s))confetti();if(!on&&$('canvas',s)){confOn=false;if(confRAF)cancelAnimationFrame(confRAF)}});mIdx=i}
+  function mTick(ts){if(!mPlaying)return;mT+=ts-mLast;mLast=ts;while(mIdx<scenes.length-1&&mT>starts[mIdx+1])activate(mIdx+1);vBar.style.transform='scaleX('+Math.min(1,mT/TOTAL)+')';vTime.textContent=fmt(mT/1000)+' / '+fmt(TOTAL/1000);if(mT>=TOTAL){mEnd();return}mRAF=requestAnimationFrame(mTick)}
+  function mStart(){aInit();mT=0;activate(0);mPlaying=true;mLast=performance.now();stage.classList.add('is-playing-motion');stage.classList.remove('ended');mRAF=requestAnimationFrame(mTick);aStart();icons()}
+  function mPause(){mPlaying=false;cancelAnimationFrame(mRAF);confOn=false;if(confRAF)cancelAnimationFrame(confRAF);aStop();stage.classList.remove('is-playing-motion');icons()}
+  function mEnd(){mPause();mT=TOTAL;stage.classList.add('ended');vBar.style.transform='scaleX(1)';vTime.textContent=fmt(TOTAL/1000)+' / '+fmt(TOTAL/1000)}
+  function mToggle(){mPlaying?mPause():mStart()}
+  function tryVideo(u){return new Promise(function(res,rej){var v=document.createElement('video');v.preload='metadata';v.onloadedmetadata=function(){res(u)};v.onerror=rej;v.src=u})}
+  (function(){var list=window.LEE_VIDEO?[window.LEE_VIDEO,'media/lee-vu-reel.mp4']:['media/lee-vu-reel.mp4','assets/showreel.mp4','showreel.mp4'];var p=Promise.reject();list.forEach(function(u){p=p.catch(function(){return tryVideo(u)})});p.then(function(u){videoSrc=u;mode='video';stage.classList.add('can-play')}).catch(function(){mode='motion';stage.classList.add('motion');vTime.textContent='0:00 / '+fmt(TOTAL/1000)})})();
+  function enableVideo(src){videoSrc=src;mode='video';stage.classList.add('can-play');stage.classList.remove('motion')}
+  bigPlay.addEventListener('click',function(){if(mode==='video'&&videoSrc)video.play();else if(mode==='motion')mStart()});
+  vToggle.addEventListener('click',function(){if(mode==='video'){video.paused?video.play():video.pause()}else if(mode==='motion'){mToggle()}});
+  vSeek.addEventListener('input',function(){if(mode==='video'&&video.duration){video.currentTime=vSeek.value/1000*video.duration;vUI()}});
+  vMute.addEventListener('click',function(){if(mode==='motion'){muted=!muted;if(master)master.gain.value=muted?0:0.16}else{video.muted=!video.muted;muted=video.muted}icSnd.hidden=muted;icMut.hidden=!muted});
+  vFull.addEventListener('click',function(){document.fullscreenElement?document.exitFullscreen():stage.requestFullscreen&&stage.requestFullscreen()});
+  function openFilm(){modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';if(mode==='video'){if(videoSrc&&!video.getAttribute('src'))video.src=videoSrc}else if(mode==='motion'){setTimeout(function(){if(!mPlaying)mStart()},380)}}
+  function closeFilm(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(mode==='video'&&!video.paused)video.pause();if(mode==='motion'&&mPlaying)mPause()}
+  $$('[data-open-film]').forEach(function(b){b.addEventListener('click',openFilm)});
+  $$('[data-close]',modal).forEach(function(el){el.addEventListener('click',closeFilm)});
+  window.addEventListener('keydown',function(e){if(e.key==='Escape'){closeFilm();if(document.body.classList.contains('menu-open'))setMenu(false)}if(!modal.classList.contains('open'))return;if(e.key===' '){e.preventDefault();vToggle.click()}if(mode==='video'&&video.duration){if(e.key==='ArrowRight')video.currentTime=Math.min(video.duration,video.currentTime+5);if(e.key==='ArrowLeft')video.currentTime=Math.max(0,video.currentTime-5)}if(e.key==='m'||e.key==='M')vMute.click();if(e.key==='f'||e.key==='F')vFull.click()});
+
+  /* chrome */
+  var head=$('.site-head'),barP=$('.scroll-progress'),doc=document.documentElement;
+  function onScroll(){head.classList.toggle('scrolled',scrollY>24);var m=doc.scrollHeight-innerHeight;barP.style.width=(m>0?scrollY/m*100:0)+'%'}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var menuBtn=$('.menu-btn');
+  function setMenu(o){document.body.classList.toggle('menu-open',o);menuBtn.setAttribute('aria-expanded',o)}
+  menuBtn.addEventListener('click',function(){setMenu(!document.body.classList.contains('menu-open'))});
+  $$('.menu-nav a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){(clipFor.get(e.target)||[e.target]).forEach(function(t){t.classList.add('in')});io.unobserve(e.target)}})},{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+  var clipFor=new Map();
+  $$('.reveal,.reveal-x').forEach(function(el){io.observe(el)});
+  $$('.reveal-clip').forEach(function(el){var p=el.parentElement||el;if(!clipFor.has(p)){clipFor.set(p,[]);io.observe(p)}clipFor.get(p).push(el)});
+  $$('.collage-main .frame').forEach(function(el){io.observe(el)});
+
+  /* gold cursor */
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduced){
+    document.documentElement.classList.add('has-cur');
+    var dot=$('.cur-dot'),ring=$('.cur-ring'),mx=0,my=0,rx=0,ry=0,shown=false;
+    addEventListener('mousemove',function(e){
+      mx=e.clientX;my=e.clientY;
+      if(!shown){shown=true;rx=mx;ry=my}
+      var text=e.target.closest&&e.target.closest('input,textarea');
+      dot.style.opacity=text?0:1;ring.style.opacity=text?0:1;
+      dot.style.left=mx+'px';dot.style.top=my+'px';
+      var t=e.target.closest&&e.target.closest('a,button,select,label,[data-pick]');
+      ring.classList.toggle('hot',!!t&&!text);
+    },{passive:true});
+    document.addEventListener('mouseleave',function(){dot.style.opacity=0;ring.style.opacity=0;shown=false});
+    (function loop(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+  }
+
+  /* ═══ EN / VI — VI strings: polish via Gemini/ChatGPT, keep keys identical ═══ */
+  var I18N={
+    en:{'brand-sub':'Sydney · Bilingual MC',eyebrow:'Sydney · English + Vietnamese',t1:'Bilingual',t2:'wedding MC',t3:'in <em class="gold-text">Sydney.</em>',lede:'Since 2006, Lee Vu has hosted hundreds of weddings in English and Vietnamese — creating unforgettable moments.',cta1:'Book your date',cta2:'Watch Lee in action',note:'More than just an MC',w1:'People',w2:'Stories',w3:'Cultures',w4:'Love',cue:'Scroll',m1:'Home',m2:'The Evening',m3:'The Reel',m4:'The Promise',m5:'Book Lee','menu-tag':'Sydney · English + Vietnamese','in-eyebrow':'The evening · one couple at a time','in-title':'From six o’clock, Lee belongs entirely to your evening.','in-body':'He arrives as your guests do — calm, prepared, wholly present — and stays until the final farewell. Earlier in the day you’ll find him at his practice, caring for Sydney’s community. That is the whole arrangement. No packages, no tiers: one couple, one night, his full attention.','sun-b':'LAST DANCE','pr-b':'the golden hour','pr-note':'One couple per evening — <em>the whole night, his full attention.</em>','reel-eyebrow':'A short reel','reel-title':'Real moments.<br>Lasting memories.','reel-meta':'8 seconds',g1:'Weddings',g2:'People',g3:'Connection',g4:'Sydney','w-eyebrow':'The promise · est. 2006','w-title':'One couple, one evening.<br>Here is what Lee brings to it.','p-eyebrow':'Before six o’clock','p-title':'A Greater Purpose','p-body':'Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney’s Vietnamese community.','ahc-sub':'Optometry · Audiology · Sydney',quote:'Different conversations. A&nbsp;shared purpose.',cap:'Sydney Always Home','b-eyebrow':'Book your date','b-title':'Reserve Lee for the day it all begins.','b-lede':'One engagement only per evening — Lee joins you from 6:00 pm until the ceremony’s end.','b-contact':'Prefer to talk it through?','cal-sel':'Your date:','cal-none':'not chosen yet',sb1:'Choose a date',sb2:'Your evening',sb3:'The arrangement','ev-eyebrow':'Your evening —','ev-free':'Date noted. Lee confirms every date personally — your enquiry goes straight to him.',ev1t:'The arrival',ev1:'Lee arrives as your guests do — soundcheck, a quiet word with the venue, fully prepared.',ev2s:'Ceremony',ev2t:'Two languages, one room',ev2:'Every vow and announcement lands — once in English, once in Vietnamese, never twice as long.',ev3s:'Reception',ev3t:'The warm part of the night',ev3:'Toasts, translations and the moments that make both sides of the family one room.',ev4s:'Last dance',ev4t:'The farewell',ev4:'He closes the evening gently — and your date is complete, start to finish.','ev-cta':'Continue — see the arrangement','af-title':'Tell Lee about your day','cal-note':'Pick your date —','cal-note2':'a $500 deposit holds yours for 48 hours.','f-name':'Your names *','f-email':'Email *','f-phone':'Phone','f-venue':'Venue / suburb','f-lang':'Ceremony languages','f-guests':'Approx. guests','f-msg':'Anything Lee should know','sum-eyebrow':'Your date','sum-empty':'Pick your date on the calendar…','sum-fee':'Engagement fee — from 6pm to the final farewell','sum-dep':'Deposit — today, online','sum-dep2':'Secures your date','sum-bal':'Balance — in person','sum-bal2':'Paid to Lee on the day',pay:'Confirm — pay the $500 deposit','held-b':'Your enquiry is ready to send.',fine:'Deposit is fully transferable to another available date with 30 days’ notice. Balance of $500 is paid in person — cash or transfer — on the wedding day.','foot-eyebrow':'Est. 2006 · Sydney','foot-sub':'Bilingual wedding MC — Sydney','foot-cta':'Check your date','foot-words':'People · Stories · Cultures · Love','foot-rights':'© 2026 Lee Vu · MC · Sydney, Australia','foot-top':'Back to top','modal-sub':'Showreel · 8 seconds','r-words':'People · Stories · Cultures · Love','r-more':'More than just an MC','r-since':'Since 2006','r-since2':'Hundreds of weddings','sig-script':'Where vows meet the water.','r-words2':'People. Stories. Cultures. Love.','r-cheers2':'A hundred years of happiness','r-mc':'Bilingual Wedding MC · Sydney','r-tag':'Motion preview · final film coming soon'},
+    vi:{'brand-sub':'Sydney · MC song ngữ',eyebrow:'Sydney · Tiếng Anh + Tiếng Việt',t1:'MC đám cưới',t2:'song ngữ tại',t3:'<em class="gold-text">Sydney.</em>',lede:'Từ năm 2006, Lee Vu đã dẫn dắt hàng trăm đám cưới bằng tiếng Anh và tiếng Việt — tạo nên những khoảnh khắc khó quên.',cta1:'Đặt lịch của bạn',cta2:'Xem Lee trên sân khấu',note:'Hơn cả một MC',w1:'Con người',w2:'Câu chuyện',w3:'Văn hoá',w4:'Tình yêu',cue:'Cuộn',m1:'Trang chủ',m2:'Buổi tiệc',m3:'Reel',m4:'Lời hứa',m5:'Đặt lịch Lee','menu-tag':'Sydney · Tiếng Anh + Tiếng Việt','in-eyebrow':'Buổi tối · mỗi lần một cặp đôi','in-title':'Từ sáu giờ tối, Lee thuộc trọn về buổi tiệc của bạn.','in-body':'Anh đến cùng lúc với khách mời — bình thản, chu đáo, hiện diện trọn vẹn — và ở lại đến lời chia tay cuối cùng. Ban ngày, bạn sẽ gặp anh tại phòng khám, nơi anh phục vụ cộng đồng Sydney. Đó là toàn bộ thỏa thuận: không gói dịch vụ, không phân cấp — một cặp đôi, một đêm, trọn vẹn sự tập trung của anh.','sun-b':'ĐIỆU NHẢY CUỐI','pr-b':'giờ vàng','pr-note':'Mỗi tối chỉ một cặp đôi — <em>trọn vẹn buổi tối, trọn vẹn sự chú tâm.</em>','reel-eyebrow':'Đoạn reel ngắn','reel-title':'Khoảnh khắc thật.<br>Ký ức mãi không phai.','reel-meta':'8 giây',g1:'Đám cưới',g2:'Con người',g3:'Kết nối',g4:'Sydney','w-eyebrow':'Lời hứa · từ 2006','w-title':'Một cặp đôi, một buổi tối.<br>Đây là điều Lee mang đến.','p-eyebrow':'Trước sáu giờ tối','p-title':'Một sứ mệnh lớn hơn','p-body':'Xa chiếc micro, Lee làm việc trong ngành nhãn khoa và thính học, và đã dành nhiều năm đồng hành cùng cộng đồng người Việt tại Sydney.','ahc-sub':'Nhãn khoa · Thính học · Sydney',quote:'Những cuộc trò chuyện khác biệt. Một&nbsp;sứ mệnh chung.',cap:'Sydney luôn là nhà','b-eyebrow':'Đặt lịch của bạn','b-title':'Để Lee đồng hành trong ngày trọng đại.','b-lede':'Mỗi tối chỉ một buổi — Lee hiện diện từ 6:00 pm đến tiếng nhạc cuối.','b-contact':'Muốn trò chuyện trực tiếp?','cal-sel':'Ngày của bạn:','cal-none':'chưa chọn',sb1:'Chọn ngày',sb2:'Buổi tiệc của bạn',sb3:'Thoả thuận','ev-eyebrow':'Buổi tiệc của bạn —','ev-free':'Đã ghi nhận ngày của bạn. Lee xác nhận từng lịch riêng — yêu cầu của bạn sẽ đến thẳng anh.',ev1t:'Buổi đón khách',ev1:'Lee đến cùng lúc với khách mời — kiểm tra âm thanh, chuyện trò nhẹ nhàng với nơi tổ chức, chuẩn bị trọn vẹn.',ev2s:'Lễ cưới',ev2t:'Hai ngôn ngữ, một căn phòng',ev2:'Mọi lời tuyên thệ và thông báo đều trọn vẹn — tiếng Anh rồi tiếng Việt, mà không kéo dài gấp đôi.',ev3s:'Tiệc tối',ev3t:'Phần ấm nhất của đêm',ev3:'Lời chúc, phiên dịch và những khoảnh khắc gắn hai họ thành một mái nhà.',ev4s:'Điệu nhảy cuối',ev4t:'Lời tạm biệt',ev4:'Anh khép lại buổi tối nhẹ nhàng — và ngày của bạn trọn vẹn từ đầu đến cuối.','ev-cta':'Tiếp tục — xem thoả thuận','af-title':'Kể Lee nghe về ngày của bạn','cal-note':'Chọn ngày của bạn —','cal-note2':'đặt cọc $500 giữ chỗ của bạn trong 48 giờ.','f-name':'Tên của hai bạn *','f-email':'Email *','f-phone':'Điện thoại','f-venue':'Địa điểm / khu vực','f-lang':'Ngôn ngữ lễ cưới','f-guests':'Số khách dự kiến','f-msg':'Điều Lee nên biết','sum-eyebrow':'Ngày của bạn','sum-empty':'Chọn ngày trên lịch…','sum-fee':'Phí đồng hành — từ 6pm đến tiếng nhạc cuối','sum-dep':'Đặt cọc — hôm nay, online','sum-dep2':'Giữ ngày của bạn','sum-bal':'Phần còn lại — trực tiếp','sum-bal2':'Thanh toán cho Lee trong ngày',pay:'Xác nhận — đặt cọc $500','held-b':'Thư hỏi lịch đã sẵn sàng để gửi.',fine:'Tiền cọc có thể chuyển sang ngày khác còn trống với thông báo trước 30 ngày. Phần còn lại $500 thanh toán trực tiếp — tiền mặt hoặc chuyển khoản — trong ngày cưới.','foot-eyebrow':'Từ 2006 · Sydney','foot-sub':'MC đám cưới song ngữ — Sydney','foot-cta':'Xem ngày của bạn','foot-words':'Con người · Câu chuyện · Văn hoá · Tình yêu','foot-rights':'© 2026 Lee Vu · MC · Sydney, Úc','foot-top':'Lên đầu trang','modal-sub':'Reel · 8 giây','r-words':'Con người · Câu chuyện · Văn hoá · Tình yêu','r-more':'Hơn cả một MC','r-since':'Từ năm 2006','r-since2':'Hàng trăm đám cưới','sig-script':'Nơi lời thề chạm dòng nước.','r-words2':'Con người. Câu chuyện. Văn hoá. Tình yêu.','r-cheers2':'A hundred years of happiness','r-mc':'MC đám cưới song ngữ · Sydney','r-tag':'Xem trước · phim đầy đủ sắp ra mắt'}
+  };
+  function setLang(l){
+    lang=l;document.documentElement.lang=l==='vi'?'vi':'en';
+    $$('[data-i18n]').forEach(function(el){var v=I18N[l][el.dataset.i18n];if(v!=null)el.innerHTML=v});
+    fill('#trow1',PROMISE[l]||PROMISE.en,false);
+    $$('.lang-btn').forEach(function(b){var a=b.dataset.lang===l;b.classList.toggle('is-active',a);b.setAttribute('aria-pressed',a)});
+    updateSum();
+  }
+  $$('.lang-btn').forEach(function(b){b.addEventListener('click',function(){if(b.classList.contains('is-active'))return;document.body.style.opacity=.55;setTimeout(function(){setLang(b.dataset.lang);document.body.style.opacity=''},160)})});
+})();
+</script>
+</body>
+</html>

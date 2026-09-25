@@ -6,3 +6,4 @@ work/
 .env.local
 .env.*.local
 .DS_Store
+artifacts/
