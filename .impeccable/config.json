@@ -1,0 +1,71 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "deploy-candle/index.html"
+        ],
+        "createdAt": "2026-09-25T23:47:26.415Z",
+        "reason": "sanctioned: approved Golden Treatment direction, shipped production 2026-09-25, render-verified 26 Sep, predates session (gold-script signature move #1)"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "deploy-candle/index.html"
+        ],
+        "createdAt": "2026-09-25T23:47:26.449Z",
+        "reason": "sanctioned: approved Golden Treatment direction, shipped production 2026-09-25, render-verified 26 Sep, predates session (ivory-surface gold eyebrows/hairlines per treatment; 1.0:1 pair is detector pairing artifact — title sits on photo+shade, not paper)"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "deploy-candle/index.html"
+        ],
+        "createdAt": "2026-09-25T23:47:26.483Z",
+        "reason": "sanctioned: approved Golden Treatment direction, shipped production 2026-09-25, render-verified 26 Sep, predates session (candlelight glow signature move #4, anchored to photo light source)"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "deploy-candle/index.html"
+        ],
+        "createdAt": "2026-09-25T23:47:26.517Z",
+        "reason": "sanctioned: approved Golden Treatment direction, shipped production 2026-09-25, render-verified 26 Sep, predates session (shipped entrance motion, reduced-motion guarded line 495)"
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "deploy-candle/index.html"
+        ],
+        "createdAt": "2026-09-25T23:47:26.552Z",
+        "reason": "sanctioned: approved Golden Treatment direction, shipped production 2026-09-25, render-verified 26 Sep, predates session (letterspaced gold eyebrow + hairline = documented signature move #3)"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "deploy-candle/index.html"
+        ],
+        "createdAt": "2026-09-25T23:47:26.587Z",
+        "reason": "sanctioned: approved Golden Treatment direction, shipped production 2026-09-25, render-verified 26 Sep, predates session (false positive: 7 imgs data-slot runtime-filled via apply() index.html:935, render-verified)"
+      },
+      {
+        "rule": "buried-raster",
+        "value": "*",
+        "files": [
+          "deploy-candle/index.html"
+        ],
+        "createdAt": "2026-09-25T23:47:26.621Z",
+        "reason": "sanctioned: approved Golden Treatment direction, shipped production 2026-09-25, render-verified 26 Sep, predates session (intentional whisper-texture atmosphere + fade-in hero initial state)"
+      }
+    ]
+  }
+}
