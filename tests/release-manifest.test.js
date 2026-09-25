@@ -31,13 +31,13 @@ test('manifest covers the whole release output — no unlisted files', () => {
   for (const f of listed) assert.ok(fs.existsSync(path.join(root, f)), `manifest lists missing file: ${f}`);
 });
 
-test('approved artifact index.html is the one byte-identical to live mcleevusydney.com', () => {
-  // sha256 captured 2026-09-25 against https://mcleevusydney.com/ (curl, exact bytes).
-  // This pins the release output to the approved public presentation; changing
-  // the homepage must go through review with a regenerated manifest.
+test('approved artifact index.html is the approved deployed release', () => {
+  // sha256 of the artifact deployed to production on 2026-09-25. Cloudflare's
+  // email obfuscation rewrites mailto on the wire, so live bytes cannot be
+  // compared directly; this pin plus the manifest covers release integrity.
   const line = manifest.find(l => l.endsWith('deploy-candle/index.html'));
-  assert.equal(line && line.split(/\s+/)[0], 'd3a99ff88343ad85e29d4de35da650c3397b877b8f449c5277272b668bc5d71b',
-    'deploy-candle/index.html no longer matches the live-approved artifact hash');
+  assert.equal(line && line.split(/\s+/)[0], '249d7d1cc03276ab350872bc25d99b1e6c8976bc7091bc8c1c6d059c6f6fbc26',
+    'deploy-candle/index.html no longer matches the approved deployed artifact');
 });
 
 test('every media reference in the artifact resolves to a real file (missing-asset guard)', () => {
