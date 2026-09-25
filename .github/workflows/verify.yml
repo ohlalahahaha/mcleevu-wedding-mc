@@ -32,11 +32,27 @@ jobs:
           trap 'kill $PREVIEW_PID || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/ >/dev/null && break; sleep 1; done
           node scripts/client-proof.mjs
+      - name: Run candlelight artifact proof
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          node scripts/static-server.mjs deploy-candle > /tmp/lee-artifact-server.log 2>&1 &
+          ART_PID=$!
+          trap 'kill $ART_PID || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4174/ >/dev/null && break; sleep 1; done
+          ARTIFACT_URL=http://127.0.0.1:4174 node scripts/artifact-proof.mjs
       - name: Upload client proof
         uses: actions/upload-artifact@v4
         with:
           name: lee-client-proof-${{ github.event.pull_request.head.sha || github.sha }}
           path: artifacts/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload candlelight artifact proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: lee-artifact-proof-${{ github.event.pull_request.head.sha || github.sha }}
+          path: artifacts/lee-*
           if-no-files-found: error
           retention-days: 7
       - name: Upload cloud build

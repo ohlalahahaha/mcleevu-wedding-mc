@@ -7,6 +7,7 @@
 <title>MC Lee Vu — Bilingual Wedding MC in Sydney</title>
 <meta name="description" content="From 6pm to the last dance — Lee Vu hosts bilingual weddings in English and Vietnamese. $500 deposit secures your date.">
 <meta name="theme-color" content="#0c1420">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c1420'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='15' fill='%23c8a45f'%3ELV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -243,7 +244,6 @@ body.menu-open .menu-nav a{opacity:1;transform:none}
 .tquote{font-family:var(--serif);font-style:italic;font-size:1.38rem;line-height:1.5}
 .twho{display:block;margin-top:1.1rem;font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep)}
 .tcard--alt .twho{color:var(--gold)}
-.tstar{position:absolute;top:1.2rem;right:1.3rem;color:var(--gold);font-size:.72rem;letter-spacing:.2em}
 
 /* purpose — cream */
 .purpose{padding:clamp(3rem,7vh,5rem) var(--pad);color:var(--txt-dark);background:linear-gradient(180deg,var(--cream-2),var(--cream))}
@@ -415,6 +415,7 @@ body.menu-open .menu-nav a{opacity:1;transform:none}
 .v-bigplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:7;width:92px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(231,210,162,.6);color:var(--gold-2);background:rgba(5,8,13,.35);opacity:0;pointer-events:none;transition:opacity .5s var(--ease),background .4s,color .4s,transform .45s var(--ease)}
 .v-bigplay svg{width:28%;height:28%;margin-left:7%;fill:currentColor}
 .modal-stage.can-play .v-bigplay,.modal-stage.motion:not(.is-playing-motion) .v-bigplay{opacity:1;pointer-events:auto}
+.modal-stage.is-playing-video .v-bigplay{opacity:0!important;pointer-events:none!important}
 .v-bigplay::before{content:'';position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(231,210,162,.45);animation:pulse 2.8s ease-out infinite}
 .v-bigplay:hover{background:var(--gold);color:#181206;border-color:var(--gold);transform:translate(-50%,-50%) scale(1.06)}
 .v-controls{position:absolute;left:0;right:0;bottom:0;z-index:8;display:flex;align-items:center;gap:1rem;padding:2.4rem 1.25rem .95rem;background:linear-gradient(180deg,transparent,rgba(5,8,13,.88));opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
@@ -475,6 +476,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
 }
 @media (max-width:900px){.reel-content{grid-template-columns:1fr;justify-items:start;gap:1.8rem}.reel-tags{flex-direction:row;flex-wrap:wrap;gap:.4rem 1.6rem}.f-grid{grid-template-columns:1fr}}
 @media (max-width:640px){.finale-media .media-img{object-position:34% 58%}.foot-bottom{flex-direction:column;text-align:center}.cal-card{padding:1.1rem}.setup-bar{gap:.6rem;padding:.55rem .7rem}a,button,[role="button"],input,select,textarea{min-height:44px}.cal-nav button,.modal-close,.vbtn{width:44px;height:44px}.lang-btn{padding:0 .3rem;min-width:44px}.sb-x{min-width:44px}}
+@media (max-width:430px){.brand-sub{display:none}.head-right{gap:1rem}.cal-d{min-height:0}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001s !important;animation-delay:0s !important;transition-duration:.001s !important}
@@ -488,7 +490,13 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   .play::before,.v-bigplay::before{animation:none}
   #sparks{display:none}
 }
+/* customer view: photo-authoring tools only appear with ?setup */
+html.no-setup .setup-bar,html.no-setup .slot-add{display:none!important}
+.book-contact{margin-top:.95rem;font-size:.8125rem;letter-spacing:.04em;color:var(--txt-light-dim)}
+.book-contact a{color:var(--gold-2);text-decoration:none;border-bottom:1px solid rgba(231,210,162,.35);transition:color .3s,border-color .3s}
+.book-contact a:hover{color:var(--gold);border-color:var(--gold)}
 </style>
+<script>if(!/[?&]setup/.test(location.search+location.hash))document.documentElement.classList.add('no-setup')</script>
 </head>
 <!-- BUILD 10 · CANDLELIGHT FINAL · view-source "BUILD 10" to confirm the deploy updated -->
 <body>
@@ -517,7 +525,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   <nav class="menu-nav">
     <a href="#top"><i>01</i><span data-i18n="m1">Home</span></a>
     <a href="#evening"><i>02</i><span data-i18n="m2">The Evening</span></a>
-    <a href="#words"><i>03</i><span data-i18n="m4">Kind Words</span></a>
+    <a href="#words"><i>03</i><span data-i18n="m4">The Promise</span></a>
     <a href="#enquire"><i>04</i><span data-i18n="m5">Book Lee</span></a>
     <a href="#reel"><i>05</i><span data-i18n="m3">The Reel</span></a>
   </nav>
@@ -628,8 +636,8 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   <!-- ═══ KIND WORDS ═══ -->
   <section class="words" id="words">
     <div class="words-head">
-      <p class="eyebrow eyebrow--center reveal" data-i18n="w-eyebrow">Kind words · est. 2006</p>
-      <h2 class="words-title reveal" style="--d:.1s" data-i18n="w-title">Every couple remembers the night.<br>Here's what they remember about Lee.</h2>
+      <p class="eyebrow eyebrow--center reveal" data-i18n="w-eyebrow">The promise · est. 2006</p>
+      <h2 class="words-title reveal" style="--d:.1s" data-i18n="w-title">One couple, one evening.<br>Here is what Lee brings to it.</h2>
     </div>
     <div class="trow reveal" style="--d:.2s"><div class="ttrack" id="trow1"></div></div>
   </section>
@@ -642,7 +650,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
         <h2 class="purpose-title reveal" style="--d:.1s" data-i18n="p-title">A Greater Purpose</h2>
         <span class="rule reveal-x" style="--d:.2s"></span>
         <p class="purpose-body reveal" style="--d:.28s" data-i18n="p-body">Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney's Vietnamese community.</p>
-        <a class="ahc reveal" style="--d:.38s" href="#enquire"><!-- ▸ SWAP: Acoustic Hearing Care URL -->
+        <a class="ahc reveal" style="--d:.38s" href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noopener">
           <span class="ahc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 12h2l2-5 3 10 2.5-7 1.5 2h5"/></svg></span>
           <span><b>Acoustic Hearing Care</b><small data-i18n="ahc-sub">Optometry · Audiology · Sydney</small></span>
           <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M8 6h10v10"/></svg>
@@ -691,6 +699,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
           <p class="eyebrow reveal" data-i18n="b-eyebrow">Book your date</p>
           <h2 class="book-title reveal" style="--d:.08s" data-i18n="b-title">Reserve Lee for the day it all begins.</h2>
           <p class="book-lede reveal" style="--d:.12s" data-i18n="b-lede">One engagement only per evening — Lee joins you from 6:00&nbsp;pm until the final farewell.</p>
+          <p class="book-contact reveal" style="--d:.16s"><span data-i18n="b-contact">Prefer to talk it through?</span> <a href="tel:+61401676766">0401 676 766</a> <span aria-hidden="true">·</span> <a href="mailto:mcleevu@gmail.com">mcleevu@gmail.com</a></p>
         </div>
 
         <div class="stepbar reveal" style="--d:.16s">
@@ -718,7 +727,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
           <div class="evening-card">
             <p class="ev-eyebrow" data-i18n="ev-eyebrow">Good news —</p>
             <h3 class="ev-date" id="evDate">—</h3>
-            <p class="ev-free"><span class="ev-dot" aria-hidden="true"></span><span data-i18n="ev-free">Your date is free. Lee is yours from six o'clock.</span></p>
+            <p class="ev-free"><span class="ev-dot" aria-hidden="true"></span><span data-i18n="ev-free">Date noted. Lee confirms every date personally — your enquiry goes straight to him.</span></p>
             <ol class="ev-flow">
               <li><span class="ev-t">6:00 pm</span><div><b data-i18n="ev1t">The arrival</b><p data-i18n="ev1">Lee arrives as your guests do — soundcheck, a quiet word with the venue, fully prepared.</p></div></li>
               <li><span class="ev-t" data-i18n="ev2s">Ceremony</span><div><b data-i18n="ev2t">Two languages, one room</b><p data-i18n="ev2">Every vow and announcement lands — once in English, once in Vietnamese, never twice as long.</p></div></li>
@@ -764,7 +773,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
                 <button class="btn btn-gold js-pay" type="button"><span data-i18n="pay">Confirm — pay the $500 deposit</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h17M15 6l6 6-6 6"/></svg></button>
               </div>
               <div class="held" id="heldPanel">
-                <b data-i18n="held-b">Your date is pencilled in.</b>
+                <b data-i18n="held-b">Your enquiry is ready to send.</b>
                 <p id="heldText"></p>
               </div>
             </div>
@@ -789,7 +798,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
         <div class="reel-copy">
           <p class="eyebrow" data-i18n="reel-eyebrow">A short reel</p>
           <h2 class="reel-title" data-i18n="reel-title">Real moments.<br>Lasting memories.</h2>
-          <p class="reel-meta" data-i18n="reel-meta">1 minute</p>
+          <p class="reel-meta" data-i18n="reel-meta">8 seconds</p>
         </div>
         <button class="play" data-open-film aria-label="Play showreel"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6L19 12z"/></svg></button>
         <ul class="reel-tags"><li data-i18n="g1">Weddings</li><li data-i18n="g2">People</li><li data-i18n="g3">Connection</li><li data-i18n="g4">Sydney</li></ul>
@@ -830,13 +839,13 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
         <section class="scene" data-dur="7"><div class="ph ph--ballroom"><span class="ph-mark">LEE&nbsp;VU</span></div><img class="m-img m-push" data-m="ballroom" alt=""><span class="tone"></span><p class="sc-cap cap-l gold-text" data-i18n="r-more">More than just an MC</p></section>
         <section class="scene sc-solid" data-dur="5"><svg class="rings-svg" viewBox="0 0 200 110" fill="none"><circle class="rg" cx="72" cy="62" r="40" stroke="#e7d2a2" stroke-width="1.4"/><circle class="rg rg2" cx="122" cy="62" r="40" stroke="#c8a45f" stroke-width="1.4"/><path class="rg rg2" d="M122 12l5.5 11L122 34l-5.5-11z" stroke="#e7d2a2" stroke-width="1.2"/></svg><p class="sc-cap cap-c gold-text" style="bottom:10%"><span data-i18n="r-since">Since 2006</span><small data-i18n="r-since2">Hundreds of weddings</small></p></section>
         <section class="scene" data-dur="7"><div class="ph ph--night"></div><img class="m-img m-push" data-m="signature" alt=""><span class="tone tone--warm"></span><p class="sc-cap cap-l gold-text" data-i18n="sig-script">Where vows meet the water.</p></section>
-        <section class="scene" data-dur="6"><div class="ph ph--portrait"></div><img class="m-img m-push" data-m="portrait" alt=""></span><p class="sc-cap cap-l gold-text" data-i18n="r-words2">People. Stories. Cultures. Love.</p></section>
+        <section class="scene" data-dur="6"><div class="ph ph--portrait"></div><img class="m-img m-push" data-m="portrait" alt=""><p class="sc-cap cap-l gold-text" data-i18n="r-words2">People. Stories. Cultures. Love.</p></section>
         <section class="scene sc-solid" data-dur="5"><canvas class="confetti-c" id="confettiC"></canvas><p class="sc-cap cap-c gold-text" style="font-size:clamp(2.6rem,5.5vw,4rem)">Trăm năm hạnh phúc<small data-i18n="r-cheers2">A hundred years of happiness</small></p></section>
         <section class="scene" data-dur="7"><div class="sc-center"><span class="script gold-text">Lee Vu</span><span class="sc-sub" data-i18n="r-mc">Bilingual Wedding MC · Sydney</span></div><svg class="skyline-end" viewBox="0 0 420 90" fill="none"><g stroke="#c8a45f" stroke-width="1.2" stroke-linecap="round"><path d="M20 74 C26 46 44 30 74 22 C52 40 40 60 36 74"/><path d="M52 74 C60 40 82 24 116 16 C90 38 76 60 72 74"/><path d="M205 74 Q300 4 395 74"/><path d="M198 56 H412"/><path d="M205 74 V46 M395 74 V46"/></g></svg></section>
       </div>
       <div class="v-poster" id="vPoster">
         <div class="ph ph--ballroom" id="vPosterPh"><span class="ph-mark">LEE&nbsp;VU</span></div>
-        <div class="stage-label"><span class="stage-script gold-text">Lee Vu</span><span class="stage-sub" data-i18n="modal-sub">Showreel · 1 minute</span></div>
+        <div class="stage-label"><span class="stage-script gold-text">Lee Vu</span><span class="stage-sub" data-i18n="modal-sub">Showreel · 8 seconds</span></div>
       </div>
       <span class="motion-tag" data-i18n="r-tag">Motion preview · final film coming soon</span>
       <button class="v-bigplay" id="vBigPlay" aria-label="Play showreel"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6L19 12z"/></svg></button>
@@ -876,20 +885,30 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   var STRIPE_LINK='';
   var CAL_ICS='';
   var BOOKED=['2025-12-06','2025-12-13','2026-02-14'];
-  var EMAIL='enquiries@leevu.com.au';
+  var EMAIL='mcleevu@gmail.com';
 
-  /* testimonials — SAMPLES: replace with Lee's real quotes */
-  var T1=[
-    {q:'Lee held the whole room — two languages, one heartbeat, not a single missed beat.',w:'Minh & Sarah — The Langham, Sydney'},
-    {q:'Lee không chỉ dẫn chương trình — anh ấy kể câu chuyện của chúng tôi.',w:'Hương & Kiên — Cabramatta'}
-  ];
-  var T2=[
-    {q:'He read the room better than anyone — knew when to lift it, when to hush it.',w:'Linh & Tom — Curzon Hall'},
-    {q:'Trăm năm hạnh phúc — đúng như lời Lee đã chúc.',w:'Mai & James — Mosman'}
-  ];
-  function card(t,alt){return '<article class="tcard'+(alt?' tcard--alt':'')+'"><span class="tmark">“</span><span class="tstar">✦ ✦ ✦ ✦ ✦</span><p class="tquote">'+t.q+'</p><span class="twho">'+t.w+'</span></article>'}
+  /* the promise — Lee's own commitments, from his biography. No invented reviews. */
+  var PROMISE={
+    en:[
+      {q:'Reliable, professional, creative — the promise I make to every couple, in both languages.',w:'Lee Vu — your MC for the evening'},
+      {q:'One wedding per date. From six o’clock, the whole evening is yours.',w:'Lee Vu'},
+      {q:'Two languages, one room — every vow lands for both sides of the family.',w:'Lee Vu'},
+      {q:'Proactive and flexible — I plan with you, then read the room on the night.',w:'Lee Vu'},
+      {q:'Hosting for Sydney’s Vietnamese community since 2006 — weddings are where it feels most at home.',w:'Lee Vu'},
+      {q:'People. Stories. Cultures. Love.',w:'Lee Vu — MC · Sydney'}
+    ],
+    vi:[
+      {q:'Đáng tin, chuyên nghiệp, sáng tạo — lời hứa tôi dành cho mỗi cặp đôi, bằng cả hai ngôn ngữ.',w:'Lee Vu — MC của buổi tối của bạn'},
+      {q:'Mỗi tối chỉ một đám cưới. Từ sáu giờ tối, cả buổi tiệc thuộc về bạn.',w:'Lee Vu'},
+      {q:'Hai ngôn ngữ, một căn phòng — mọi lời tuyên thệ đều trọn vẹn cho hai họ.',w:'Lee Vu'},
+      {q:'Chủ động, linh hoạt — tôi cùng bạn chuẩn bị, rồi đọc vị buổi tiệc trong đêm.',w:'Lee Vu'},
+      {q:'Đồng hành cùng cộng đồng người Việt tại Sydney từ 2006 — đám cưới là nơi tất cả gần gũi nhất.',w:'Lee Vu'},
+      {q:'Con người. Câu chuyện. Văn hoá. Tình yêu.',w:'Lee Vu — MC · Sydney'}
+    ]
+  };
+  function card(t,alt){return '<article class="tcard'+(alt?' tcard--alt':'')+'"><span class="tmark">“</span><p class="tquote">'+t.q+'</p><span class="twho">'+t.w+'</span></article>'}
   function fill(id,arr,alt){var t=$(id);t.innerHTML=arr.map(function(x){return card(x,alt)}).join('')+arr.map(function(x){return card(x,alt)}).join('')}
-  fill('#trow1',T1.concat(T2),false);
+  fill('#trow1',PROMISE.en,false);
 
   /* — veil safety: it can never stick — */
   var veil=$('#veil');if(veil)setTimeout(function(){if(veil)veil.style.display='none'},1000);
@@ -916,22 +935,27 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   var picker=$('#filePick'),picking=null;
   function pick(slot){picking=slot;picker.value='';picker.click()}
   picker.addEventListener('change',function(){var f=picker.files&&picker.files[0];if(!f||!picking)return;var slot=picking;shrink(f,function(url){apply(slot,url,true);toast('Added — '+LABEL[slot]);var next=SLOTS.filter(function(s){return !have[s]})[0];if(next)pick(next)})});
-  $$('[data-pick]').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();pick(b.dataset.pick)})});
+  var SETUP=!document.documentElement.classList.contains('no-setup');
+  if(SETUP)$$('[data-pick]').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();pick(b.dataset.pick)})});
   var sbar=$('#setupBar');
   function refreshBar(){var n=SLOTS.filter(function(s){return !have[s]}).length;$('#sbCount').textContent='Photos: '+(4-n)+' / 4';document.body.classList.toggle('setup-done',n===0);sbar.style.display=document.body.classList.contains('setup-dismissed')?'none':''}
+  if(SETUP){
   $('#sbChoose').addEventListener('click',function(){var n=SLOTS.filter(function(s){return !have[s]})[0];n?pick(n):toast('All photos added')});
   $('#sbExport').addEventListener('click',function(){var keys=SLOTS.filter(function(s){return store[s]||injected[s]});if(!keys.length){toast('Choose photos first');return}var out={};keys.forEach(function(s){out[s]=store[s]||injected[s]});var src='/* photos.js '+new Date().toISOString()+' */\nwindow.LEE_PHOTOS='+JSON.stringify(out)+';';var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([src],{type:'text/javascript'}));a.download='photos.js';a.click();toast('photos.js downloaded — place beside index.html, redeploy')});
   $('#sbClose').addEventListener('click',function(){document.body.classList.add('setup-dismissed');sbar.style.display='none'});
+  }
   SLOTS.forEach(function(s){if(injected[s])apply(s,injected[s],false);else if(store[s])apply(s,store[s],false)});
   refreshBar();
   function posterFrom(url){var ph=$('#vPosterPh');if(ph&&url){ph.style.backgroundImage='linear-gradient(180deg,rgba(8,13,21,.4),rgba(8,13,21,.6)),url("'+url+'")';ph.style.backgroundSize='cover';ph.style.backgroundPosition='50% 26%'}}
   var toastT,tEl=$('#toast');
   function toast(m){tEl.textContent=m;tEl.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){tEl.classList.remove('show')},3200)}
+  if(SETUP){
   document.addEventListener('dragover',function(e){e.preventDefault()});
   document.addEventListener('drop',function(e){e.preventDefault();var f=e.dataTransfer&&e.dataTransfer.files[0];if(!f)return;
     if(/^video\//.test(f.type)){enableVideo(URL.createObjectURL(f));video.src=videoSrc;toast('Showreel updated');return}
     if(!/^image\//.test(f.type))return;var slot=SLOTS.filter(function(s){return !have[s]})[0]||'ballroom';
     shrink(f,function(url){apply(slot,url,true);toast('Added — '+LABEL[slot])})});
+  }
 
   /* ═══ sparks — barely there ═══ */
   (function(){
@@ -1037,11 +1061,11 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
       $('#heldText').textContent=lang==='vi'?'Cổng thanh toán $500 đã mở trong tab mới. Sau khi thanh toán, lịch của Lee được xác nhận và email xác nhận sẽ được gửi.':'Secure checkout for your $500 deposit has opened in a new tab. Once paid, Lee’s calendar is confirmed and a confirmation email is on its way.';
     }else{
       location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Booking — '+pretty(selDate))+'&body='+body;
-      $('#heldText').textContent=lang==='vi'?'Ứng dụng email của bạn đã mở với mọi thông tin — gửi đi và hướng dẫn đặt cọc $500 sẽ được gửi lại cho bạn.':'Your email app has opened with everything pre-filled — send it, and payment details for the $500 deposit will come straight back to you.';
+      $('#heldText').textContent=lang==='vi'?'Ứng dụng email của bạn đã mở với mọi thông tin — gửi đi, và Lee sẽ trả lời trực tiếp về lịch trống cùng hướng dẫn đặt cọc $500.':'Your email app has opened with everything pre-filled — send it, and Lee will reply personally with availability and payment details for the $500 deposit.';
     }
     $('#heldPanel').classList.add('show');
     if(fromBottom)$('#sumDate').scrollIntoView({behavior:'smooth',block:'center'});
-    toast((lang==='vi'?'Đã giữ ngày — ':'Date held — ')+pretty(selDate));
+    toast((lang==='vi'?'Đã soạn thư — ':'Enquiry drafted — ')+pretty(selDate));
   }
   $$('.js-pay').forEach(function(b){b.addEventListener('click',function(){payFlow(false)})});
 
@@ -1052,8 +1076,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   function icons(){var p=(mode==='video')?!video.paused:(mode==='motion'&&mPlaying);icPause.hidden=!p;icPlay.hidden=p}
   function vUI(){var d=video.duration||0,c=video.currentTime||0,pct=d?c/d*100:0;vSeek.value=d?Math.round(c/d*1000):0;vSeek.style.background='linear-gradient(90deg,var(--gold) '+pct+'%,rgba(231,210,162,.25) '+pct+'%)';vTime.textContent=fmt(c)+' / '+fmt(d);icons()}
   video.addEventListener('loadedmetadata',vUI);video.addEventListener('timeupdate',vUI);
-  video.addEventListener('play',function(){stage.classList.add('is-playing');if(!firstPlay){firstPlay=true;stage.classList.add('has-started')}vUI()});
-  video.addEventListener('pause',vUI);video.addEventListener('ended',function(){video.currentTime=0;vUI()});
+  video.addEventListener('play',function(){stage.classList.add('is-playing-video');if(!firstPlay){firstPlay=true;stage.classList.add('has-started')}vUI()});video.addEventListener('pause',function(){stage.classList.remove('is-playing-video');vUI()});video.addEventListener('ended',function(){stage.classList.remove('is-playing-video');video.currentTime=0;vUI()});
   var scenes=$$('.scene',$('#mReel')),starts=[],TOTAL=0;
   scenes.forEach(function(s){starts.push(TOTAL);TOTAL+=(+s.dataset.dur||5)*1000});
   var mPlaying=false,mT=0,mIdx=-1,mRAF=null,mLast=0,confRAF=null,confOn=false;
@@ -1073,7 +1096,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   function mEnd(){mPause();mT=TOTAL;stage.classList.add('ended');vBar.style.transform='scaleX(1)';vTime.textContent=fmt(TOTAL/1000)+' / '+fmt(TOTAL/1000)}
   function mToggle(){mPlaying?mPause():mStart()}
   function tryVideo(u){return new Promise(function(res,rej){var v=document.createElement('video');v.preload='metadata';v.onloadedmetadata=function(){res(u)};v.onerror=rej;v.src=u})}
-  (function(){var list=window.LEE_VIDEO?[window.LEE_VIDEO]:['assets/showreel.mp4','showreel.mp4'];var p=Promise.reject();list.forEach(function(u){p=p.catch(function(){return tryVideo(u)})});p.then(function(u){videoSrc=u;mode='video';stage.classList.add('can-play')}).catch(function(){mode='motion';stage.classList.add('motion');vTime.textContent='0:00 / '+fmt(TOTAL/1000)})})();
+  (function(){var list=window.LEE_VIDEO?[window.LEE_VIDEO,'media/lee-vu-reel.mp4']:['media/lee-vu-reel.mp4','assets/showreel.mp4','showreel.mp4'];var p=Promise.reject();list.forEach(function(u){p=p.catch(function(){return tryVideo(u)})});p.then(function(u){videoSrc=u;mode='video';stage.classList.add('can-play')}).catch(function(){mode='motion';stage.classList.add('motion');vTime.textContent='0:00 / '+fmt(TOTAL/1000)})})();
   function enableVideo(src){videoSrc=src;mode='video';stage.classList.add('can-play');stage.classList.remove('motion')}
   bigPlay.addEventListener('click',function(){if(mode==='video'&&videoSrc)video.play();else if(mode==='motion')mStart()});
   vToggle.addEventListener('click',function(){if(mode==='video'){video.paused?video.play():video.pause()}else if(mode==='motion'){mToggle()}});
@@ -1084,7 +1107,7 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
   function closeFilm(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(mode==='video'&&!video.paused)video.pause();if(mode==='motion'&&mPlaying)mPause()}
   $$('[data-open-film]').forEach(function(b){b.addEventListener('click',openFilm)});
   $$('[data-close]',modal).forEach(function(el){el.addEventListener('click',closeFilm)});
-  window.addEventListener('keydown',function(e){if(e.key==='Escape')closeFilm();if(!modal.classList.contains('open'))return;if(e.key===' '){e.preventDefault();vToggle.click()}if(mode==='video'&&video.duration){if(e.key==='ArrowRight')video.currentTime=Math.min(video.duration,video.currentTime+5);if(e.key==='ArrowLeft')video.currentTime=Math.max(0,video.currentTime-5)}if(e.key==='m'||e.key==='M')vMute.click();if(e.key==='f'||e.key==='F')vFull.click()});
+  window.addEventListener('keydown',function(e){if(e.key==='Escape'){closeFilm();if(document.body.classList.contains('menu-open'))setMenu(false)}if(!modal.classList.contains('open'))return;if(e.key===' '){e.preventDefault();vToggle.click()}if(mode==='video'&&video.duration){if(e.key==='ArrowRight')video.currentTime=Math.min(video.duration,video.currentTime+5);if(e.key==='ArrowLeft')video.currentTime=Math.max(0,video.currentTime-5)}if(e.key==='m'||e.key==='M')vMute.click();if(e.key==='f'||e.key==='F')vFull.click()});
 
   /* chrome */
   var head=$('.site-head'),barP=$('.scroll-progress'),doc=document.documentElement;
@@ -1119,12 +1142,13 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
 
   /* ═══ EN / VI — VI strings: polish via Gemini/ChatGPT, keep keys identical ═══ */
   var I18N={
-    en:{'brand-sub':'Sydney · Bilingual MC',eyebrow:'Sydney · English + Vietnamese',t1:'Bilingual',t2:'wedding MC',t3:'in <em class="gold-text">Sydney.</em>',lede:'Since 2006, Lee Vu has hosted hundreds of weddings in English and Vietnamese — creating unforgettable moments.',cta1:'Book your date',cta2:'Watch Lee in action',note:'More than just an MC',w1:'People',w2:'Stories',w3:'Cultures',w4:'Love',cue:'Scroll',m1:'Home',m2:'The Evening',m3:'The Reel',m4:'Kind Words',m5:'Book Lee','menu-tag':'Sydney · English + Vietnamese','in-eyebrow':'The evening · one couple at a time','in-title':'From six o’clock, Lee belongs entirely to your evening.','in-body':'He arrives as your guests do — calm, prepared, wholly present — and stays until the final farewell. Earlier in the day you’ll find him at his practice, caring for Sydney’s community. That is the whole arrangement. No packages, no tiers: one couple, one night, his full attention.','sun-b':'LAST DANCE','pr-b':'the golden hour','pr-note':'One couple per evening — <em>the whole night, his full attention.</em>','reel-eyebrow':'A short reel','reel-title':'Real moments.<br>Lasting memories.','reel-meta':'1 minute',g1:'Weddings',g2:'People',g3:'Connection',g4:'Sydney','w-eyebrow':'Kind words · est. 2006','w-title':'Every couple remembers the night.<br>Here’s what they remember about Lee.','p-eyebrow':'Before six o’clock','p-title':'A Greater Purpose','p-body':'Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney’s Vietnamese community.','ahc-sub':'Optometry · Audiology · Sydney',quote:'Different conversations. A&nbsp;shared purpose.',cap:'Sydney Always Home','b-eyebrow':'Book your date','b-title':'Reserve Lee for the day it all begins.','b-lede':'One engagement only per evening — Lee joins you from 6:00 pm until the ceremony’s end.','cal-sel':'Your date:','cal-none':'not chosen yet',sb1:'Choose a date',sb2:'Your evening',sb3:'The arrangement','ev-eyebrow':'Good news —','ev-free':'Your date is free. Lee is yours from six o’clock.',ev1t:'The arrival',ev1:'Lee arrives as your guests do — soundcheck, a quiet word with the venue, fully prepared.',ev2s:'Ceremony',ev2t:'Two languages, one room',ev2:'Every vow and announcement lands — once in English, once in Vietnamese, never twice as long.',ev3s:'Reception',ev3t:'The warm part of the night',ev3:'Toasts, translations and the moments that make both sides of the family one room.',ev4s:'Last dance',ev4t:'The farewell',ev4:'He closes the evening gently — and your date is complete, start to finish.','ev-cta':'Continue — see the arrangement','af-title':'Tell Lee about your day','cal-note':'Pick your date —','cal-note2':'a $500 deposit holds yours for 48 hours.','f-name':'Your names *','f-email':'Email *','f-phone':'Phone','f-venue':'Venue / suburb','f-lang':'Ceremony languages','f-guests':'Approx. guests','f-msg':'Anything Lee should know','sum-eyebrow':'Your date','sum-empty':'Pick your date on the calendar…','sum-fee':'Engagement fee — from 6pm to the final farewell','sum-dep':'Deposit — today, online','sum-dep2':'Secures your date','sum-bal':'Balance — in person','sum-bal2':'Paid to Lee on the day',pay:'Confirm — pay the $500 deposit','held-b':'Your date is pencilled in.',fine:'Deposit is fully transferable to another available date with 30 days’ notice. Balance of $500 is paid in person — cash or transfer — on the wedding day.','foot-eyebrow':'Est. 2006 · Sydney','foot-sub':'Bilingual wedding MC — Sydney','foot-cta':'Check your date','foot-words':'People · Stories · Cultures · Love','foot-rights':'© 2026 Lee Vu · MC · Sydney, Australia','foot-top':'Back to top','modal-sub':'Showreel · 1 minute','r-words':'People · Stories · Cultures · Love','r-more':'More than just an MC','r-since':'Since 2006','r-since2':'Hundreds of weddings','sig-script':'Where vows meet the water.','r-words2':'People. Stories. Cultures. Love.','r-cheers2':'A hundred years of happiness','r-mc':'Bilingual Wedding MC · Sydney','r-tag':'Motion preview · final film coming soon'},
-    vi:{'brand-sub':'Sydney · MC song ngữ',eyebrow:'Sydney · Tiếng Anh + Tiếng Việt',t1:'MC đám cưới',t2:'song ngữ tại',t3:'<em class="gold-text">Sydney.</em>',lede:'Từ năm 2006, Lee Vu đã dẫn dắt hàng trăm đám cưới bằng tiếng Anh và tiếng Việt — tạo nên những khoảnh khắc khó quên.',cta1:'Đặt lịch của bạn',cta2:'Xem Lee trên sân khấu',note:'Hơn cả một MC',w1:'Con người',w2:'Câu chuyện',w3:'Văn hoá',w4:'Tình yêu',cue:'Cuộn',m1:'Trang chủ',m2:'Buổi tiệc',m3:'Reel',m4:'Lời cảm ơn',m5:'Đặt lịch Lee','menu-tag':'Sydney · Tiếng Anh + Tiếng Việt','in-eyebrow':'Buổi tối · mỗi lần một cặp đôi','in-title':'Từ sáu giờ tối, Lee thuộc trọn về buổi tiệc của bạn.','in-body':'Anh đến cùng lúc với khách mời — bình thản, chu đáo, hiện diện trọn vẹn — và ở lại đến lời chia tay cuối cùng. Ban ngày, bạn sẽ gặp anh tại phòng khám, nơi anh phục vụ cộng đồng Sydney. Đó là toàn bộ thỏa thuận: không gói dịch vụ, không phân cấp — một cặp đôi, một đêm, trọn vẹn sự tập trung của anh.','sun-b':'ĐIỆU NHẢY CUỐI','pr-b':'giờ vàng','pr-note':'Mỗi tối chỉ một cặp đôi — <em>trọn vẹn buổi tối, trọn vẹn sự chú tâm.</em>','reel-eyebrow':'Đoạn reel ngắn','reel-title':'Khoảnh khắc thật.<br>Ký ức mãi không phai.','reel-meta':'1 phút',g1:'Đám cưới',g2:'Con người',g3:'Kết nối',g4:'Sydney','w-eyebrow':'Lời khách hàng · từ 2006','w-title':'Mỗi cặp đôi đều nhớ về đêm ấy.<br>Đây là điều họ nhớ về Lee.','p-eyebrow':'Trước sáu giờ tối','p-title':'Một sứ mệnh lớn hơn','p-body':'Xa chiếc micro, Lee làm việc trong ngành nhãn khoa và thính học, và đã dành nhiều năm đồng hành cùng cộng đồng người Việt tại Sydney.','ahc-sub':'Nhãn khoa · Thính học · Sydney',quote:'Những cuộc trò chuyện khác biệt. Một&nbsp;sứ mệnh chung.',cap:'Sydney luôn là nhà','b-eyebrow':'Đặt lịch của bạn','b-title':'Để Lee đồng hành trong ngày trọng đại.','b-lede':'Mỗi tối chỉ một buổi — Lee hiện diện từ 6:00 pm đến tiếng nhạc cuối.','cal-sel':'Ngày của bạn:','cal-none':'chưa chọn',sb1:'Chọn ngày',sb2:'Buổi tiệc của bạn',sb3:'Thoả thuận','ev-eyebrow':'Tin vui —','ev-free':'Ngày của bạn còn trống. Lee thuộc về bạn từ sáu giờ tối.',ev1t:'Buổi đón khách',ev1:'Lee đến cùng lúc với khách mời — kiểm tra âm thanh, chuyện trò nhẹ nhàng với nơi tổ chức, chuẩn bị trọn vẹn.',ev2s:'Lễ cưới',ev2t:'Hai ngôn ngữ, một căn phòng',ev2:'Mọi lời tuyên thệ và thông báo đều trọn vẹn — tiếng Anh rồi tiếng Việt, mà không kéo dài gấp đôi.',ev3s:'Tiệc tối',ev3t:'Phần ấm nhất của đêm',ev3:'Lời chúc, phiên dịch và những khoảnh khắc gắn hai họ thành một mái nhà.',ev4s:'Điệu nhảy cuối',ev4t:'Lời tạm biệt',ev4:'Anh khép lại buổi tối nhẹ nhàng — và ngày của bạn trọn vẹn từ đầu đến cuối.','ev-cta':'Tiếp tục — xem thoả thuận','af-title':'Kể Lee nghe về ngày của bạn','cal-note':'Chọn ngày của bạn —','cal-note2':'đặt cọc $500 giữ chỗ của bạn trong 48 giờ.','f-name':'Tên của hai bạn *','f-email':'Email *','f-phone':'Điện thoại','f-venue':'Địa điểm / khu vực','f-lang':'Ngôn ngữ lễ cưới','f-guests':'Số khách dự kiến','f-msg':'Điều Lee nên biết','sum-eyebrow':'Ngày của bạn','sum-empty':'Chọn ngày trên lịch…','sum-fee':'Phí đồng hành — từ 6pm đến tiếng nhạc cuối','sum-dep':'Đặt cọc — hôm nay, online','sum-dep2':'Giữ ngày của bạn','sum-bal':'Phần còn lại — trực tiếp','sum-bal2':'Thanh toán cho Lee trong ngày',pay:'Xác nhận — đặt cọc $500','held-b':'Ngày của bạn đã được giữ chỗ.',fine:'Tiền cọc có thể chuyển sang ngày khác còn trống với thông báo trước 30 ngày. Phần còn lại $500 thanh toán trực tiếp — tiền mặt hoặc chuyển khoản — trong ngày cưới.','foot-eyebrow':'Từ 2006 · Sydney','foot-sub':'MC đám cưới song ngữ — Sydney','foot-cta':'Xem ngày của bạn','foot-words':'Con người · Câu chuyện · Văn hoá · Tình yêu','foot-rights':'© 2026 Lee Vu · MC · Sydney, Úc','foot-top':'Lên đầu trang','modal-sub':'Reel · 1 phút','r-words':'Con người · Câu chuyện · Văn hoá · Tình yêu','r-more':'Hơn cả một MC','r-since':'Từ năm 2006','r-since2':'Hàng trăm đám cưới','sig-script':'Nơi lời thề chạm dòng nước.','r-words2':'Con người. Câu chuyện. Văn hoá. Tình yêu.','r-cheers2':'A hundred years of happiness','r-mc':'MC đám cưới song ngữ · Sydney','r-tag':'Xem trước · phim đầy đủ sắp ra mắt'}
+    en:{'brand-sub':'Sydney · Bilingual MC',eyebrow:'Sydney · English + Vietnamese',t1:'Bilingual',t2:'wedding MC',t3:'in <em class="gold-text">Sydney.</em>',lede:'Since 2006, Lee Vu has hosted hundreds of weddings in English and Vietnamese — creating unforgettable moments.',cta1:'Book your date',cta2:'Watch Lee in action',note:'More than just an MC',w1:'People',w2:'Stories',w3:'Cultures',w4:'Love',cue:'Scroll',m1:'Home',m2:'The Evening',m3:'The Reel',m4:'The Promise',m5:'Book Lee','menu-tag':'Sydney · English + Vietnamese','in-eyebrow':'The evening · one couple at a time','in-title':'From six o’clock, Lee belongs entirely to your evening.','in-body':'He arrives as your guests do — calm, prepared, wholly present — and stays until the final farewell. Earlier in the day you’ll find him at his practice, caring for Sydney’s community. That is the whole arrangement. No packages, no tiers: one couple, one night, his full attention.','sun-b':'LAST DANCE','pr-b':'the golden hour','pr-note':'One couple per evening — <em>the whole night, his full attention.</em>','reel-eyebrow':'A short reel','reel-title':'Real moments.<br>Lasting memories.','reel-meta':'8 seconds',g1:'Weddings',g2:'People',g3:'Connection',g4:'Sydney','w-eyebrow':'The promise · est. 2006','w-title':'One couple, one evening.<br>Here is what Lee brings to it.','p-eyebrow':'Before six o’clock','p-title':'A Greater Purpose','p-body':'Away from the microphone, Lee works in optometry and audiology and has spent years supporting Sydney’s Vietnamese community.','ahc-sub':'Optometry · Audiology · Sydney',quote:'Different conversations. A&nbsp;shared purpose.',cap:'Sydney Always Home','b-eyebrow':'Book your date','b-title':'Reserve Lee for the day it all begins.','b-lede':'One engagement only per evening — Lee joins you from 6:00 pm until the ceremony’s end.','b-contact':'Prefer to talk it through?','cal-sel':'Your date:','cal-none':'not chosen yet',sb1:'Choose a date',sb2:'Your evening',sb3:'The arrangement','ev-eyebrow':'Your evening —','ev-free':'Date noted. Lee confirms every date personally — your enquiry goes straight to him.',ev1t:'The arrival',ev1:'Lee arrives as your guests do — soundcheck, a quiet word with the venue, fully prepared.',ev2s:'Ceremony',ev2t:'Two languages, one room',ev2:'Every vow and announcement lands — once in English, once in Vietnamese, never twice as long.',ev3s:'Reception',ev3t:'The warm part of the night',ev3:'Toasts, translations and the moments that make both sides of the family one room.',ev4s:'Last dance',ev4t:'The farewell',ev4:'He closes the evening gently — and your date is complete, start to finish.','ev-cta':'Continue — see the arrangement','af-title':'Tell Lee about your day','cal-note':'Pick your date —','cal-note2':'a $500 deposit holds yours for 48 hours.','f-name':'Your names *','f-email':'Email *','f-phone':'Phone','f-venue':'Venue / suburb','f-lang':'Ceremony languages','f-guests':'Approx. guests','f-msg':'Anything Lee should know','sum-eyebrow':'Your date','sum-empty':'Pick your date on the calendar…','sum-fee':'Engagement fee — from 6pm to the final farewell','sum-dep':'Deposit — today, online','sum-dep2':'Secures your date','sum-bal':'Balance — in person','sum-bal2':'Paid to Lee on the day',pay:'Confirm — pay the $500 deposit','held-b':'Your enquiry is ready to send.',fine:'Deposit is fully transferable to another available date with 30 days’ notice. Balance of $500 is paid in person — cash or transfer — on the wedding day.','foot-eyebrow':'Est. 2006 · Sydney','foot-sub':'Bilingual wedding MC — Sydney','foot-cta':'Check your date','foot-words':'People · Stories · Cultures · Love','foot-rights':'© 2026 Lee Vu · MC · Sydney, Australia','foot-top':'Back to top','modal-sub':'Showreel · 8 seconds','r-words':'People · Stories · Cultures · Love','r-more':'More than just an MC','r-since':'Since 2006','r-since2':'Hundreds of weddings','sig-script':'Where vows meet the water.','r-words2':'People. Stories. Cultures. Love.','r-cheers2':'A hundred years of happiness','r-mc':'Bilingual Wedding MC · Sydney','r-tag':'Motion preview · final film coming soon'},
+    vi:{'brand-sub':'Sydney · MC song ngữ',eyebrow:'Sydney · Tiếng Anh + Tiếng Việt',t1:'MC đám cưới',t2:'song ngữ tại',t3:'<em class="gold-text">Sydney.</em>',lede:'Từ năm 2006, Lee Vu đã dẫn dắt hàng trăm đám cưới bằng tiếng Anh và tiếng Việt — tạo nên những khoảnh khắc khó quên.',cta1:'Đặt lịch của bạn',cta2:'Xem Lee trên sân khấu',note:'Hơn cả một MC',w1:'Con người',w2:'Câu chuyện',w3:'Văn hoá',w4:'Tình yêu',cue:'Cuộn',m1:'Trang chủ',m2:'Buổi tiệc',m3:'Reel',m4:'Lời hứa',m5:'Đặt lịch Lee','menu-tag':'Sydney · Tiếng Anh + Tiếng Việt','in-eyebrow':'Buổi tối · mỗi lần một cặp đôi','in-title':'Từ sáu giờ tối, Lee thuộc trọn về buổi tiệc của bạn.','in-body':'Anh đến cùng lúc với khách mời — bình thản, chu đáo, hiện diện trọn vẹn — và ở lại đến lời chia tay cuối cùng. Ban ngày, bạn sẽ gặp anh tại phòng khám, nơi anh phục vụ cộng đồng Sydney. Đó là toàn bộ thỏa thuận: không gói dịch vụ, không phân cấp — một cặp đôi, một đêm, trọn vẹn sự tập trung của anh.','sun-b':'ĐIỆU NHẢY CUỐI','pr-b':'giờ vàng','pr-note':'Mỗi tối chỉ một cặp đôi — <em>trọn vẹn buổi tối, trọn vẹn sự chú tâm.</em>','reel-eyebrow':'Đoạn reel ngắn','reel-title':'Khoảnh khắc thật.<br>Ký ức mãi không phai.','reel-meta':'8 giây',g1:'Đám cưới',g2:'Con người',g3:'Kết nối',g4:'Sydney','w-eyebrow':'Lời hứa · từ 2006','w-title':'Một cặp đôi, một buổi tối.<br>Đây là điều Lee mang đến.','p-eyebrow':'Trước sáu giờ tối','p-title':'Một sứ mệnh lớn hơn','p-body':'Xa chiếc micro, Lee làm việc trong ngành nhãn khoa và thính học, và đã dành nhiều năm đồng hành cùng cộng đồng người Việt tại Sydney.','ahc-sub':'Nhãn khoa · Thính học · Sydney',quote:'Những cuộc trò chuyện khác biệt. Một&nbsp;sứ mệnh chung.',cap:'Sydney luôn là nhà','b-eyebrow':'Đặt lịch của bạn','b-title':'Để Lee đồng hành trong ngày trọng đại.','b-lede':'Mỗi tối chỉ một buổi — Lee hiện diện từ 6:00 pm đến tiếng nhạc cuối.','b-contact':'Muốn trò chuyện trực tiếp?','cal-sel':'Ngày của bạn:','cal-none':'chưa chọn',sb1:'Chọn ngày',sb2:'Buổi tiệc của bạn',sb3:'Thoả thuận','ev-eyebrow':'Buổi tiệc của bạn —','ev-free':'Đã ghi nhận ngày của bạn. Lee xác nhận từng lịch riêng — yêu cầu của bạn sẽ đến thẳng anh.',ev1t:'Buổi đón khách',ev1:'Lee đến cùng lúc với khách mời — kiểm tra âm thanh, chuyện trò nhẹ nhàng với nơi tổ chức, chuẩn bị trọn vẹn.',ev2s:'Lễ cưới',ev2t:'Hai ngôn ngữ, một căn phòng',ev2:'Mọi lời tuyên thệ và thông báo đều trọn vẹn — tiếng Anh rồi tiếng Việt, mà không kéo dài gấp đôi.',ev3s:'Tiệc tối',ev3t:'Phần ấm nhất của đêm',ev3:'Lời chúc, phiên dịch và những khoảnh khắc gắn hai họ thành một mái nhà.',ev4s:'Điệu nhảy cuối',ev4t:'Lời tạm biệt',ev4:'Anh khép lại buổi tối nhẹ nhàng — và ngày của bạn trọn vẹn từ đầu đến cuối.','ev-cta':'Tiếp tục — xem thoả thuận','af-title':'Kể Lee nghe về ngày của bạn','cal-note':'Chọn ngày của bạn —','cal-note2':'đặt cọc $500 giữ chỗ của bạn trong 48 giờ.','f-name':'Tên của hai bạn *','f-email':'Email *','f-phone':'Điện thoại','f-venue':'Địa điểm / khu vực','f-lang':'Ngôn ngữ lễ cưới','f-guests':'Số khách dự kiến','f-msg':'Điều Lee nên biết','sum-eyebrow':'Ngày của bạn','sum-empty':'Chọn ngày trên lịch…','sum-fee':'Phí đồng hành — từ 6pm đến tiếng nhạc cuối','sum-dep':'Đặt cọc — hôm nay, online','sum-dep2':'Giữ ngày của bạn','sum-bal':'Phần còn lại — trực tiếp','sum-bal2':'Thanh toán cho Lee trong ngày',pay:'Xác nhận — đặt cọc $500','held-b':'Thư hỏi lịch đã sẵn sàng để gửi.',fine:'Tiền cọc có thể chuyển sang ngày khác còn trống với thông báo trước 30 ngày. Phần còn lại $500 thanh toán trực tiếp — tiền mặt hoặc chuyển khoản — trong ngày cưới.','foot-eyebrow':'Từ 2006 · Sydney','foot-sub':'MC đám cưới song ngữ — Sydney','foot-cta':'Xem ngày của bạn','foot-words':'Con người · Câu chuyện · Văn hoá · Tình yêu','foot-rights':'© 2026 Lee Vu · MC · Sydney, Úc','foot-top':'Lên đầu trang','modal-sub':'Reel · 8 giây','r-words':'Con người · Câu chuyện · Văn hoá · Tình yêu','r-more':'Hơn cả một MC','r-since':'Từ năm 2006','r-since2':'Hàng trăm đám cưới','sig-script':'Nơi lời thề chạm dòng nước.','r-words2':'Con người. Câu chuyện. Văn hoá. Tình yêu.','r-cheers2':'A hundred years of happiness','r-mc':'MC đám cưới song ngữ · Sydney','r-tag':'Xem trước · phim đầy đủ sắp ra mắt'}
   };
   function setLang(l){
     lang=l;document.documentElement.lang=l==='vi'?'vi':'en';
     $$('[data-i18n]').forEach(function(el){var v=I18N[l][el.dataset.i18n];if(v!=null)el.innerHTML=v});
+    fill('#trow1',PROMISE[l]||PROMISE.en,false);
     $$('.lang-btn').forEach(function(b){var a=b.dataset.lang===l;b.classList.toggle('is-active',a);b.setAttribute('aria-pressed',a)});
     updateSum();
   }
