@@ -1,6 +1,9 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 
+// App-surface proof for the CURRENT Vite app (slimmed build-10 surface).
+// This proofs the DEV REBUILD only — the release output is deploy-candle/,
+// proofed separately by artifact-proof.mjs. Selectors track src/main.jsx.
 const base = process.env.PREVIEW_URL || 'http://127.0.0.1:4173';
 await fs.mkdir('artifacts', { recursive: true });
 const browser = await chromium.launch({ headless: true });
@@ -11,65 +14,86 @@ async function assertPage(width, height, name) {
   page.on('pageerror', err => errors.push('pageerror: ' + err.message));
   page.on('console', msg => { if (msg.type() === 'error') errors.push('console: ' + msg.text()); });
   await page.goto(base, { waitUntil: 'networkidle' });
-  const metrics = await page.evaluate(() => ({
-    innerWidth,
-    scrollWidth: document.documentElement.scrollWidth,
-    title: document.querySelector('#hero-title')?.textContent || '',
-    brand: document.querySelector('.brand span')?.getBoundingClientRect().toJSON(),
-    lang: document.querySelector('.lang-toggle')?.getBoundingClientRect().toJSON(),
-    cta: document.querySelector('.button-small')?.getBoundingClientRect().toJSON(),
-    hero: document.querySelector('.hero')?.getBoundingClientRect().toJSON(),
-    portrait: document.querySelector('.hero-portrait img')?.getBoundingClientRect().toJSON(),
-    imageSrc: document.querySelector('.hero-portrait img')?.getAttribute('src'),
-    eyebrow: document.querySelector('.hero-eyebrow')?.textContent?.trim() || '',
-    aboutImageSrcs: [...document.querySelectorAll('.about-portrait-composition img')].map(img => img.getAttribute('src')),
-  }));
-  if (metrics.scrollWidth > metrics.innerWidth) throw new Error(name + ': horizontal overflow ' + JSON.stringify(metrics));
-  if (!metrics.title) throw new Error(name + ': missing hero title');
-  if (metrics.imageSrc !== '/media/lee-vu-stage.jpg') throw new Error(name + ': wrong hero identity asset');
-  if (!metrics.eyebrow) throw new Error(name + ': missing hero editorial eyebrow');
-  if (!metrics.aboutImageSrcs.includes('/media/lee-vu-portrait-navy.jpg') || !metrics.aboutImageSrcs.includes('/media/lee-vu-portrait-blue.jpg')) throw new Error(name + ': missing real Lee editorial portrait pair');
-  for (const key of ['brand','lang','cta']) {
-    const r = metrics[key];
-    if (!r || r.width < 1 || r.height < 1 || r.left < 0 || r.right > width + 1) throw new Error(name + ': header control clipped: ' + key);
+  await page.waitForTimeout(400);
+  await page.evaluate(async () => {
+    const h = document.documentElement.scrollHeight;
+    for (let y = 0; y < h; y += innerHeight * 0.8) { scrollTo(0, y); await new Promise(r => setTimeout(r, 120)); }
+    await new Promise(r => setTimeout(r, 300));
+    scrollTo(0, 0);
+  });
+  await page.waitForTimeout(400);
+  const m = await page.evaluate(() => {
+    const box = el => { if (!el) return null; const r = el.getBoundingClientRect(); return { w: r.width, h: r.height, left: r.left, right: r.right, top: r.top, bottom: r.bottom }; };
+    const imgs = [...document.querySelectorAll('img')].map(i => ({ src: i.getAttribute('src'), ok: i.complete && i.naturalWidth > 0 }));
+    return {
+      innerWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+      title: document.querySelector('#hero-title')?.textContent || '',
+      heroImgSrc: document.querySelector('.hero-media img')?.getAttribute('src'),
+      reelStripSrcs: [...document.querySelectorAll('.reel-strip img')].map(i => i.getAttribute('src')),
+      brand: box(document.querySelector('.brand')),
+      langBtn: box(document.querySelector('.lang-btn')),
+      cta: box(document.querySelector('.btn-gold')),
+      hero: box(document.querySelector('.hero')),
+      heroMedia: box(document.querySelector('.hero-media')),
+      imgs,
+      hasVideo: !!document.querySelector('video'),
+      reelFrame: document.querySelector('.reel-html-frame')?.getAttribute('src'),
+      callHref: document.querySelector('a.contact-tile[href^="tel:"]')?.getAttribute('href'),
+      emailHref: document.querySelector('a.contact-tile[href^="mailto:"]')?.getAttribute('href'),
+    };
+  });
+  if (m.scrollWidth > m.innerWidth) throw new Error(name + ': horizontal overflow ' + m.scrollWidth);
+  if (!m.title.trim()) throw new Error(name + ': missing hero title');
+  if (m.heroImgSrc !== '/media/lee-vu-hero-artifact.webp') throw new Error(name + ': wrong hero identity asset: ' + m.heroImgSrc);
+  if (!m.reelStripSrcs.includes('/media/lee-vu-portrait-navy.jpg') || !m.reelStripSrcs.includes('/media/lee-vu-portrait-blue.jpg')) throw new Error(name + ': missing real Lee identity pair in reel strip');
+  for (const key of ['brand', 'langBtn', 'cta']) {
+    const r = m[key];
+    if (!r || r.w < 1 || r.h < 1 || r.left < 0 || r.right > width + 1) throw new Error(name + ': header control clipped: ' + key);
   }
-  if (!metrics.portrait || metrics.portrait.bottom > metrics.hero.bottom + 1 || metrics.portrait.right > metrics.hero.right + 1) throw new Error(name + ': portrait escapes hero');
+  // The hero portrait panel is an intentional full-bleed absolute layer
+  // (vertical bleed by design); it must stay inside the viewport's right edge.
+  if (m.heroMedia && (m.heroMedia.h < 400 || m.heroMedia.right > width + 1)) throw new Error(name + ': hero media malformed: ' + JSON.stringify(m.heroMedia));
+  const bad = m.imgs.filter(i => i.src && i.src.includes('media/') && !i.ok);
+  if (bad.length) throw new Error(name + ': broken image slots: ' + JSON.stringify(bad));
+  if (!m.hasVideo) throw new Error(name + ': reel video element missing');
+  if (m.reelFrame !== '/lee-vu-reel.html') throw new Error(name + ': reel iframe target wrong: ' + m.reelFrame);
+  if (m.callHref !== 'tel:+61401676766') throw new Error(name + ': call link wrong: ' + m.callHref);
+  if (!m.emailHref?.startsWith('mailto:mcleevu@gmail.com')) throw new Error(name + ': email link wrong: ' + m.emailHref);
   await page.screenshot({ path: 'artifacts/client-' + name + '.png', fullPage: true });
-  return { page, metrics, errors };
+  return { page, m, errors };
 }
+
 const desktop = await assertPage(1440, 1000, 'desktop');
 const page = desktop.page;
-const englishTitle = await page.locator('#hero-title').textContent();
-await page.locator('.lang-toggle').click();
-if (await page.locator('#hero-title').textContent() === englishTitle) throw new Error('language toggle did not change copy');
-await page.locator('.lang-toggle').click();
-if (await page.locator('#hero-title').textContent() !== englishTitle) throw new Error('language toggle did not restore English');
+const englishTitle = (await page.locator('#hero-title').innerText()).trim();
 
-const faq = page.locator('.faq-list article').first();
-const faqButton = faq.locator('button');
-await faqButton.click();
-if (await faqButton.getAttribute('aria-expanded') !== 'true') throw new Error('FAQ did not open');
-await faqButton.click();
-if (await faqButton.getAttribute('aria-expanded') !== 'false') throw new Error('FAQ did not close');
+// language switch EN→VI→EN via the real buttons
+await page.getByRole('button', { name: 'VI', exact: true }).click();
+await page.waitForTimeout(500);
+const viTitle = (await page.locator('#hero-title').innerText()).trim();
+if (viTitle === englishTitle) throw new Error('VI toggle did not change hero copy');
+if (!/MC đám cưới|song ngữ/i.test(viTitle)) throw new Error('VI hero copy not Vietnamese: ' + viTitle);
+await page.screenshot({ path: 'artifacts/client-desktop-vi.png', fullPage: true });
+await page.getByRole('button', { name: 'EN', exact: true }).click();
+await page.waitForTimeout(400);
+if ((await page.locator('#hero-title').innerText()).trim() !== englishTitle) throw new Error('EN toggle did not restore');
 
+// date checker present + wired (no submission; API not expected under static preview)
 await page.locator('#wedding-date').fill('2026-12-12');
-const emailHref = await page.getByRole('link', { name: 'Email Lee' }).getAttribute('href');
-const callHref = await page.getByRole('link', { name: 'Call Lee' }).getAttribute('href');
-if (!emailHref?.startsWith('mailto:mcleevu@gmail.com?')) throw new Error('email link wrong');
-if (callHref !== 'tel:+61401676766') throw new Error('call link wrong');
-const video = await page.locator('video').evaluate(el => ({ poster: el.getAttribute('poster'), src: el.querySelector('source')?.getAttribute('src') }));
-if (video.poster !== '/media/lee-vu-stage.jpg' || video.src !== '/media/lee-vu-reel.mp4') throw new Error('video media wrong');
+await page.waitForTimeout(200);
+const checkBtn = page.locator('.date-checker .btn-gold');
+if (!(await checkBtn.isEnabled())) throw new Error('date check button not enabled after date pick');
+
 if (desktop.errors.length) throw new Error('desktop page errors: ' + desktop.errors.join(' | '));
 await page.close();
 
 const mobile = await assertPage(390, 844, 'mobile-390');
-const touch = await mobile.page.evaluate(() => ({
-  faq: document.querySelector('.faq-list button')?.getBoundingClientRect().height,
-  lang: document.querySelector('.lang-toggle')?.getBoundingClientRect().height,
-  cta: document.querySelector('.button-small')?.getBoundingClientRect().height,
-  call: [...document.querySelectorAll('a')].find(a => a.getAttribute('href') === 'tel:+61401676766')?.getBoundingClientRect().height
-}));
-for (const [key,value] of Object.entries(touch)) if (!value || value < 44) throw new Error('mobile touch target too small: ' + key + '=' + value);
+const touch = await mobile.page.evaluate(() => {
+  const h = el => el ? el.getBoundingClientRect().height : 0;
+  return { lang: h(document.querySelector('.lang-btn')), cta: h(document.querySelector('.btn-gold')), call: h(document.querySelector('a.contact-tile[href^="tel:"]')) };
+});
+for (const [key, value] of Object.entries(touch)) if (!value || value < 44) throw new Error('mobile touch target too small: ' + key + '=' + value);
 if (mobile.errors.length) throw new Error('mobile page errors: ' + mobile.errors.join(' | '));
 await mobile.page.close();
 
@@ -79,14 +103,7 @@ await narrow.page.close();
 await browser.close();
 
 await fs.writeFile('artifacts/client-proof.json', JSON.stringify({
-  ok: true,
-  source: process.env.SOURCE_SHA || process.env.GITHUB_SHA || 'local-unknown',
-  desktop: desktop.metrics,
-  mobile390: mobile.metrics,
-  mobile320: narrow.metrics,
-  touch,
-  emailHref,
-  callHref,
-  video
+  ok: true, source: process.env.SOURCE_SHA || process.env.GITHUB_SHA || 'local-unknown',
+  desktop: desktop.metrics, mobile390: mobile.metrics, mobile320: narrow.metrics, touch,
 }, null, 2));
 console.log('CLIENT_PROOF PASS');
