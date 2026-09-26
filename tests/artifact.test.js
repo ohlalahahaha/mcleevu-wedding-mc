@@ -40,9 +40,9 @@ test('photo-authoring tools are gated behind ?setup', () => {
   assert.ok(html.includes("if(SETUP){"), 'setup-only bindings guarded');
 });
 
-test('Acoustic Hearing Care links to the real directory', () => {
-  assert.ok(html.includes('https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care'), 'real AHC URL');
-  assert.ok(!html.includes('SWAP: Acoustic Hearing Care URL'), 'swap placeholder gone');
+test('Acoustic Hearing Care links to the official clinic site', () => {
+  assert.ok(html.includes('https://acoustichearing.com.au/'), 'official AHC URL');
+  assert.ok(!html.includes('fairfieldcity.nsw.gov.au'), 'council directory link gone');
 });
 
 test('showreel stays the motion preview — no 8s reel shipped (Phoenix law)', () => {

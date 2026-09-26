@@ -478,8 +478,8 @@ body.setup-done .setup-bar,body.setup-dismissed .setup-bar{display:none}
 
 /* phone hero — Lee is the hero; one quiet copy stack at the base, one strong action */
 @media (max-width:640px){
-  .hero--photo .hero-bg{object-position:60% 20%}
-  .hero--photo .hero-shade{background:linear-gradient(180deg,rgba(8,12,20,.52) 0%,rgba(12,18,28,.1) 30%,rgba(10,14,22,.18) 52%,rgba(6,9,15,.8) 74%,rgba(4,7,12,.96) 100%)}
+  .hero--photo .hero-bg{left:50%;right:auto;transform:translateX(-50%);top:0;bottom:auto;height:70%;width:auto;aspect-ratio:1720/1431;object-position:50% 50%;filter:brightness(1.07) saturate(1.02) contrast(1.03);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 45%),linear-gradient(0deg,transparent 0,#000 32%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 45%),linear-gradient(0deg,transparent 0,#000 32%);mask-composite:intersect}
+  .hero--photo .hero-shade{background:linear-gradient(180deg,rgba(8,12,20,.38) 0%,rgba(12,18,28,.08) 30%,rgba(10,14,22,.14) 52%,rgba(6,9,15,.72) 74%,rgba(4,7,12,.94) 100%)}
   .hero-inner{display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--pad) 2.4rem}
   .hero .eyebrow{display:none}
   .hero-title{font-size:clamp(2.5rem,12vw,3.3rem);margin-top:0}
@@ -665,7 +665,7 @@ html.no-setup .setup-bar,html.no-setup .slot-add{display:none!important}
         <h2 class="purpose-title reveal" style="--d:.1s" data-i18n="p-title">Optometrist, audiologist, community host.</h2>
         <span class="rule reveal-x" style="--d:.2s"></span>
         <p class="purpose-body reveal" style="--d:.28s" data-i18n="p-body">Away from the microphone, Lee is an optometrist and audiologist associated with Acoustic Hearing Care in Sydney’s south-west. Hosting began in Sydney’s Vietnamese community — a second-prize finish in a 2007 singing competition led to years hosting arts, community and charity events across the city.</p>
-        <a class="ahc reveal" style="--d:.38s" href="https://business.fairfieldcity.nsw.gov.au/Business-Directory/Acoustic-Hearing-Care" target="_blank" rel="noopener">
+        <a class="ahc reveal" style="--d:.38s" href="https://acoustichearing.com.au/" target="_blank" rel="noopener">
           <span class="ahc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 12h2l2-5 3 10 2.5-7 1.5 2h5"/></svg></span>
           <span><b>Acoustic Hearing Care</b><small data-i18n="ahc-sub">Optometry · Audiology · Sydney</small></span>
           <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M8 6h10v10"/></svg>
