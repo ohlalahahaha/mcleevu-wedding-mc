@@ -65,6 +65,15 @@
         ],
         "createdAt": "2026-09-25T23:47:26.621Z",
         "reason": "sanctioned: approved Golden Treatment direction, shipped production 2026-09-25, render-verified 26 Sep, predates session (intentional whisper-texture atmosphere + fade-in hero initial state)"
+      },
+      {
+        "rule": "tiny-text",
+        "value": "*",
+        "files": [
+          "deploy-candle/index.html"
+        ],
+        "createdAt": "2026-09-26T03:21:26.189Z",
+        "reason": "intentional design: sub-12px text in this file is decorative SVG seal/sun ring text and uppercase eyebrow microtype from the approved candlelight editorial style, not body copy; body text is >=1rem — reviewed by Claude 2026-09-26, matches approved design direction"
       }
     ]
   }

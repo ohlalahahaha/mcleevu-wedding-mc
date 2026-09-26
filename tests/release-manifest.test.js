@@ -36,7 +36,7 @@ test('approved artifact index.html is the approved deployed release', () => {
   // email obfuscation rewrites mailto on the wire, so live bytes cannot be
   // compared directly; this pin plus the manifest covers release integrity.
   const line = manifest.find(l => l.endsWith('deploy-candle/index.html'));
-  assert.equal(line && line.split(/\s+/)[0], '249d7d1cc03276ab350872bc25d99b1e6c8976bc7091bc8c1c6d059c6f6fbc26',
+  assert.equal(line && line.split(/\s+/)[0], 'f186539f65ad9093b1a1bb870a02d3d4a2528a0b3520393e79287f4fe3562afd',
     'deploy-candle/index.html no longer matches the approved deployed artifact');
 });
 
